@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="LoadInput.LoadSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Name="grdMain" Loaded="grdMain_Loaded" Background="#FFD6DBE9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Name="panel" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        </StackPanel>
+
+        <dxc:ChartControl Grid.Column="1" Grid.Row="1" Background="Transparent" BorderBrush="Transparent">
+            <dxc:XYDiagram2D>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Interlaced="True" Visible="True">
+                        <dxc:AxisX2D.DateTimeScaleOptions>
+                            <dxc:ManualDateTimeScaleOptions GridAlignment="Hour" MeasureUnit="Hour" />
+                        </dxc:AxisX2D.DateTimeScaleOptions>
+                        <!--<dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{HH:mm}"></dxc:AxisLabel>
+                        </dxc:AxisX2D.Label>-->
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D >
+                        <dxc:AxisY2D.Title>
+                            <dxc:AxisTitle Content="Total Load" />
+                        </dxc:AxisY2D.Title>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+
+                <dxc:LineSeries2D MarkerVisible="True" ArgumentDataMember="argudate" ValueDataMember="value" DataSource="{Binding Loads}" >
+                    <dxc:LineSeries2D.Label>
+                        <dxc:SeriesLabel Visible="True"></dxc:SeriesLabel>
+                    </dxc:LineSeries2D.Label>
+                </dxc:LineSeries2D>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+
+        <ListBox Grid.RowSpan="2"></ListBox>
+    </Grid>
+</UserControl>

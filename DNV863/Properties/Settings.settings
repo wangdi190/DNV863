@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DNV863.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="conn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=(local);Initial Catalog=nmsplan;User ID=sa;Password=123456</Value>
+    </Setting>
+    <Setting Name="ip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="mapurl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8080/img.aspx</Value>
+    </Setting>
+    <Setting Name="mappath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mt3.google.cn/vt/lyrs=s@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</Value>
+    </Setting>
+    <Setting Name="mappath2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mt3.google.cn/vt/lyrs=h@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</Value>
+    </Setting>
+    <Setting Name="tmpyzold" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=(local);Initial Catalog=nmsplan;User ID=sa;Password=123456</Value>
+    </Setting>
+    <Setting Name="tmpMysql" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server=localhost;user id=root;database=nmsplan;Password=zhh221</Value>
+    </Setting>
+    <Setting Name="tmpyznew" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=(local);Initial Catalog=dnv863;User ID=sa;Password=123456</Value>
+    </Setting>
+    <Setting Name="tmpmappath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.1.234//map/{layer}/{x}/{y}/{layer}_{x}_{y}.png</Value>
+    </Setting>
+    <Setting Name="tmpweb1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mt3.google.cn/vt/lyrs=s@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</Value>
+    </Setting>
+    <Setting Name="tmpweb2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mt3.google.cn/vt/lyrs=h@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

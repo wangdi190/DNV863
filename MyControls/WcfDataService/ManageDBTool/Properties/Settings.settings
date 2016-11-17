@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ManageDBTool.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="conn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=.; Database=managedb; Uid=sa; Pwd=123456</Value>
+    </Setting>
+    <Setting Name="dbtype" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mssql</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

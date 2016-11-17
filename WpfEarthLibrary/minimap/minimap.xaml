@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WpfEarthLibrary.minimap.minimap"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Initialized="UserControl_Initialized" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0,0" 
+             MouseMove="UserControl_MouseMove" MouseRightButtonDown="UserControl_MouseRightButtonDown" MouseRightButtonUp="UserControl_MouseRightButtonUp"
+             Loaded="UserControl_Loaded">
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform x:Name="tranScale"/>
+            <TranslateTransform x:Name="tranTranslate"/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <Grid>
+        <Grid Background="#000000">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="3" />
+            </Grid.Effect>
+        </Grid>
+                <Border x:Name="brdMap" BorderThickness="1" BorderBrush="#FFFFFF">
+                    <Grid x:Name="grdContent">
+                        <Rectangle Fill="#60000000">
+                            <Rectangle.Clip>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="0,0,300,300"/>
+                                    <PathGeometry>
+                                        <PathFigure IsClosed="True" StartPoint="{Binding ElementName=poly, Path=Points[0]}">
+                                            <PolyLineSegment Points="{Binding ElementName=poly, Path=Points}">
+                                            </PolyLineSegment>
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </GeometryGroup>
+                            </Rectangle.Clip>
+                        </Rectangle>
+                        <Polygon x:Name="poly" Stroke="Red" Fill="Transparent" StrokeThickness="0.5" MouseLeftButtonDown="poly_MouseLeftButtonDown" MouseMove="poly_MouseMove" MouseLeftButtonUp="poly_MouseLeftButtonUp">
+                        <Polygon.Points>
+                            <Point>0,0</Point>
+                            <Point>30,0</Point>
+                            <Point>30,30</Point>
+                            <Point>0,30</Point>
+                        </Polygon.Points>
+                    </Polygon>
+                    </Grid>
+                </Border>
+    </Grid>
+</UserControl>

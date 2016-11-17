@@ -1,0 +1,14 @@
+﻿1. 开启ASP.Net兼容
+在用户名验证中，无法直接使用
+    System.ServiceModel.Channels.MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
+    RemoteEndpointMessageProperty endpoint = properties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+	endpoint.Address
+来获取客户端IP, 因此改用
+	string ip= System.Web.HttpContext.Current.Request.UserHostAddress; 
+来获取客户端IP，以便日志记录非法尝试。
+	开启ASP.Net兼容需要：
+	web.config中：
+	<serviceHostingEnvironment multipleSiteBindingsEnabled="true" aspNetCompatibilityEnabled="true"/>
+	类特性：
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    public class DataService : IDataService

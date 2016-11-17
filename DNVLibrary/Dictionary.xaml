@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="/DistNetLibrary;component/Dictionary.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+
+    <ImageBrush x:Key="imgup" ImageSource="/DNVLibrary;component/Images/Arrows3_1.png" />
+    <ImageBrush x:Key="imgdown" ImageSource="/DNVLibrary;component/Images/Arrows3_3.png" />
+
+</ResourceDictionary>

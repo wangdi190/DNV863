@@ -1,0 +1,72 @@
+﻿<Window x:Class="DNV863.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:h="clr-namespace:ContextSensitiveHelp;assembly=MyClassLibrary"
+             h:HelpProvider.Filename="dnv863.chm"
+        Title="主动配电网平台" Height="650" Width="1280" WindowState="Maximized" Background="Black" Loaded="Window_Loaded">
+    <Grid>
+        <Grid x:Name="grdbtn" Background="#FFFFFF">
+            <Grid VerticalAlignment="Center" Width="800">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btn1" Content="3D地图示例"  Foreground="Blue" Width="120" Height="24" Click="btn1_Click"/>
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" 
+                           Text="UCSample1.xaml，示例包括：1.从数据库读取载入图形对象；2.图元、线路、等值图、几何体等基本对象的使用示例；3.图元纹理和几何体资源的用法；4.tooltip的示例。示例演示了原始图形对象最基础的用法。注：需mssql sdnvdb数据库支持"/>
+
+                <Button x:Name="btn2" Content="接线图示例" Foreground="Blue"  Grid.Row="1" Width="120" Height="24" Click="btn2_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="UCSample2.xaml，示例如何从SVG文件读取载入接线图，planeXXX类属性的用法；svg文件 "/>
+
+                <Button x:Name="btn3" Content="多实例示例" Grid.Row="2" Width="120" Height="24" Click="btn3_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="UCSample3.xaml，示例地图控件的多实例用法。同时装载了前两个示例。（mssql sdnvdb）"/>
+
+                <Button x:Name="btn4" Content="动态显示示例" Grid.Row="3" Width="120" Height="24" Click="btn4_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="UCSample4.xaml，动态显示是指一次装载，动态显示，适用于较大规模对象数（1000-30000）；示例打开调试信息显示。（mssql sdnvdb）"/>
+
+                <Button x:Name="btn5" Content="动态加载示例" Foreground="Blue"  Grid.Row="4" Width="120" Height="24" Click="btn5_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="UCSample5.xaml，示例如何动态加载对象，适用于大规模对象数（大于30000）。（mssql sdnvdb）"/>
+
+                <Button x:Name="btn863" Content="863入口—GIS1.5" Foreground="Red"  Grid.Row="5" Width="120" Height="24" Click="btn863_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="863程序入口。使用配网对象类库和数据库描述创建对象。（mssql nmsplan）"/>
+
+                <Button x:Name="btn863gis16" Content="863入口—GIS1.6" Foreground="Red"  Grid.Row="6" Width="120" Height="24" Click="btn863gis16_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="863程序入口。使用配网对象类库和数据库描述创建对象。（mysql gis16）"/>
+
+                <Button x:Name="btn863new" Content="863入口—new" Foreground="Red"  Grid.Row="7" Width="120" Height="24" Click="btn863new_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="863程序入口。使用配网对象类库和数据库描述创建对象。（mysql gis16）"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center">
+                    <Button x:Name="btnTool" Content=" 外观 " Click="btnTool_Click" Height="20"/>
+                    <Button x:Name="btnTooldb15" Content=" 数据15 " Click="btnTooldb15_Click" Height="20"/>
+                    <Button x:Name="btnTooldb16" Content=" 数据16 " Click="btnTooldb16_Click" Height="20"/>
+                    <Button x:Name="btnTooldbnew" Content=" 数据new " Click="btnTooldbnew_Click" Height="20"/>
+                </StackPanel>
+                <TextBlock Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Width="510"  TextWrapping="Wrap" Margin="10" 
+                           Text="配置工具"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="grdMain" >
+        </Grid>
+
+
+    </Grid>
+</Window>

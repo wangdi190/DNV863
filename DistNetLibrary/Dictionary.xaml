@@ -1,0 +1,283 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dx="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Xpf.Core.v14.1"
+                    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+                    xmlns:local="clr-namespace:DistNetLibrary" xmlns:my="clr-namespace:DevExpress.Data.Filtering;assembly=DevExpress.Data.v14.1">
+    
+    <ImageBrush x:Key="计划事件" ImageSource="/DistNetLibrary;component/Images/warning1.png" />
+    <ImageBrush x:Key="告警事件" ImageSource="/DistNetLibrary;component/Images/warning2.png" />
+    <ImageBrush x:Key="故障事件" ImageSource="/DistNetLibrary;component/Images/warning3.png" />
+
+    <!--对象图标-->
+    <ImageBrush x:Key="通用对象" ImageSource="/DistNetLibrary;component/Images/Icon/unknow.png" />
+
+
+    <!--tooltip设备台账模板-->
+    <DataTemplate x:Key="AcntTemplate">
+        <Border  Background="#80ffffff" Padding="3" BorderBrush="#80CCFFFF" BorderThickness="1" CornerRadius="3" Width="350" Height="400">
+            <StackPanel>
+                <dxprg:PropertyGridControl Height="280" SelectedObject="{Binding }" ShowSearchBox="False" ShowToolPanel="False" ExpandCategoriesWhenSelectedObjectChanged="True" ShowMenuButtonInRows="False" SortMode="Ascending"  Opacity="0.8" UseCollectionEditor="False" AllowListItemInitializer="False">
+                </dxprg:PropertyGridControl>
+                <GroupBox Header="附加信息" Height="110">
+                    <ListBox ItemsSource="{Binding additionInfoes}" ItemTemplate="{StaticResource AcntAddInfoTemplate}"/>
+                </GroupBox>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="AcntAddInfoTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding name}" Width="150"/>
+            <TextBlock Text="{Binding value}" />
+        </StackPanel>
+    </DataTemplate>
+
+
+    <!--变电站配电室运行数据模板-->
+    <DataTemplate x:Key="RunDataSubsationTemplate">
+        <Border  Background="#80000000" Padding="3" BorderBrush="#80CCFFFF" BorderThickness="1" CornerRadius="3">
+            <GroupBox Header="{Binding name}" Foreground="#FFFF00" Height="172" BorderThickness="0.1" Padding="0" Background="Black">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="视在功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding apparentPowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <TextBlock Text="运行电压：" Foreground="White"/>
+                        <TextBlock Text="{Binding HVLInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="有功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding activePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="无功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding reactivePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+                        <TextBlock Text="负载率：" Foreground="White"/>
+                        <Grid>
+                            <Rectangle StrokeThickness="0.5" Stroke="#A9A9A9" Width="250" Grid.Row="2"/>
+                            <Rectangle StrokeThickness="1" Stroke="Transparent" Width="250" RenderTransformOrigin="0,0.5" Fill="{Binding rateOfLoadBrush}" Grid.Row="2">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding rateOfLoad}"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Text="{Binding rateOfLoadInfo}" Foreground="#FFFF00" HorizontalAlignment="Center"/>
+                        </Grid>
+                        
+                    </StackPanel>
+
+                    <GroupBox Header="视在功率" Foreground="White" BorderThickness="0.1" Padding="0" Grid.ColumnSpan="2" Grid.Row="3">
+                        <dxc:ChartControl Padding="0" Background="Transparent" BorderBrush="Transparent">
+                            <dxc:XYDiagram2D>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D Visible="False" Interlaced="False" GridLinesMinorVisible="True"></dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:XYDiagram2D.DefaultPane>
+                                    <dxc:Pane DomainBrush="#00000000" Padding="0" />
+                                </dxc:XYDiagram2D.DefaultPane>
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D Interlaced="True" Visible="False">
+                                        <dxc:AxisX2D.DateTimeScaleOptions>
+                                            <dxc:ManualDateTimeScaleOptions GridAlignment="Minute" MeasureUnit="Minute" />
+                                        </dxc:AxisX2D.DateTimeScaleOptions>
+                                        <dxc:AxisX2D.Range>
+                                            <dxc:AxisRange MinValueInternal="0" MaxValueInternal="80" />
+                                        </dxc:AxisX2D.Range>
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:LineSeries2D ArgumentDataMember="argudate" ValueDataMember="value" DataSource="{Binding lstApparentPower}" Brush="Lime" ArgumentScaleType="DateTime">
+                                    <dxc:LineSeries2D.LineStyle>
+                                        <dxc:LineStyle />
+                                    </dxc:LineSeries2D.LineStyle>
+                                </dxc:LineSeries2D>
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl>
+                    </GroupBox>
+
+
+                </Grid>
+
+            </GroupBox>
+        </Border>
+    </DataTemplate>
+
+    <!--变压器运行数据模板-->
+    <DataTemplate x:Key="RunDataTransformerTemplate">
+        <Border  Background="#80000000" Padding="3" BorderBrush="#80CCFFFF" BorderThickness="1" CornerRadius="3">
+            <GroupBox Header="{Binding name}" Foreground="#FFFF00" Height="196" BorderThickness="0.1" Padding="0" Background="Black">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="视在功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding apparentPowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <TextBlock Text="运行电压：" Foreground="White"/>
+                        <TextBlock Text="{Binding HVLInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="有功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding activePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="无功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding reactivePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock Text="变损：" Foreground="White"/>
+                        <TextBlock Text="{Binding transformLossInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="变损率：" Foreground="White"/>
+                        <TextBlock Text="{Binding transformLossRateInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                        <TextBlock Text="负载率：" Foreground="White"/>
+                        <Grid>
+                            <Rectangle StrokeThickness="0.5" Stroke="#A9A9A9" Width="250" Grid.Row="2"/>
+                            <Rectangle StrokeThickness="1" Stroke="Transparent" Width="250" RenderTransformOrigin="0,0.5" Fill="{Binding rateOfLoadBrush}" Grid.Row="2">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding rateOfLoad}"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Text="{Binding rateOfLoadInfo}" Foreground="#FFFF00" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
+                    <GroupBox Header="视在功率" Foreground="White" BorderThickness="0.1" Padding="0" Grid.ColumnSpan="2" Grid.Row="4">
+                        <dxc:ChartControl Padding="0" Background="Transparent" BorderBrush="Transparent">
+                            <dxc:XYDiagram2D>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D Visible="False" Interlaced="False" GridLinesMinorVisible="True"></dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:XYDiagram2D.DefaultPane>
+                                    <dxc:Pane DomainBrush="#00000000" Padding="0" />
+                                </dxc:XYDiagram2D.DefaultPane>
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D Interlaced="True" Visible="False">
+                                        <dxc:AxisX2D.DateTimeScaleOptions>
+                                            <dxc:ManualDateTimeScaleOptions GridAlignment="Minute" MeasureUnit="Minute" />
+                                        </dxc:AxisX2D.DateTimeScaleOptions>
+                                        <dxc:AxisX2D.Range>
+                                            <dxc:AxisRange MinValueInternal="0" MaxValueInternal="80" />
+                                        </dxc:AxisX2D.Range>
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:LineSeries2D ArgumentDataMember="argudate" ValueDataMember="value" DataSource="{Binding lstApparentPower}" Brush="Lime" ArgumentScaleType="DateTime">
+                                    <dxc:LineSeries2D.LineStyle>
+                                        <dxc:LineStyle />
+                                    </dxc:LineSeries2D.LineStyle>
+                                </dxc:LineSeries2D>
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl>
+                    </GroupBox>
+
+
+                </Grid>
+
+            </GroupBox>
+        </Border>
+    </DataTemplate>
+
+    <!--输电线路运行数据模板-->
+    <DataTemplate x:Key="RunDataACLineTemplate">
+        <Border  Background="#80000000" Padding="3" BorderBrush="#80CCFFFF" BorderThickness="1" CornerRadius="3">
+            <GroupBox Header="{Binding name}" Foreground="#FFFF00" Height="170" BorderThickness="0.1" Padding="0" Background="Black">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="视在功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding apparentPowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="有功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding activePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="无功功率：" Foreground="White"/>
+                        <TextBlock Text="{Binding reactivePowerInfo}" Foreground="Cyan"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+                        <TextBlock Text="负载率：" Foreground="White"/>
+                        <Grid>
+                            <Rectangle StrokeThickness="0.5" Stroke="#A9A9A9" Width="250" Grid.Row="2"/>
+                            <Rectangle StrokeThickness="1" Stroke="Transparent" Width="250" RenderTransformOrigin="0,0.5" Fill="{Binding rateOfLoadBrush}" Grid.Row="2">
+                                <Rectangle.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding rateOfLoad}"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Text="{Binding rateOfLoadInfo}" Foreground="#FFFF00" HorizontalAlignment="Center"/>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <GroupBox Header="视在功率" Foreground="White" BorderThickness="0.1" Padding="0" Grid.ColumnSpan="2" Grid.Row="3">
+                        <dxc:ChartControl Padding="0" Background="Transparent" BorderBrush="Transparent">
+                            <dxc:XYDiagram2D>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D Visible="False" Interlaced="False" GridLinesMinorVisible="True"></dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:XYDiagram2D.DefaultPane>
+                                    <dxc:Pane DomainBrush="#00000000" Padding="0" />
+                                </dxc:XYDiagram2D.DefaultPane>
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D Interlaced="True" Visible="False">
+                                        <dxc:AxisX2D.DateTimeScaleOptions>
+                                            <dxc:ManualDateTimeScaleOptions GridAlignment="Minute" MeasureUnit="Minute" />
+                                        </dxc:AxisX2D.DateTimeScaleOptions>
+                                        <dxc:AxisX2D.Range>
+                                            <dxc:AxisRange MinValueInternal="0" MaxValueInternal="80" />
+                                        </dxc:AxisX2D.Range>
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:LineSeries2D ArgumentDataMember="argudate" ValueDataMember="value" DataSource="{Binding lstApparentPower}" Brush="Lime" ArgumentScaleType="DateTime">
+                                    <dxc:LineSeries2D.LineStyle>
+                                        <dxc:LineStyle />
+                                    </dxc:LineSeries2D.LineStyle>
+                                </dxc:LineSeries2D>
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl>
+                    </GroupBox>
+
+
+                </Grid>
+
+            </GroupBox>
+        </Border>
+    </DataTemplate>
+
+
+</ResourceDictionary>

@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>How to do</title>	
+	<meta name="Title" content="How to do" />
+    	<meta name="Microsoft.Help.Keywords" content="How to do" />
+    	<meta name="Microsoft.Help.TocOrder" content="112" />
+	   	<meta name="Microsoft.Help.TocParent" content="Guide" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="HowToDo" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	
+		.auto-style6 {
+		border-style: solid;
+		border-width: 1px;
+		padding: 1px 4px;
+	}
+
+	    .style1
+        {
+            font-size: x-large;
+            color: #3366CC;
+        }
+
+	    .新建样式1
+        {
+            line-height: 30px;
+        }
+	.auto-style4 {
+		font-size: 11pt;
+	}
+	
+	    .style2
+        {
+            color: #006600;
+        }
+	
+	.auto-style7 {
+	margin-left: 40px;
+}
+	
+	.auto-style8 {
+	color: #FF0000;
+}
+	
+	</style>
+	</head>
+
+<body>
+
+<p class="auto-style1">How To Do ?</p>
+<hr/>
+<ul class="新建样式1" >
+	<li><a href="#A1">如何使用Tooltips？</a></li>
+    <li><a href="#A2">如何控制相机？</a></li>
+	<li><a href="#A3">如何控制光源？</a></li>
+	<li><a href="#A4">如何定制和使用图元纹理？</a></li>
+	<li><a href="#A5">如何定制和使用几何体资源？</a></li>
+    <li><a href="#A6">如何使用.x文件定义的模型资源？</a></li>
+	<li><a href="#A7">如何使用等值线图（电压等值线）？</a></li>
+	<li><a href="#A8">如何使用范围图（供电范围、停电范围）？</a></li>
+	<li><a href="#A9">如何用状态管理颜色，以实现地图类型切换后图形对象颜色的相应变化？</a></li>
+    <li><a href="#A10">如何配置系统，以使用自定义切分瓦片为地理背景？</a></li>
+	<li><a href="#A11">如何配置系统，以使用公网Google瓦片为地理背景？</a></li>
+	<li><a href="#A12">如何使用图例管理器？</a></li>
+	<li></li>
+</ul>
+<hr/>
+<a id="A1"></a>
+<p class="style1"><strong>如何使用Tooltips？</strong></p>
+    <p>与Tooltips相关的属性有：</p>
+    <p style="margin-left: 40px">
+        <a href="EarthClass.html">Earth</a>类：tooltipMoveEnable，tooltipMoveDelay，tooltipClickEnable</p>
+    <p style="margin-left: 40px">
+        <a href="powerbasicobject_class.html">pBasicObject</a>类：tooltipMoveTemplate，tooltipMoveContent，tooltipClickTemplate，tooltipClickContent</p>
+    <p>系统内置tooltips机制有两种：mouse move和mouse click，分别在鼠标移动和鼠标点击时呈现tooltips，它们可以同时生效。 </p>
+    <p>&nbsp;</p>
+    <p><strong>使用步骤（完整）：</strong></p>
+    <p>1.激活tooltips：设置earth类的tooltipMoveEnable或tooltipClickEnable为true。</p>
+    <p>2.设置对象的tooltips模板：若需较复杂的tooltips呈现，需编写tooltips的呈现模板做为资源，并把模板的资源名填写到tooltipMoveTemplate或tooltipClickTemplate。若不设置，则系统将调用缺省模板，并将tooltipMoveContent视为字串呈现。</p>
+     <pre class="auto-style6">
+     &lt;UserControl.Resources&gt;
+        &lt;DataTemplate x:Key="transformerModeTemplate"&gt;
+            &lt;Border  Background="#A8299BFF" Padding="3" BorderBrush="#FFFF99" BorderThickness="1" CornerRadius="5"&gt;
+                &lt;dxc:ChartControl HorizontalAlignment="Left" Width="400" Height="200" DataSource="{Binding}"&gt;
+                    &lt;dxc:ChartControl.Titles&gt;
+                        &lt;dxc:Title Content="变电站负荷" HorizontalAlignment="Center" /&gt;
+                    &lt;/dxc:ChartControl.Titles&gt;
+                    &lt;dxc:XYDiagram2D&gt;
+                        &lt;dxc:BarSideBySideSeries2D ArgumentDataMember="argu" ValueDataMember="value"/&gt;
+                    &lt;/dxc:XYDiagram2D&gt;
+                &lt;/dxc:ChartControl&gt;
+            &lt;/Border&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/UserControl.Resources&gt;</pre>
+    <p>3.设置对象tooltips内容：tooltipMoveContent为object类型，与tooltipMoveTemplate配套。</p>
+    <pre class="auto-style6">
+//mousemove无自定义模板示例
+obj.tooltipMoveContent = obj.name;
+//mouseclick自定义模板示例
+List&lt;MyClassLibrary.DevShare.ChartDataPoint&gt; ds = new List&lt;MyClassLibrary.DevShare.ChartDataPoint&gt;(); 
+ds.Add(new MyClassLibrary.DevShare.ChartDataPoint("夏季高峰", "", 100 + rd.Next(1000)));
+ds.Add(new MyClassLibrary.DevShare.ChartDataPoint("夏季低谷", "", 100 + rd.Next(700)));
+ds.Add(new MyClassLibrary.DevShare.ChartDataPoint("冬季高峰", "", 100 + rd.Next(800)));
+ds.Add(new MyClassLibrary.DevShare.ChartDataPoint("冬季低谷", "", 100 + rd.Next(500)));
+obj.tooltipClickContent = ds;
+obj.tooltipClickTemplate = "transformerModeTemplate";
+
+   </pre>
+    <p><strong>使用步骤（简单）：</strong></p>
+    <p>1.激活tooltips：设置earth类的tooltipMoveEnable或tooltipClickEnable为true。</p>
+    <p>2.设置对象tooltips内容：将字串填入tooltipMoveContent属性或tooltipClickContent属性。</p>
+    <p>
+        <br />
+    </p>
+<hr/>
+<a id="A2"></a>
+<p class="style1"><strong>如何控制相机？</strong></p>
+    <p>熟悉3D的用户可以自由控制相机，一般不是特殊的需求，用不着用户直接控制相机。</p>
+    <p>控件提供如下相机操作方法，方便用户直接操作相机：earth.global.camera</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td style="width: 201px">adjustCameraAngle</td>
+		<td>调整相机观察角，有效范围0-60角度（指相机方向与地心线夹角，0为俯视）</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">adjustCameraDistance</td>
+		<td>调整相机离地面距离</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">adjustCameraRange</td>
+		<td>调整相机距离以显示指定范围</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">aniLook</td>
+		<td>动画移动相机查看指定位置</td>
+	</tr>
+</table>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A3"></a>
+<p class="style1"><strong>如何控制光源？</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A4"></a>
+<p class="style1"><strong>如何定制和使用图元纹理？</strong></p>
+    <p>图元纹理支持文件和Brush两种方式。</p>
+<p>1. 文件纹理</p>
+<p class="auto-style7">&nbsp;&nbsp;&nbsp;&nbsp; 
+文件纹理为图片文件，要使用图片文件做为纹理，（1）可以直接把图片放入symbols子目录，文件名需满足如下约定：类别_键值.png，如需提供更好视觉效果的DDS文件，则还需提供"类别_键值.dds"文件，png文件是必需的，文件名中的"类别"将做为图元类别名称，文件名中的"键值"将做为图元字典的键值。如 
+"设备图元_两卷变压器.png"。（2）此外，也可以使用objManager.AddSymbol方法，在代码中手动添加图元。</p>
+<p class="auto-style7">&nbsp;&nbsp;&nbsp; 
+注意：和其它系统使用到的文件一样，图片文件在发布时需包括它，应在主项目根下建symbols子目录，所有的图元文件应放置其中，且生成操作设置为内容，系统是根据这个子目录来生成图元字典供使用。</p>
+<p>2. Brush纹理</p>
+    <p class="auto-style7">也可以使用程序中生成的brush来做为图元资源，使用如 
+	scene.objManager.AddSymbol("系统内部使用","节点电压_渐变圆", brush, 64, 
+	64);的方法来添加brush图元。</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A5"></a>
+<p class="style1"><strong>如何定制和使用几何体资源？</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A6"></a>
+<p class="style1"><strong>如何使用.X文件定义的模型资源？</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A7"></a>
+<p class="style1"><strong>如何使用等值线图（电压等值线）？</strong></p>
+    <p>1.使用DistNetLibrary类库内置的电压等值线图功能。</p>
+<p class="auto-style7">
+　　在DistNetLibaray类库中，内置了配网变电站、变压器的电压等值线图功能，通过DistNet类的showVLContour、hideVLContour、clearVLContour方法，可以显示、隐藏、清理电压等值线图。电压数据使用变电站、变压器之运行数据中的HVoltPUV（电压标幺值）。</p>
+<p>2.开发者定制使用等值线图功能。</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A8"></a>
+<p class="style1"><strong>如何使用范围图（供电范围、停电范围）？</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A9"></a>
+<p class="style1"><strong>如何用状态管理颜色，以实现地图类型切换后图形对象颜色的相应变化？</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A10"></a>
+<p class="style1"><strong>如何配置系统，以使用自定义切分瓦片为地理背景？</strong></p>
+    <p>原理：自定义切分的瓦片与系统本身的瓦片可能差异很大，比如起始的经纬度不同，瓦片表示的经纬范围不同，为了在现有体系下使用自定义切分瓦片为地理背景，通过把自定义切分瓦片铺设到最接近当前体系中的层和位置，并在自定义瓦片的坐标空间（真实坐标空间）与铺设后的空间坐标（体系内部坐标空间）之间进行坐标转换，以实现使用自定义瓦为为地理背景的目的。</p>
+    <p>配置步骤：</p>
+    <p>一、瓦片的设置</p>
+    <p>1.瓦片路径的配置，如</p>
+    <p style="margin-left: 40px">WpfEarthLibrary.Global.MapPath = 
+        DNV863.Properties.Settings.Default.mappath; <span class="style2">
+        //MapPath是主瓦片的路径，注：仅支持路径，不同于系统本身web方式</span></p>
+    <p style="margin-left: 40px">WpfEarthLibrary.Global.MapPath2 = 
+        DNV863.Properties.Settings.Default.mappath2; <span class="style2">
+        //MapPath是相当于overlay，是覆盖在主瓦片的是图层，一般为文字道路的透明png文件。可以不设置。</span></p>
+    <p style="margin-left: 40px">
+        注：DNV863.Properties.Settings.Default.mappath是取得应用程序设置中的mappath项的内容，赋与WpfEarthLibrary.Global.MapPath。</p>
+    <p>2.其它设置</p>
+    <p style="margin-left: 40px">earth.earthManager.earthpara.tileReadMode = 
+        ETileReadMode.层纬经路径; <span class="style2">//设置瓦片读取模式为路径并按层、纬度、经度序组织的瓦片文件。</span></p>
+    <p style="margin-left: 40px">earth.earthManager.earthpara.tileFileOffsetLI = -7;&nbsp;
+        <span class="style2">//设置层偏移，即自定义的0层相当于原体系的7层</span></p>
+    <p style="margin-left: 40px">earth.earthManager.earthpara.tileFileOffsetXI = -104;&nbsp;
+        <span class="style2">//设置经度方向瓦片序号偏移</span></p>
+    <p style="margin-left: 40px">earth.earthManager.earthpara.tileFileOffsetYI = -55;&nbsp;&nbsp;
+        <span class="style2">//设置纬度方向瓦片序号偏移</span></p>
+    <p>二、坐标转换的设置</p>
+    <p style="margin-left: 40px">在生成设备对象之前应完成如下设置，以便系统在生成设备对象时转换坐标。</p>
+    <p style="margin-left: 40px">earth.coordinateManager.orgJD = 116.335968793476; 
+        <span class="style2">// 坐标转换原点经度坐标标</span></p>
+    <p style="margin-left: 40px">&nbsp;earth.coordinateManager.orgWD = 39.8971290590432;
+        <span class="style2">// 坐标转换原点纬度坐标</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.scaleJD = 1.1;
+        <span class="style2">//坐标转换经度方向缩放比例</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.scaleWD = 1.1;
+        <span class="style2">//坐标转换纬度方向缩放比例</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.offsetJD = 0.02;
+        <span class="style2">//坐标转换经度方向偏移</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.offsetWD = 0.02;
+        <span class="style2">//坐标转换纬 度方向偏移</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.update();&nbsp;
+        <span class="style2">//上述参数设定后，更新计算转换矩阵</span></p>
+    <p style="margin-left: 40px">earth.coordinateManager.Enable = true;
+        <span class="style2">// 使用坐标转换生效</span></p>
+    <p>三、工具</p>
+    <p style="margin-left: 40px">可使用 WpfEarthLibrary.Tools.CalCoordinateTransformPara() 
+        自定义控件来计算上述参数。&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A11"></a>
+<p class="style1"><strong>如何配置系统，以使用公网Google瓦片为地理背景？</strong></p>
+    <p>配置步骤：</p>
+    <p>一、瓦片的设置</p>
+    <p>1.瓦片路径的配置，如</p>
+    <p style="margin-left: 40px">WpfEarthLibrary.Global.MapPath = 
+        DNV863.Properties.Settings.Default.mappath; <span class="style2">
+        //MapPath是主瓦片的路径，注：支持路径，不同于系统本身web方式</span></p>
+    <p style="margin-left: 40px">WpfEarthLibrary.Global.MapPath2 = 
+        DNV863.Properties.Settings.Default.mappath2; <span class="style2">
+        //MapPath是相当于overlay，是覆盖在主瓦片的是图层，一般为文字道路的透明png文件。可以不设置。</span></p>
+    <p style="margin-left: 40px">
+        注：DNV863.Properties.Settings.Default.mappath是取得应用程序设置中的mappath项的内容，赋与WpfEarthLibrary.Global.MapPath。</p>
+<p style="margin-left: 40px">
+        <strong>要取得公网瓦片mappath和mappath2需设置出下：</strong></p>
+<p style="margin-left: 40px">
+        <strong>mappath（卫星地图）：<span class="auto-style8">http://mt2.google.cn/vt/lyrs=s@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</span></strong></p>
+<p style="margin-left: 40px">
+        <strong>mappath2（文字标识）：<span class="auto-style8">http://mt2.google.cn/vt/lyrs=h@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={layer}&amp;s=Galil</span></strong></p>
+    <p>2.其它设置</p>
+    <p style="margin-left: 40px">earth.earthManager.earthpara.tileReadMode = 
+        ETileReadMode.自定义Web瓦片; </p>
+    <p style="margin-left: 40px">&nbsp;</p>
+    <p>&nbsp;</p>
+<hr/>
+<a id="A12"></a>
+<p class="style1"><strong>如何使用图例管理器？</strong></p>
+    <p>示例代码：</p>
+    <pre class="auto-style6">
+
+root.earth.legendManager.isShow = true;  //打开图例显示
+WpfEarthLibrary.BrushLegend legend = root.earth.legendManager.createBrushLegend("区块图例");  //创建键值为 区块图例 的图例，以后可使用root.earth.legendManager.legends["区块图例"]来引用
+
+legend.isShow = true;  //区块图例可见
+legend.panel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left; //设置区块图例的屏幕位置
+legend.panel.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+legend.panel.Margin = new System.Windows.Thickness(10, 250, 0, 0);
+legend.header = "区域类型";  //图例标题
+WpfEarthLibrary.pLayer arealayer = root.earth.objManager.zLayers[DistNetLibrary.EObjectCategory.区域类.ToString()];  //下为创建图例项
+var tmp = from e1 in arealayer.pModels.Values
+group e1 by (e1.busiAccount as DistNetLibrary.AcntGridArea).useType into g
+select new
+{
+	usetype = g.Key,
+	color = (g.First() as DistNetLibrary.DNGridArea).color,
+};
+
+foreach (var item in tmp)
+{
+	legend.addItem(new SolidColorBrush(item.color), item.usetype);
+}  </pre>
+    <p>&nbsp;</p>
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

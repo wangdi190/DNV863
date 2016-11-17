@@ -1,0 +1,487 @@
+﻿<Window x:Class="DistNetLibrary.Edit.WinDBDescTool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:myclass="clr-namespace:MyClassLibrary;assembly=MyClassLibrary"
+        Title="数据库描述设置工具" Height="800" Width="1300" Initialized="Window_Initialized" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!--台账类属性模板，无模拟字段显示-->
+        <DataTemplate x:Key="acntpropertyTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding propertycname}"/>
+                <TextBlock Text="（"/>
+                <TextBlock Text="{Binding propertyname}"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding propertyTypeName}"/>
+                <TextBlock Text="]"/>
+                <TextBlock Text="←→" Foreground="Red"/>
+                <TextBlock Text="字段（"/>
+                <TextBlock Text="{Binding fieldname}" TextAlignment="Center" Foreground="Blue"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding fieldtypename}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <!--补充信息模板-->
+        <DataTemplate x:Key="freepropertyTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding propertycname}"/>
+                <TextBlock Text="←→" Foreground="Red"/>
+                <TextBlock Text="字段（"/>
+                <TextBlock Text="{Binding fieldname}" TextAlignment="Center" Foreground="Blue"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding fieldtypename}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <!--运行属性模板，含可模拟数据字段-->
+        <DataTemplate x:Key="propertyTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding propertycname}"/>
+                <TextBlock Text="（"/>
+                <TextBlock Text="{Binding propertyname}"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding propertyTypeName}"/>
+                <TextBlock Text="]"/>
+                <TextBlock Text="←→" Foreground="Red"/>
+                <TextBlock Text="字段（"/>
+                <TextBlock Text="{Binding fieldname}" TextAlignment="Center" Foreground="Blue"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding fieldtypename}"/>
+                <TextBlock Text="]"/>
+                <TextBlock Text="；模拟（"/>
+                <TextBlock Text="{Binding simFieldName}" TextAlignment="Center" Foreground="Blue"/>
+                <TextBlock Text="）["/>
+                <TextBlock Text="{Binding simtypename}"/>
+                <TextBlock Text="]"/>
+
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="topoTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="字段（"/>
+                <TextBlock Text="{Binding fieldname}" Width="140" TextAlignment="Center" Foreground="#006600"/>
+                <TextBlock Text="）"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="tableTemplate">
+            <StackPanel Orientation="Horizontal" ToolTip="{Binding tableCName}">
+                <TextBlock Text="{Binding tableName}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="fieldTemplate">
+            <StackPanel Orientation="Horizontal" ToolTip="{Binding fieldCName}">
+                <TextBlock Text="{Binding fieldName}" />
+                <TextBlock Text="["/>
+                <TextBlock Text="{Binding fieldTypeName}" />
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <myclass:EnumIntConverter x:Key="EIConverter"/>
+    </Window.Resources>
+    <Grid x:Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="数据描述定义列表" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="lstsqls" ItemsSource="{Binding dbdesc.SQLS}" SelectedItem="{Binding dbdesc.selectedSQL}" DisplayMemberPath="key" SelectionChanged="lstsqls_SelectionChanged"/>
+                <StackPanel Orientation="Horizontal"  Grid.Row="1">
+                    <TextBox x:Name="newname" Width="166"/>
+                    <Button x:Name="btnNew" Content="新增" Click="btnNew_Click"/>
+                    <Button x:Name="btnDel" Content="删除" Click="btnDel_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                    <Button x:Name="btnReload" Content="重载" Width="82" ToolTip="重新载入原定义" Click="btnReload_Click"/>
+                    <Button x:Name="btnSave" Content="保存" Width="82" Click="btnSave_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="数据描述内容" Grid.Column="1" Grid.RowSpan="2">
+            <Grid>
+                <TabControl FlowDirection="LeftToRight">
+                    <TabItem Header="台账相关数据库描述">
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="130"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.6*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Header="关键属性列表" Grid.RowSpan="2" >
+                                    <ListBox x:Name="lstKeyProperties" Height="100" ItemsSource="{Binding dbdesc.selectedSQL.keypdesces}" ItemTemplate="{StaticResource acntpropertyTemplate}"/>
+                                </GroupBox>
+                                <GroupBox Header="台账属性列表" Grid.Row="2" Grid.RowSpan="3">
+                                    <ListBox x:Name="lstproperties" Grid.Row="1" ItemsSource="{Binding dbdesc.selectedSQL.anctdesces}" ItemTemplate="{StaticResource acntpropertyTemplate}"/>
+                                </GroupBox>
+                                <GroupBox Header="台账补充信息字段列表" Grid.Row="5" Grid.RowSpan="2" ToolTip="指未定义在对象台账类中的，可自由附加的补充信息字段，其名称由数据库字段定义给出">
+                                    <ListBox x:Name="lstpropertiesfree" Grid.Row="1" ItemsSource="{Binding dbdesc.selectedSQL.anctfreedesces}" ItemTemplate="{StaticResource freepropertyTemplate}"/>
+                                </GroupBox>
+                                <GroupBox Header="对象直接所属关系指定" Grid.Column="1">
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="所属设施ID：" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding dbdesc.selectedSQL.topoBelontToFacility.fieldname}" Foreground="#006600" Width="120" VerticalAlignment="Center"/>
+                                            <Button x:Name="btnPointFacility" Foreground="#006600" Content="指定所属设施" ToolTip="注：此处并非指真正的物理从属关系，而是指在本程序中，设施对象涵盖的设备对象，用于设施拓扑搜索可映射为设备以进行搜索" Click="btnPointFacility_Click"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="所属设备ID：" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding dbdesc.selectedSQL.topoBelongToEquipment.fieldname}" Foreground="#006600" Width="120" VerticalAlignment="Center"/>
+                                            <Button x:Name="btnPointEquipment" Foreground="#006600" Content="指定所属设备" ToolTip="注：此外并非指真正的电气等效，而是指在本程序中，用于提前中止以避免脏搜索，比如属于主变的母线，避免避开主变通过母线转连接到其它主变上，搜索到达母线时，即认为已到达它所属的主变，等效于已搜索到主变" Click="btnPointEquipment_Click"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="基础关联拓扑字段列表" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                                    <ListBox x:Name="lstTopoRelations" Grid.Row="1" ItemsSource="{Binding dbdesc.selectedSQL.toporelationdesces}" ItemTemplate="{StaticResource topoTemplate}"/>
+                                </GroupBox>
+                                <GroupBox Header="基础从属拓扑字段列表" Grid.Column="1" Grid.Row="4" Grid.RowSpan="3">
+                                    <ListBox x:Name="lsttopoSubordinate" Grid.Row="3" ItemsSource="{Binding dbdesc.selectedSQL.toposubordinatedesces}" ItemTemplate="{StaticResource topoTemplate}"/>
+                                </GroupBox>
+
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,50,0,0">
+                                    <Button x:Name="btnInstanceID" Content="↖实例ID选取" Height="24" ToolTip="对象实例ID字段选取" Click="btnInstanceID_Click"  Foreground="Blue" />
+                                    <Button x:Name="btnID" Content="↖主ID选取" Height="24" ToolTip="对象主ID字段选取，双ID的情况下一般宜采用图形表ID" Click="btnID_Click" Foreground="Blue" />
+                                    <Button x:Name="btnID2" Content="↖次ID选取" Height="24" ToolTip="次ID字段选取，用于保存同一对象有两个ID数据来源的情形，如图形表与台账表分离但ID不同" Click="btnID2_Click"  Foreground="Blue" />
+                                    <Button x:Name="btnName" Content="↖名称选取" Height="24" ToolTip="名称字段选取" Click="btnName_Click" Foreground="Blue" />
+                                    <Button x:Name="btnX" Content="↖X选取" Height="24" ToolTip="X坐标字段选取" Click="btnX_Click" Foreground="Blue" />
+                                    <Button x:Name="btnY" Content="↖Y选取" Height="24" ToolTip="Y坐标字段选取" Click="btnY_Click" Foreground="Blue" />
+                                    <Button x:Name="btnPS" Content="↖PS选取" Height="24" ToolTip="点集坐标字段选取" Click="btnPS_Click" Foreground="Blue" />
+                                    <Button x:Name="btnShape" Content="↖Shape选取" Height="24" ToolTip="Shape字段选取" Click="btnShape_Click"  Foreground="Blue" />
+
+                                    <Button x:Name="btnRelation" Content="←台账关联" Height="24" ToolTip="台账字段关联" Margin="0,20,0,0" Click="btnRelation_Click" Foreground="Blue" />
+                                    <Button x:Name="btnDelRelation" Content="解除台账→" Height="24" ToolTip="解除台账字段关联" Margin="0,0,0,0" Click="btnDelRelation_Click"/>
+
+                                    <Button x:Name="btnRelationFree" Content="←添加补充" Height="24" ToolTip="选中字段添加为补充信息字段" Margin="0,20,0,0" Click="btnRelationFree_Click"/>
+                                    <Button x:Name="btnDelRelationFree" Content="删除补充→" Height="24" ToolTip="删除补充信息字段" Margin="0,0,0,0" Click="btnDelRelationFree_Click"/>
+
+
+                                    <Button x:Name="btnTopoRelation" Content="↖关联拓扑" Height="24" ToolTip="指标对象关联的对象ID字段" Margin="0,15,0,0" Click="btnTopoRelation_Click" Foreground="#006600" />
+                                    <Button x:Name="btnDelTopoRelation" Content="解联→" Height="24" ToolTip="解除关联" Margin="0,0,0,0" Click="btnDelTopoRelation_Click"/>
+                                    <Button x:Name="btntopoSuntain" Content="从属拓扑" Height="24" ToolTip="指示对象属于的对象ID字段" Margin="0,15,0,0" Click="btntopoSuntain_Click" Foreground="#006600" />
+                                    <Button x:Name="btnDeltopoSuntain" Content="取消→" Height="24" ToolTip="取消从属" Margin="0,0,0,0" Click="btnDeltopoSuntain_Click"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnSetTableRelation" Content="选取设置台账表" Click="btnSetTableRelation_Click"/>
+                                <ListBox x:Name="lstTables" ItemsSource="{Binding dbdesc.selectedSQL.acntTableRelation.tables}" Grid.Row="1" ItemTemplate="{StaticResource tableTemplate}"/>
+                                <ListBox x:Name="lstFields" ItemsSource="{Binding ElementName=lstTables, Path=SelectedItem.fields}" ItemTemplate="{StaticResource fieldTemplate}" Grid.Row="2"/>
+                            </Grid>
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                                <Button x:Name="btnGenSql" Content="生成台账相关SQL语句" Click="btnGenSql_Click"/>
+                                <TabControl>
+                                    <TabItem Header="Select语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.acntSelect}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                    <TabItem Header="Insert语句">
+                                        <StackPanel>
+                                            <ComboBox x:Name="cmbInsert" ItemsSource="{Binding dbdesc.selectedSQL.acntInsert}"/>
+                                            <TextBox Height="60" Text="{Binding ElementName=cmbInsert, Path=SelectedItem }" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </TabItem>
+                                    <TabItem Header="Update语句">
+                                        <StackPanel>
+                                            <ComboBox x:Name="cmbUpdate" ItemsSource="{Binding dbdesc.selectedSQL.acntUpdate}"/>
+                                            <TextBox Height="60" Text="{Binding ElementName=cmbUpdate, Path=SelectedItem }" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </TabItem>
+                                    <TabItem Header="Delete语句">
+                                        <StackPanel>
+                                            <ComboBox x:Name="cmbDelete" ItemsSource="{Binding dbdesc.selectedSQL.acntDelete}"/>
+                                            <TextBox Height="60" Text="{Binding ElementName=cmbDelete, Path=SelectedItem }" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </TabItem>
+                                    <TabItem Header="SelectAll" ToolTip="用于batchCreateDNObjects方法自动批量创建配网对象">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.acntSelectAll}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                    <TabItem Header="SelectAllID" ToolTip="用于自动批量创建配网对象时获取扩展拓扑查询的id列表">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.acntSelectAllID}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                </TabControl>
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="实时运行相关数据库描述">
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="240"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="130"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <GroupBox Header="运行属性列表" Grid.Row="1">
+                                    <Grid>
+                                        <ListBox x:Name="lstrundataproperties" Grid.Row="1" ItemsSource="{Binding dbdesc.selectedSQL.rundatadesces}"  ItemTemplate="{StaticResource propertyTemplate}"/>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,80,0,0">
+                                    <Button x:Name="btnRundataRelation" Content="←关联" Height="24" ToolTip="字段关联" Margin="0,110,0,0" Click="btnRundataRelation_Click" Foreground="Blue" />
+                                    <Button x:Name="btnDelRundataRelation" Content="解除→" Height="24" ToolTip="解除字段关联" Margin="0,0,0,0" Click="btnDelRundataRelation_Click"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnSetRundataTableRelation" Content="选取设置运行数据表" Click="btnSetRundataTableRelation_Click"/>
+                                <ListBox x:Name="lstRundataTables" ItemsSource="{Binding dbdesc.selectedSQL.rundataTableRelation.tables}" Grid.Row="1" ItemTemplate="{StaticResource tableTemplate}"/>
+                                <TabControl x:Name="tabRundataFields" Grid.Row="2">
+                                    <TabItem Header="数据库" ToolTip="来自数据库数据表的字段">
+                                        <ListBox x:Name="lstRundataFields" ItemsSource="{Binding ElementName=lstRundataTables, Path=SelectedItem.fields}" ItemTemplate="{StaticResource fieldTemplate}"/>
+                                    </TabItem>
+                                    <TabItem Header="模拟" ToolTip="来自模拟数据的字段">
+                                        <ListBox x:Name="lstRundataSimFields" ItemsSource="{Binding dbdesc.selectedSQL.simRunDataFields}" ItemTemplate="{StaticResource fieldTemplate}"/>
+                                    </TabItem>
+                                </TabControl>
+                            </Grid>
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                                <Button x:Name="btnGenRundataSql" Content="生成读取运行数据SQL语句" Click="btnGenRundataSql_Click"/>
+                                <TabControl>
+                                    <TabItem Header="Select语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.rundataSelect}" TextWrapping="Wrap"/>
+                                    </TabItem>
+                                    <TabItem Header="SelectAll">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.rundataSelectAll}" TextWrapping="Wrap"/>
+                                    </TabItem>
+                                    <TabItem Header="Sim语句" ToolTip="">
+                                        <Grid>
+                                            <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.rundataSimAll}" TextWrapping="Wrap"/>
+                                            <Button x:Name="btnTestRundataSim" Content="读取" ToolTip="尝试生成模拟数据表，成功后将填写模拟数据字段列表" Height="20" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnTestRundataSim_Click"/>
+                                            <Button x:Name="btnSimReadme" Content="?" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0" Click="btnSimReadme_Click"/>
+                                        </Grid>
+                                    </TabItem>
+                                </TabControl>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="规划之模拟运行数据库描述">
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="240"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="130"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <GroupBox Header="运行属性列表" Grid.Row="1">
+                                    <Grid>
+                                        <ListBox x:Name="lstplanningproperties" Grid.Row="1" ItemsSource="{Binding dbdesc.selectedSQL.planningdesces}"  ItemTemplate="{StaticResource propertyTemplate}"/>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,80,0,0">
+                                    <Button x:Name="btnPlanningRelation" Content="←关联" Height="24" ToolTip="字段关联" Margin="0,110,0,0" Click="btnPlanningRelation_Click" Foreground="Blue" />
+                                    <Button x:Name="btnDelPlanningRelation" Content="解除→" Height="24" ToolTip="解除字段关联" Margin="0,0,0,0" Click="btnDelPlanningRelation_Click"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnSetPlanningTableRelation" Content="选取设置运行数据表" Click="btnSetPlanningTableRelation_Click"/>
+                                <ListBox x:Name="lstPlanningTables" ItemsSource="{Binding dbdesc.selectedSQL.planningTableRelation.tables}" Grid.Row="1" ItemTemplate="{StaticResource tableTemplate}"/>
+                                <TabControl x:Name="tabPlanningFields" Grid.Row="2">
+                                    <TabItem Header="数据库" ToolTip="来自数据库数据表的字段">
+                                        <ListBox x:Name="lstPlanningFields" ItemsSource="{Binding ElementName=lstPlanningTables, Path=SelectedItem.fields}" ItemTemplate="{StaticResource fieldTemplate}" Grid.Row="2"/>
+                                    </TabItem>
+                                    <TabItem Header="模拟" ToolTip="来自模拟数据的字段">
+                                        <ListBox x:Name="lstPlanningSimFields" ItemsSource="{Binding dbdesc.selectedSQL.simPlanningFields}" ItemTemplate="{StaticResource fieldTemplate}"/>
+                                    </TabItem>
+                                </TabControl>
+
+                            </Grid>
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                                <Button x:Name="btnGenPlanningSql" Content="生成读取规划模拟运行数据SQL语句" Click="btnGenPlanningSql_Click"/>
+                                <TabControl>
+                                    <TabItem Header="Select语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.planningSelect}" TextWrapping="Wrap"/>
+                                    </TabItem>
+                                    <TabItem Header="SelectAll">
+                                        <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.planningSelectAll}" TextWrapping="Wrap"/>
+                                    </TabItem>
+                                    <TabItem Header="Sim语句" ToolTip="">
+                                        <Grid>
+                                            <TextBox Height="80" Text="{Binding dbdesc.selectedSQL.planningSimAll}" TextWrapping="Wrap"/>
+                                            <Button x:Name="btnTestPlanningSim" Content="读取" ToolTip="尝试生成模拟数据表，成功后将填写模拟数据字段列表" Height="20" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnTestPlanningSim_Click"/>
+                                            <Button Content="?" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,0" Click="btnSimReadme_Click"/>
+                                        </Grid>
+                                    </TabItem>
+                                </TabControl>
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="（全局扩展拓扑数据库描述）">
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="240"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="130"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <GroupBox Header="拓扑属性列表" Grid.Row="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="24"/>
+                                            <RowDefinition Height="24"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="特定的扩展拓扑关系数据表的字段列表。扩展数据表为开发者另外单独建立的双字段关联表。" Grid.Row="0" VerticalAlignment="Bottom"/>
+                                        <TextBlock Text="扩展拓扑关系数据表描述是全局性，即所有的描述项均使用同一扩展描述。" Grid.Row="1" VerticalAlignment="Bottom"/>
+                                        <ListBox x:Name="lstTopoEx" Grid.Row="2" ItemsSource="{Binding dbdesc.exTopo.topoexpanddesces}" ItemTemplate="{StaticResource topoTemplate}"/>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,20,0,0">
+                                    <Button x:Name="btnTopoEx" Content="←扩展" Height="24" ToolTip="指示表为特定的双字段关联扩展数据表" Margin="0,120,0,0" Click="btnTopoEx_Click" Foreground="Blue" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnSetTopoTableRelation" Content="选取设置拓扑数据表" Click="btnSetTopoTableRelation_Click"/>
+                                <ListBox x:Name="lstTopoTables" ItemsSource="{Binding dbdesc.exTopo.topoTableRelation.tables}" Grid.Row="1" ItemTemplate="{StaticResource tableTemplate}"/>
+                                <ListBox x:Name="lstTopoFields" ItemsSource="{Binding ElementName=lstTopoTables, Path=SelectedItem.fields}" ItemTemplate="{StaticResource fieldTemplate}" Grid.Row="2"/>
+                            </Grid>
+
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                                <Button x:Name="btnGenTopoSql" Content="生成扩展拓扑数据SQL语句" Click="btnGenTopoSql_Click"/>
+                                <TabControl>
+                                    <TabItem Header="Select语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.exTopo.topoExSelect}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                    <TabItem Header="Insert语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.exTopo.topoExInsert}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                    <TabItem Header="Delete语句">
+                                        <TextBox Height="80" Text="{Binding dbdesc.exTopo.topoExDelete}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                    <TabItem Header="SelectAll">
+                                        <TextBox Height="80" Text="{Binding dbdesc.exTopo.topoExSelectAll}" TextWrapping="Wrap" />
+                                    </TabItem>
+                                </TabControl>
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="全局设置">
+                        <Grid >
+                            <StackPanel>
+                                <GroupBox Header="拓扑字段数据解析模式" Height="200" Width="400" ToolTip="指拓扑字段中的内容，是否进行解析，按什么标准解析，不同的数据来源可能需编码扩展来解析，如经研院的格式">
+                                    <ListBox ItemsSource="{Binding topoparsemodes}" SelectedIndex="{Binding dbdesc.parseTopoMode, Converter={StaticResource EIConverter}}"/>
+                                </GroupBox>
+                                <GroupBox Header="注释说明" Height="200" Width="400">
+                                    <TextBox Text="{Binding dbdesc.note}" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"/>
+                                </GroupBox>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <StackPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <TextBlock Text="配网对象类型：" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmbObjType" ItemsSource="{Binding objtypedesces}" DisplayMemberPath="objname" Foreground="#FF0000"/>
+                    <Button x:Name="btnSelectObjType" Content=" 选取 " Click="btnSelectObjType_Click"  Foreground="Blue" ToolTip="选取为本描述定义所应用于对象类型"/>
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="说明：" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="❶新建或选择一个数据库描述定义。" VerticalAlignment="Center"/>
+                <TextBlock Text="❷点击右上角选取设置台账数据表，以定义所用到的台账数据表。" VerticalAlignment="Center" Grid.Column="2"/>
+                <TextBlock Text="❸选择关键属性位置的字段，x,y表示分别表示，ps表示点集。" VerticalAlignment="Center" Grid.Column="4"/>
+                <TextBlock Text="❹建立台账属性与字段的关联。" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Text="❺生成相关SQL语句，可手工编辑修改。" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock Text="❻重复上述2-5分别建立运行数据与拓扑数据描述（非必须）。" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
+                <TextBlock Text="❼重复上述1-6建立新的数据定义描述。" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                <TextBlock Text="❽可通过distnet.dbdesc.dictsqls[dbopkey].方法代码创建对象" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+                <TextBlock Text="注：简化拓扑功能，不能应用于动态加载（完整拓扑功能应由专门服务提供）" VerticalAlignment="Center" Grid.Row="2" Grid.Column="4" Foreground="Red"/>
+            </Grid>
+
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,2,15,0">
+            <Button x:Name="btnTestSql" Content="测试"  Height="20" Width="60" Click="btnTestSql_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

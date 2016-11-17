@@ -1,0 +1,115 @@
+﻿<UserControl xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"  x:Class="DNVLibrary.Planning.PAllGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DNVLibrary.Planning" 
+             xmlns:interact="clr-namespace:DNVLibrary.Interact"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Xpf.Core.v14.1"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1300" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <DataTemplate x:Key="objTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding name}" Foreground="AliceBlue"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="grdMain">
+        <StackPanel Width="250">
+            <StackPanel Width="180" >
+                <local:PAllOneGauge DataContext="{Binding idx1}" gaugeMode="可编辑" Height="180" Margin="0,10"/>
+                <local:PAllOneGauge DataContext="{Binding idx2}" gaugeMode="可编辑" Height="180" Margin="0,10"/>
+                <local:PAllOneGauge DataContext="{Binding idx3}" gaugeMode="可编辑" Height="180" Margin="0,10"/>
+            </StackPanel>
+            <Grid >
+                <dxga:CircularGaugeControl>
+                    <dxga:CircularGaugeControl.Layers>
+                        <dxga:CircularGaugeLayer>
+                            <dxga:CircularGaugeLayer.Presentation>
+                                <dxga:EcoCircularGaugeBackgroundLayerPresentation>
+                                    <dxga:EcoCircularGaugeBackgroundLayerPresentation.Fill>
+                                        <RadialGradientBrush Center="0.5,0" GradientOrigin="0.5,0" RadiusX="2.862" RadiusY="1">
+                                            <GradientStop Color="#FF061C2B" Offset="1" />
+                                            <GradientStop Color="#FF5D667D" Offset="0.012" />
+                                            <GradientStop Color="#FF111B25" Offset="0.32" />
+                                            <GradientStop Color="#FF000207" Offset="0.32001" />
+                                        </RadialGradientBrush>
+                                    </dxga:EcoCircularGaugeBackgroundLayerPresentation.Fill>
+                                </dxga:EcoCircularGaugeBackgroundLayerPresentation>
+                            </dxga:CircularGaugeLayer.Presentation>
+                        </dxga:CircularGaugeLayer>
+                    </dxga:CircularGaugeControl.Layers>
+                </dxga:CircularGaugeControl>
+
+
+                <TabControl Height="270" Margin="18" Padding="0" Background="Transparent" dx:ThemeManager.ThemeName="MetropolisDark" TabStripPlacement="Bottom">
+                    <TabItem Header="指标">
+                        <Grid>
+                            <!--<ListBox x:Name="lstIndex" Height="177"/>-->
+                            <interact:RadarChart x:Name="rad" serialName="sort" argumentName="argu" valueName="value"/>
+                            <Button x:Name="btnMoreIndex" Content="更多..." Width="55" Height="20" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,-24" Template="{StaticResource ButtonBlue}" ToolTip="显示所有指标"/>
+                        </Grid>
+
+                    </TabItem>
+                    <TabItem Header="图表">
+                        <dxc:ChartControl x:Name="cht" Background="#00000000" BorderBrush="#00000000" BorderThickness="1" Padding="1,1,1,1" AnimationMode="OnDataChanged" CrosshairEnabled="False">
+                            <dxc:ChartControl.Titles>
+                                <dxc:Title x:Name="title" Content="线路长度" Foreground="Yellow" HorizontalAlignment="Center" FontSize="16" />
+                            </dxc:ChartControl.Titles>
+                            <dxc:ChartControl.Legend>
+                                <dxc:Legend Visibility="Collapsed" />
+                            </dxc:ChartControl.Legend>
+                            <dxc:XYDiagram2D>
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D >
+                                        <dxc:AxisX2D.Label>
+                                            <dxc:AxisLabel Foreground="#FFFFFF" Padding="0,10" />
+                                        </dxc:AxisX2D.Label>
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:XYDiagram2D.DefaultPane>
+                                    <dxc:Pane DomainBrush="#00000000"/>
+                                </dxc:XYDiagram2D.DefaultPane>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D Visible="False" TickmarksMinorVisible="False" TickmarksVisible="False">
+                                        <dxc:AxisY2D.Range>
+                                            <dxc:AxisRange x:Name="yRange"/>
+                                        </dxc:AxisY2D.Range>
+                                    </dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:BarSideBySideSeries2D x:Name="serial1" LabelsVisibility="True" ColorEach="True" BarWidth="0.4" ArgumentDataMember="argu" ValueDataMember="value">
+                                    <dxc:BarSideBySideSeries2D.PointAnimation>
+                                        <dxc:Bar2DGrowUpAnimation Duration="00:00:01" />
+                                    </dxc:BarSideBySideSeries2D.PointAnimation>
+                                    <dxc:BarSideBySideSeries2D.Model>
+                                        <dxc:Quasi3DBar2DModel />
+                                    </dxc:BarSideBySideSeries2D.Model>
+                                    <dxc:BarSideBySideSeries2D.Label>
+                                        <dxc:SeriesLabel x:Name="slabel" ConnectorVisible="False" TextPattern="{}{V}" />
+                                    </dxc:BarSideBySideSeries2D.Label>
+                                </dxc:BarSideBySideSeries2D>
+                                <!--<dxc:BarStackedSeries2D x:Name="serial2" DisplayName="增长" LabelsVisibility="True" Brush="#50ffffff" BarWidth="0.4"  ArgumentDataMember="argu" ValueDataMember="value">
+                            <dxc:BarStackedSeries2D.PointAnimation>
+                                <dxc:Bar2DGrowUpAnimation />
+                            </dxc:BarStackedSeries2D.PointAnimation>
+                            <dxc:BarStackedSeries2D.Model>
+                                <dxc:Quasi3DBar2DModel />
+                            </dxc:BarStackedSeries2D.Model>
+                            <dxc:BarStackedSeries2D.Label>
+                                <dxc:SeriesLabel ConnectorVisible="False" TextPattern="{}{V}" />
+                            </dxc:BarStackedSeries2D.Label>
+                        </dxc:BarStackedSeries2D>-->
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl>
+                    </TabItem>
+                    <TabItem Header="对象">
+                        <ListBox x:Name="lstObjects" ItemTemplate="{StaticResource objTemplate}" Background="Transparent" />
+                    </TabItem>
+                    
+                </TabControl>
+             
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

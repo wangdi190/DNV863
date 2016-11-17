@@ -1,0 +1,99 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE HelpTOC SYSTEM "ms-help://hx/resources/HelpTOC.DTD">
+<HelpTOC
+   DTDVersion="1.0"
+   FileVersion="1.0"
+   LangId="1033">
+
+   <HelpTOCNode Title="Wpf Earth 3D" Url="default.html">
+      <HelpTOCNode Title="简介" Url="Intro.html">
+         <HelpTOCNode Title="控件介绍" Url="ControlIntro.html"/>
+         <HelpTOCNode Title="运行环境" Url="environment.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="101"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="部署" Url="deployment.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="102"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="更新" Url="update.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="103"/>
+         </HelpTOCNode>
+         <ToolData Name="HWFAR_H3TocOrder" Value="10"/>
+      </HelpTOCNode>
+      <HelpTOCNode Title="调用方法" Url="Guide.html">
+         <HelpTOCNode Title="基本流程" Url="Basic.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="110"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="重要说明" Url="important.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="111"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="How to do" Url="HowToDo.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="112"/>
+         </HelpTOCNode>
+         <ToolData Name="HWFAR_H3TocOrder" Value="11"/>
+      </HelpTOCNode>
+      <HelpTOCNode Title="类参考" Url="Reference.html">
+         <HelpTOCNode Title="Camera 相机类" Url="camera_class.html">
+            <HelpTOCNode Title="ViewRange 结构" Url="viewrange_struct.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="ColorManager 颜色管理器类" Url="colormanager_class.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="Earth Earth 主控件类" Url="EarthClass.html">
+            <HelpTOCNode Title="colorManager 字段" Url="earth_colormanager_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <HelpTOCNode Title="earthManager 字段" Url="earth_earthmanager_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <HelpTOCNode Title="global 字段" Url="earth_global_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <HelpTOCNode Title="lightManager 字段" Url="earth_lightmanager_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <HelpTOCNode Title="objManager 字段" Url="earth_objmanager_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="EarthManager 地图瓦片管理类" Url="EarthManagerClass.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="Global 全局参数与配置类" Url="GlobalClass.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="LightManager 光源管理器类" Url="lightmanager_class.html">
+            <HelpTOCNode Title="CLight 光源描述类" Url="lightmanager_clight_class.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <HelpTOCNode Title="lights 字段" Url="lightmanager_lights_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="pLayer 层定义类" Url="player_class.html">
+            <HelpTOCNode Title="pModels 字段" Url="player_pmodels_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="pObjectManager 图形对象管理类" Url="pObjectManagerClass.html">
+            <HelpTOCNode Title="zLayers 字段" Url="pobjectmanager_zlayers_field.html">
+               <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+            </HelpTOCNode>
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <HelpTOCNode Title="PowerBasicObject 图形对象基类" Url="powerbasicobject_class.html">
+            <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+         </HelpTOCNode>
+         <ToolData Name="HWFAR_H3TocOrder" Value="13"/>
+      </HelpTOCNode>
+      <ToolData Name="HWFAR_H3ParentID" Value="-1"/>
+      <ToolData Name="HWFAR_H3TocOrder" Value="1000"/>
+   </HelpTOCNode>
+   <ToolData Name="MSTOCEXPST" Value="扩展"/>
+   <ToolData Name="MSTOCMRUDIR" Value="F:\当前项目文件夹\程序\配网可视化863\DNV863\WpfEarthHelp\"/>
+</HelpTOC>

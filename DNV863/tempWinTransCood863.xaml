@@ -1,0 +1,15 @@
+﻿<Window x:Class="DNV863.tempWinTransCood863"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="tempWinTransCood863" Height="600" Width="500" Initialized="Window_Initialized">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="863亦庄数据转换坐标" HorizontalAlignment="Center" FontSize="16" Margin="5"/>
+            <TextBlock Text="处理字段：f_ex,f_gx；  f_ey,f_gy；  f_ezbch,f_gzbch"/>
+            <TextBlock Text="1. 遍历表：ex，gx二者都有，则将ex填入gx, 若ex为0, 则gx填入ex"/>
+            <TextBlock Text="2. 转换gx数据为经纬度坐标"/>
+            <Button x:Name="btntran" Margin="50" Content="转换" Click="btntran_Click"/>
+            <ListBox x:Name="lstinfo" Height="330"/>
+        </StackPanel>
+    </Grid>
+</Window>

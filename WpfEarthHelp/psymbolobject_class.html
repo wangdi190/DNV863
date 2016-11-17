@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>pSymbolObject Class</title>	
+	<meta name="Title" content="pSymbolObject Class" />
+    	<meta name="Microsoft.Help.Keywords" content="pSymbolObject Class" />
+    	<meta name="Microsoft.Help.F1" content="WpfEarthLibrary.pSymbolObject" />
+    	<meta name="Microsoft.Help.TocOrder" content="0" />
+	   	<meta name="Microsoft.Help.TocParent" content="Reference" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="WpfEarthLibrary.pSymbolObject" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+    	
+    	
+
+	<link href="./style.css" rel="stylesheet" type="text/css" />
+
+	<style type="text/css">
+.auto-style8 {
+	font-size: x-large;
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+<p class="auto-style8">pSymbolObject 图元类</p>
+<hr/>
+<p>&nbsp;&nbsp; &nbsp;pSymbolObject 类绘制图元。</p>
+<p class="auto-style4">命名空间：WpfEarthLibrary</p>
+<p>1. 字段</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isColorManaged</td>
+		<td>对象是否应用色彩管理</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isUseColor</td>
+		<td>图元是否可使用颜色为材质。若为false，图元将使用symbolid指定的纹理资源本身的颜色。若为true，图元将使用color属性指定的颜色来渲染图元。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">aniTwinkle</td>
+		<td>控制闪烁动画的参数</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">aniShow</td>
+		<td>控制淡入淡出显示动画的参数</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">aniScale</td>
+		<td>控制缩小放大动画的参数</td>
+	</tr>
+	</table>
+<p>2. 属性</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">location</td>
+		<td>设置和读取图元的经纬坐标，字符串类型。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">planeLocation</td>
+		<td>设置和读取图元的平面坐标，字符串类型。仅用于平面模式下。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">objType</td>
+		<td>预定义的枚举类型的对象类型，通过设置时自动改变objTypeString生效，与颜色管理配套使用。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">objTypeString</td>
+		<td>对象类型字串，与颜色管理配套使用。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">objStatus</td>
+		<td>预定义的枚举类型的状态，通过设置时自动改变objStatusString生效，与颜色管理配套使用。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">objStatusString</td>
+		<td>状态字串，与颜色管理配套使用。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">symbolid</td>
+		<td>指定图元所使用的纹理资源ID，关于纹理资源参见 <a href="pObjectManagerClass.html">pObjectManager Class</a></td>
+	</tr>
+	<tr>
+		<td style="width: 201px">color</td>
+		<td>设置用于渲染图元的颜色，当isUseColor为true时有效。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">scaleX</td>
+		<td>图元的横向缩放比例，缺省0.025。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">scaleY</td>
+		<td>图元的纵向缩放比例，缺省0.025。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">scaleZ</td>
+		<td>xmodel的高度缩放比例，缺省0.025。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isH</td>
+		<td>图元是否水平放置，缺省false。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isUseXModel</td>
+		<td>是否使用3D模型</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">XModelKey</td>
+		<td>3D模型字典中的键值</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">XMScaleAddition</td>
+		<td>3D模型时，ScaleX Y X的附加比例，用于匹配使得3D和2D的大小一致。3D的实际计算大小为scaleX * XMScaleAddition</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>3. 方法</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 343px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AnimationBegin</td>
+		<td>提交开始执行一个动画，动画参数由相应的动画字段AniShow, AniTwinkle, AniScale结构决定</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AnimationStop</td>
+		<td>提交停止一个动画</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">SendAniPara</td>
+		<td>提交动画参数，可用于控制动画播放、停止和刷新动画的参数</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>4. 事件</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p><strong>其它字段、属性、事件和方法请参见基类</strong>：<a href="powerbasicobject_class.html">PowerBasicObject</a></p>
+<p class="auto-style4">派生关系：</p>
+<p class="auto-style4">PowerBasicObject</p>
+<p class="auto-style6">pDotObject(点性质模型对象)</p>
+<p class="auto-style7"><strong>pSymbolObject（图元对象）</strong></p>
+<p class="auto-style7">pText（文字对象）</p>
+<p class="auto-style7">pData（可视数据对象，可用几何体或文字表现）</p>
+<p class="auto-style7">pModel3D（3维模型对象，暂无）</p>
+<p class="auto-style6">pRangeObject（区域性质模型对象）</p>
+<p class="auto-style7">pPowerLine（折线对象）</p>
+<p class="auto-style7">pArea（多边形区域对象）</p>
+<p class="auto-style7">pContour（等值图对象）</p>
+<p class="auto-style4">&nbsp;</p>
+<p>&nbsp;</p>
+<hr/>
+
+<p>参见：<a href="default.html"><span class="auto-style4">帮助首页</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

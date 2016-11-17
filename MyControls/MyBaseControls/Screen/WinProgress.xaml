@@ -1,0 +1,18 @@
+﻿<Window x:Class="MyBaseControls.Screen.WinProgress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="进度信息" Height="150" Width="400" Background="AliceBlue" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ProgressBar x:Name="bar" Value="0" Height="25" Width="340" Margin="0,0,0,30" Background="White" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsIndeterminate="True">
+            <ProgressBar.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBEFF93" Offset="0" />
+                    <GradientStop Color="#FEBFF893" Offset="0.5" />
+                    <GradientStop Color="#FF6EC120" Offset="0.51" />
+                    <GradientStop Color="#FF2E6C03" Offset="1" />
+                </LinearGradientBrush>
+            </ProgressBar.Foreground>
+        </ProgressBar>
+        <TextBlock x:Name="txt" Height="30" Margin="20,60,20,0" TextAlignment="Center"/>
+    </Grid>
+</Window>

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="DataLayer.WCF.UCManageRole"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300" Background="#AFEEEE" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <ImageBrush x:Key="ibAdmin" ImageSource="/DataLayer;component/WCF/Images/Admin.png" />
+        <DataTemplate x:Key="templateRole">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="16" Height="16" Fill="{Binding brushAdmin}"/>
+                <TextBlock Text="{Binding roleName}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="templateModel">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding isInclude}"/>
+                <TextBlock Text="{Binding modelName}"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="角色列表">
+                <ListBox x:Name="lstRole" ItemTemplate="{StaticResource templateRole}" SelectionChanged="lstRole_SelectionChanged"/>
+            </GroupBox>
+            <GroupBox Header="角色的模块权限" Grid.Column="2">
+                <ListBox x:Name="lstModel" ItemTemplate="{StaticResource templateModel}"/>
+            </GroupBox>
+            <TextBlock Text="注：管理员拥有所有权限，无需再赋与它模块权限!" Grid.Row="1" Grid.ColumnSpan="2" Foreground="Blue"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="btnNew" Content="新增角色" Width="80" Height="30" Click="btnNew_Click"/>
+                <Button x:Name="btnDel" Content="删除角色" Width="80" Height="30"  Click="btnDel_Click"  IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="btnUpdateModel" Content="更新模块信息" Width="100" Height="30" VerticalAlignment="Top" Click="btnUpdateModel_Click" IsEnabled="False"/>
+            </StackPanel>
+
+            <TextBlock x:Name="info" Grid.Row="4" Grid.ColumnSpan="3" Text="" TextAlignment="Center" Foreground="Red"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

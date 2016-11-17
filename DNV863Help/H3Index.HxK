@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE HelpIndex SYSTEM "MS-Help://hx/resources/HelpIndex.DTD">
+<HelpIndex
+   Name="K"
+   DTDVersion="1.0"
+   FileVersion="1.0"
+   LangId="1033">
+
+   <Keyword Term="dnv">
+      <Jump Url="default.html"/>
+   </Keyword>
+   <Keyword Term="规划">
+      <Jump Url="planning.html"/>
+   </Keyword>
+</HelpIndex>

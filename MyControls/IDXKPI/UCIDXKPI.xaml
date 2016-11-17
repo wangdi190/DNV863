@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="IDXKPI.UCIDXKPI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1300" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts">
+    <UserControl.Resources>
+
+
+        <DataTemplate x:Key="IndexTemplate">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="{Binding txtcolor}" Text="{Binding name}" FontSize="16"/>
+                        <TextBlock Foreground="#FFFF00" Text="{Binding idxstring}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Height="14" >
+                        <Rectangle Width="{Binding width1}">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="{Binding color1}" Offset="0.50" />
+                                    <GradientStop Color="{Binding color1}" Offset="0.50" />
+                                    <GradientStop Color="#DCDCDC" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="{Binding width2}">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="{Binding color2}" Offset="0.50" />
+                                    <GradientStop Color="{Binding color2}" Offset="0.50" />
+                                    <GradientStop Color="#DCDCDC" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="{Binding width3}">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="{Binding color3}" Offset="0.50" />
+                                    <GradientStop Color="{Binding color3}" Offset="0.50" />
+                                    <GradientStop Color="#DCDCDC" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </StackPanel>
+                    <Line X1="{Binding offset}" X2="{Binding offset}" Y1="2" Y2="18" Stroke="#0000FF" Grid.Column="1" StrokeThickness="0.5" />
+
+                    <TextBlock Foreground="#333333" Text="{Binding valuestring}" Grid.Column="1" VerticalAlignment="Center" Margin="2,0,0,0" FontSize="11">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="{Binding offset}"/>
+                    </TextBlock.RenderTransform>
+                    </TextBlock>
+
+                </Grid>
+
+
+                <Border CornerRadius="0" Background="Transparent" BorderThickness="1" BorderBrush="#7FFFD4" Margin="2" Height="{Binding height}">
+                    <Grid Margin="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="370"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="指标定义：" Foreground="LightBlue" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="{Binding define}" Foreground="White" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap"/>
+                        <TextBlock Text="参考范围：" Foreground="LightBlue" Grid.Row="1" Grid.Column="0"/>
+                        <TextBlock Text="{Binding refstring}" Foreground="White" Grid.Row="1" Grid.Column="1"/>
+                        <TextBlock Text="指标数值：" Foreground="LightBlue" Grid.Row="2" Grid.Column="0"/>
+                        <TextBlock Text="{Binding valuestring}" Foreground="White" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="grdMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <dxc:ChartControl x:Name="cht" Background="{x:Null}" SelectionMode="Single" SelectedItem="{Binding Path=selectSort, Mode=TwoWay}" HorizontalAlignment="Right" AnimationMode="OnLoad" Margin="20">
+            <dxc:RadarDiagram2D ShapeStyle="Polygon" DomainBrush="{x:Null}">
+                <dxc:RadarDiagram2D.AxisY>
+                    <dxc:RadarAxisY2D GridLinesBrush="#FF3E3E3E" TickmarksVisible="True" TickmarksMinorVisible="True" TickmarksCrossAxis="True" MinorCount="3">
+                        <dxc:RadarAxisY2D.Range>
+                            <dxc:AxisRange MaxValue="100" MinValue="0" />
+                        </dxc:RadarAxisY2D.Range>
+                        <dxc:RadarAxisY2D.NumericScaleOptions>
+                            <dxc:ContinuousNumericScaleOptions GridSpacing="20" AutoGrid="False" />
+                        </dxc:RadarAxisY2D.NumericScaleOptions>
+                        <dxc:RadarAxisY2D.Label>
+                            <dxc:AxisLabel Foreground="#FFFF00" TextPattern="{}{V:f0}" />
+                        </dxc:RadarAxisY2D.Label>
+                    </dxc:RadarAxisY2D>
+                </dxc:RadarDiagram2D.AxisY>
+                <dxc:RadarDiagram2D.AxisX>
+                    <dxc:RadarAxisX2D>
+                        <dxc:RadarAxisX2D.Label>
+                            <dxc:AxisLabel Foreground="#FFFF9D00" FontSize="20"/>
+                        </dxc:RadarAxisX2D.Label>
+                    </dxc:RadarAxisX2D>
+                </dxc:RadarDiagram2D.AxisX>
+                <dxc:RadarAreaSeries2D x:Name="radgood" DataSource="{Binding sortgoods}" Transparency="0.7" ArgumentDataMember="name" ValueDataMember="idx" MarkerVisible="False" ArgumentScaleType="Qualitative" Brush="#FFC9FFA7">
+                    <!--<dxc:SeriesPoint Argument="asdfasf" Value="23" ToolTipHint="aaaaaaaaaaa" />
+                    <dxc:SeriesPoint Argument="bdfgad" Value="34" />
+                    <dxc:SeriesPoint Argument="bdfdgd" Value="45" />
+                    <dxc:SeriesPoint Argument="bdffgd" Value="45" />
+                    <dxc:SeriesPoint Argument="bdfsgd" Value="35" />-->
+                </dxc:RadarAreaSeries2D>
+                <dxc:RadarAreaSeries2D x:Name="radbad" DataSource="{Binding sortbads}" Transparency="0.7" ArgumentDataMember="name" ValueDataMember="idx" MarkerVisible="False" ArgumentScaleType="Qualitative" Brush="#FFFFAAAA">
+                    <!--<dxc:SeriesPoint Argument="asdfasf" Value="13" ToolTipHint="aaaaaaaaaaa" />
+                    <dxc:SeriesPoint Argument="bdfgad" Value="24" />
+                    <dxc:SeriesPoint Argument="bdfdgd" Value="35" />
+                    <dxc:SeriesPoint Argument="bdffgd" Value="25" />
+                    <dxc:SeriesPoint Argument="bdfsgd" Value="15" />-->
+                </dxc:RadarAreaSeries2D>
+
+                <dxc:RadarAreaSeries2D x:Name="radidx" DataSource="{Binding sortidxes}" Transparency="0.5" ArgumentDataMember="name" ValueDataMember="idx" MarkerSize="20" ArgumentScaleType="Qualitative" LabelsVisibility="True" Brush="#FF48A9FF" >
+                    <dxc:RadarAreaSeries2D.MarkerModel>
+                        <dxc:DollarMarker2DModel />
+                    </dxc:RadarAreaSeries2D.MarkerModel>
+                    <dxc:RadarAreaSeries2D.PointAnimation>
+                        <dxc:CircularMarkerWidenAnimation />
+                    </dxc:RadarAreaSeries2D.PointAnimation>
+                    <dxc:RadarAreaSeries2D.Label>
+                        <dxc:SeriesLabel TextPattern="{}{A} {V:f1}" Indent="10" RenderMode="Rectangle" ConnectorVisible="False" dxc:CircularSeries2D.Angle="270" />
+                    </dxc:RadarAreaSeries2D.Label>
+                </dxc:RadarAreaSeries2D>
+            </dxc:RadarDiagram2D>
+        </dxc:ChartControl>
+
+
+        <Grid Grid.Column="1" MinWidth="500" MinHeight="600" MaxWidth="800" MaxHeight="900" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">
+            <Border  CornerRadius="10" Background="#30000000" BorderThickness="0.5" BorderBrush="#7FFFD4">
+                <StackPanel Margin="8">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding selectSort.name}" Foreground="Orange" FontSize="24" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Cursor="Hand"/>
+                        <TextBlock Text="{Binding selectSort.idxstring}" Foreground="#FFFF00" FontSize="24"/>
+                    </StackPanel>
+                    <ListBox x:Name="lstIndex" MaxHeight="700" ItemsSource="{Binding selectSort.indexes}" ItemTemplate="{StaticResource IndexTemplate}" SelectedItem="{Binding selectSort.selectIndex}" Background="Transparent" Cursor="Hand"/>
+                </StackPanel>
+            </Border>
+            <Image x:Name="imgHelp" Source="/IDXKPI;component/ask.png" Width="24" Height="24" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Cursor="Hand" MouseLeftButtonDown="imgHelp_MouseLeftButtonDown"/>
+        </Grid>
+    </Grid>
+</UserControl>

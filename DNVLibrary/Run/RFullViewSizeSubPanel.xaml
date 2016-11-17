@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="DNVLibrary.Run.RFullViewSizeSubPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" Name="uc">
+    <UserControl.Resources>
+            <ResourceDictionary>
+                <ObjectDataProvider x:Key="Pie3DModelKindDataProvider" ObjectType="{x:Type dxc:Pie3DModel}" MethodName="GetPredefinedKinds" />
+                <DoubleAnimation x:Key="ExplodeAnimation" To="0.2" Duration="0:0:0.5" />
+                <DoubleAnimation x:Key="CollapseAnimation" To="0.0" Duration="0:0:0.5" />
+                <Storyboard x:Key="InitialAnimation">
+                    <DoubleAnimation Storyboard.TargetName="diagramAnimation" Storyboard.TargetProperty="Progress" From="0.1" To="1.0" Duration="0:0:2" />
+                    <DoubleAnimation Storyboard.TargetName="diagramAnimation1" Storyboard.TargetProperty="Progress" From="0.1" To="1.0" Duration="0:0:2" />
+            </Storyboard>
+            </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="UserControl.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard Storyboard="{StaticResource InitialAnimation}" HandoffBehavior="Compose" />
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid>
+            <Border BorderThickness="0.5" BorderBrush="White" Background="Black" Margin="10">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <Grid>
+            <!--<Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>-->
+            <!--<Grid Grid.Row="0" Background="Black">
+                <Button Content="X"  Foreground="Red" HorizontalAlignment="Right" FontSize="12" Name="close"  Width="20" Height="20"  Click="close_Clicked" Cursor="Hand" FontWeight="Normal">
+                    
+                </Button>
+            </Grid>-->
+            <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <dxc:ChartControl Name="chart1" Background="Transparent" BorderBrush="Transparent" Margin="10"
+                              MouseUp="chart_MouseUp"
+                              MouseDown="chart_MouseDown"
+                              QueryChartCursor="chart_QueryChartCursor"
+                              BorderThickness="0"
+                              IsManipulationEnabled="False"
+                              ToolTipEnabled="True"
+                              >
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend IndentFromDiagram="16" ReverseItems="False" Padding="0" FontSize="12" VerticalPosition="BottomOutside" Orientation="Horizontal" HorizontalPosition="Center" Foreground="White" BorderBrush="White">
+                        <dxc:Legend.Background>
+                            <SolidColorBrush />
+                        </dxc:Legend.Background>
+                    </dxc:Legend>
+                </dxc:ChartControl.Legend>
+                <dxc:ChartControl.AnimationRecords>
+                    <dxc:ChartAnimationRecord x:Name="diagramAnimation1" Progress="0">
+                        <dxc:ChartAnimationRecord.Animations>
+                            <dxc:Diagram3DAnimation InitialZoomPercent="1">
+                                <dxc:Diagram3DAnimation.InitialRotation>
+                                    <dxc:AnimationRotation Order="YXZ" AngleX="0" AngleY="-50" />
+                                </dxc:Diagram3DAnimation.InitialRotation>
+                                <dxc:Diagram3DAnimation.Actions>
+                                    <dxc:Diagram3DZoomAction FinalZoomPercent="100" />
+                                    <dxc:Diagram3DRotationAction>
+                                        <dxc:Diagram3DRotationAction.Rotation>
+                                            <dxc:AnimationRotation AngleX="-40" AngleY="210" />
+                                        </dxc:Diagram3DRotationAction.Rotation>
+                                    </dxc:Diagram3DRotationAction>
+                                </dxc:Diagram3DAnimation.Actions>
+                            </dxc:Diagram3DAnimation>
+                        </dxc:ChartAnimationRecord.Animations>
+                    </dxc:ChartAnimationRecord>
+                </dxc:ChartControl.AnimationRecords>
+                <dxc:ChartControl.ToolTipOptions>
+                    <dxc:ToolTipOptions>
+                        <dxc:ToolTipOptions.ToolTipPosition>
+                            <dxc:ToolTipRelativePosition/>
+                        </dxc:ToolTipOptions.ToolTipPosition>
+                    </dxc:ToolTipOptions>
+                </dxc:ChartControl.ToolTipOptions>
+                <dxc:ChartControl.Diagram>
+                    <dxc:SimpleDiagram3D ZoomPercent="100" LayoutDirection="Horizontal" RuntimeZooming="False" RuntimeScrolling="False" RuntimeRotation="False">
+                        <dxc:SimpleDiagram3D.Series>
+                            <dxc:PieSeries3D ArgumentScaleType="Qualitative" LabelsVisibility="True" ValueScaleType="Numerical" Visible="True" Name="pie1" ToolTipEnabled="False" LegendTextPattern="{}{A}">
+                                <dxc:PieSeries3D.Label>
+                                    <dxc:SeriesLabel Indent="10" RenderMode="RectangleConnectedToCenter" TextPattern="{}{VP:P0}" dxc:FunnelSeries2D.LabelPosition="Center" dxc:PieSeries.LabelPosition="TwoColumns" FontSize="12" ></dxc:SeriesLabel>
+                                </dxc:PieSeries3D.Label>
+                                <dxc:PieSeries3D.Titles >
+                                    <dxc:Title Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Name="title1" Foreground="White" FontSize="14"/>
+                                </dxc:PieSeries3D.Titles>
+                                <dxc:PieSeries3D.Model>
+                                    <dxc:SemiRoundedRectanglePie3DModel />
+                                </dxc:PieSeries3D.Model>
+                            </dxc:PieSeries3D>
+                        </dxc:SimpleDiagram3D.Series>
+                    </dxc:SimpleDiagram3D>
+                </dxc:ChartControl.Diagram>
+            </dxc:ChartControl>
+ 
+            <dxc:ChartControl Name="chart2" Background="Black" Grid.Column="1" Margin="10"
+                              MouseUp="chart_MouseUp"
+                              MouseDown="chart_MouseDown"
+                              QueryChartCursor="chart_QueryChartCursor"
+                              BorderThickness="0" BorderBrush="White"
+                              IsManipulationEnabled="False"
+                              ToolTipEnabled="True"
+                              >
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend HorizontalPosition="Center" Orientation="Horizontal" VerticalPosition="BottomOutside" Padding="0" FontSize="12" Foreground="White" BorderBrush="White">
+                        <dxc:Legend.Background>
+                            <SolidColorBrush />
+                        </dxc:Legend.Background>
+                    </dxc:Legend>
+                </dxc:ChartControl.Legend>
+                <dxc:ChartControl.ToolTipOptions>
+                    <dxc:ToolTipOptions>
+                        <dxc:ToolTipOptions.ToolTipPosition>
+                            <dxc:ToolTipRelativePosition/>
+                        </dxc:ToolTipOptions.ToolTipPosition>
+                    </dxc:ToolTipOptions>
+                </dxc:ChartControl.ToolTipOptions>
+                <dxc:ChartControl.AnimationRecords>
+                    <dxc:ChartAnimationRecord x:Name="diagramAnimation" Progress="0">
+                        <dxc:ChartAnimationRecord.Animations>
+                            <dxc:Diagram3DAnimation InitialZoomPercent="1">
+                                <dxc:Diagram3DAnimation.InitialRotation>
+                                    <dxc:AnimationRotation Order="YXZ" AngleX="0" AngleY="-50" />
+                                </dxc:Diagram3DAnimation.InitialRotation>
+                                <dxc:Diagram3DAnimation.Actions>
+                                    <dxc:Diagram3DZoomAction FinalZoomPercent="100" />
+                                    <dxc:Diagram3DRotationAction>
+                                        <dxc:Diagram3DRotationAction.Rotation>
+                                            <dxc:AnimationRotation AngleX="-40" AngleY="210" />
+                                        </dxc:Diagram3DRotationAction.Rotation>
+                                    </dxc:Diagram3DRotationAction>
+                                </dxc:Diagram3DAnimation.Actions>
+                            </dxc:Diagram3DAnimation>
+                        </dxc:ChartAnimationRecord.Animations>
+                    </dxc:ChartAnimationRecord>
+                </dxc:ChartControl.AnimationRecords>
+                <dxc:ChartControl.Diagram>
+                    <dxc:SimpleDiagram3D ZoomPercent="130" LayoutDirection="Horizontal" RuntimeZooming="False" RuntimeScrolling="False" RuntimeRotation="False">
+                        <dxc:SimpleDiagram3D.Series>
+                            <dxc:PieSeries3D ArgumentScaleType="Auto" LabelsVisibility="True" ValueScaleType="Numerical" Visible="True" ToolTipEnabled="True" Name="pie2" LegendTextPattern="{}{A}">
+                                <dxc:PieSeries3D.Label>
+                                    <dxc:SeriesLabel Indent="10" RenderMode="RectangleConnectedToCenter" TextPattern="{}{VP:P0}" dxc:FunnelSeries2D.LabelPosition="Center" dxc:PieSeries.LabelPosition="TwoColumns" FontSize="12"></dxc:SeriesLabel>
+                                </dxc:PieSeries3D.Label>
+                                <dxc:PieSeries3D.Titles>
+                                    <dxc:Title Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Name="title2" Foreground="White" FontSize="14"/>
+                                </dxc:PieSeries3D.Titles>
+                                <dxc:PieSeries3D.Model>
+                                    <dxc:SemiRoundedRectanglePie3DModel />
+                                </dxc:PieSeries3D.Model>
+                            </dxc:PieSeries3D>
+                        </dxc:SimpleDiagram3D.Series>
+                    </dxc:SimpleDiagram3D>
+                </dxc:ChartControl.Diagram>
+            </dxc:ChartControl>
+            </Grid>
+              </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

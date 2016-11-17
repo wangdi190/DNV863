@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimapdata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <lefttop>
+    <Longitude>116.49242401123047</Longitude>
+    <Latitude>39.771800994873047</Latitude>
+  </lefttop>
+  <leftbottom>
+    <Longitude>116.49242401123047</Longitude>
+    <Latitude>39.750675201416016</Latitude>
+  </leftbottom>
+  <righttop>
+    <Longitude>116.53295135498047</Longitude>
+    <Latitude>39.771800994873047</Latitude>
+  </righttop>
+  <rightbottom>
+    <Longitude>116.53295135498047</Longitude>
+    <Latitude>39.750675201416016</Latitude>
+  </rightbottom>
+  <offsetX>9</offsetX>
+  <offsetY>86</offsetY>
+  <sclae>1.0042735042735045</sclae>
+  <isshow>true</isshow>
+</minimapdata>

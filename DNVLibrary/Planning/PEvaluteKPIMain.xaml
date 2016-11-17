@@ -1,0 +1,41 @@
+﻿<UserControl xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"  x:Class="DNVLibrary.Planning.PEvaluteKPIMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1300" Loaded="UserControl_Loaded" Margin="0,100,0,0">
+    <Grid>
+        <dxc:ChartControl x:Name="cht" Background="{x:Null}">
+            <dxc:RadarDiagram2D ShapeStyle="Polygon" DomainBrush="{x:Null}">
+                <dxc:RadarDiagram2D.AxisY>
+                    <dxc:RadarAxisY2D GridLinesBrush="#FF3E3E3E" TickmarksVisible="True" TickmarksMinorVisible="True" TickmarksCrossAxis="True" MinorCount="3">
+                        <dxc:RadarAxisY2D.NumericScaleOptions>
+                            <dxc:ContinuousNumericScaleOptions GridSpacing="0.2" AutoGrid="False" />
+                        </dxc:RadarAxisY2D.NumericScaleOptions>
+                        <dxc:RadarAxisY2D.Label>
+                            <dxc:AxisLabel Foreground="#FF4199FF" TextPattern="{}{V:p0}" />
+                        </dxc:RadarAxisY2D.Label>
+                    </dxc:RadarAxisY2D>
+                </dxc:RadarDiagram2D.AxisY>
+                <dxc:RadarDiagram2D.AxisX>
+                    <dxc:RadarAxisX2D>
+                        <dxc:RadarAxisX2D.Label>
+                            <dxc:AxisLabel Foreground="#FFFF9D00" />
+                        </dxc:RadarAxisX2D.Label>
+                    </dxc:RadarAxisX2D>
+                </dxc:RadarDiagram2D.AxisX>
+                <dxc:RadarAreaSeries2D Transparency="0.7" ArgumentDataMember="argu" ValueDataMember="value" MarkerSize="20" ArgumentScaleType="Qualitative" LabelsVisibility="True">
+                    <dxc:RadarAreaSeries2D.Label>
+                        <dxc:SeriesLabel TextPattern="{}{V:p4}" Indent="10" RenderMode="Rectangle" ConnectorVisible="False" dxc:CircularSeries2D.Angle="270" />
+                    </dxc:RadarAreaSeries2D.Label>
+                    <!--<dxc:SeriesPoint Argument="asdfasf" Value="0.23" ToolTipHint="aaaaaaaaaaa" />
+                    <dxc:SeriesPoint Argument="bdfgad" Value="0.345" />
+                    <dxc:SeriesPoint Argument="bdfdgd" Value="0.345" />
+                    <dxc:SeriesPoint Argument="bdffgd" Value="0.345" />
+                    <dxc:SeriesPoint Argument="bdfsgd" Value="0.345" />-->
+                </dxc:RadarAreaSeries2D>
+            </dxc:RadarDiagram2D>
+        </dxc:ChartControl>
+    </Grid>
+</UserControl>

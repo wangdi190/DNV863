@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="DataLayer.WCF.UCManageUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1300" Background="#AFEEEE" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <ImageBrush x:Key="ibAdmin" ImageSource="/DataLayer;component/WCF/Images/Admin.png" />
+        <ImageBrush x:Key="ibLock" ImageSource="/DataLayer;component/WCF/Images/Lock.png" />
+        <DataTemplate x:Key="templateUser">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="16" Height="16" Fill="{Binding brushLock}"/>
+                <Rectangle Width="16" Height="16" Fill="{Binding brushAdmin}"/>
+                <TextBlock Text="{Binding userName}" Margin="5,1,0,0"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding alias}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="templateRole">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding isInclude}"/>
+                <TextBlock Text="{Binding roleName}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Height="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="用户列表">
+                <ListBox x:Name="lstUser" ItemTemplate="{StaticResource templateUser}" SelectionChanged="lstUser_SelectionChanged"/>
+            </GroupBox>
+            <GroupBox Header="用户信息" Grid.Column="1">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center"  Height="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="用户登录名：" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="别名：" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="口令：" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Email地址：" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="账号创建日期：" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="上次登录日期：" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="上次加锁日期：" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="上次解锁日期：" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="状态：" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    <TextBlock x:Name="txtUserName" Text="" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtAlias" Text="" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                    <PasswordBox x:Name="txtPassword" Password="" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130"/>
+                    <TextBlock x:Name="txtEmail" Text="" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtCreateDate" Text="" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtLastLoginDate" Text="" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtLastLockDate" Text="" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtLastActivityDate" Text="" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtStatus" Text="" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="拥有角色列表" Grid.Column="2">
+                <ListBox x:Name="lstRole" ItemTemplate="{StaticResource templateRole}"/>
+            </GroupBox>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="btnNew" Content="新增用户" Width="80" Height="30" Click="btnNew_Click"/>
+                <Button x:Name="btnDel" Content="删除用户" Width="80" Height="30"  Click="btnDel_Click" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="btnUpdate" Content="更新口令" Width="100" Height="30" VerticalAlignment="Top" Click="btnUpdate_Click" IsEnabled="False"/>
+                <Button x:Name="btnLock" Content="加锁" Width="100" Height="30" VerticalAlignment="Top" Click="btnLock_Click" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="btnUpdateRole" Content="更新角色信息" Width="100" Height="30" VerticalAlignment="Top" Click="btnUpdateRole_Click" IsEnabled="False"/>
+            </StackPanel>
+
+            <TextBlock x:Name="info" Grid.Row="3" Grid.ColumnSpan="3" Text="" TextAlignment="Center" Foreground="Red"/>
+        </Grid>
+    </Grid>
+</UserControl>

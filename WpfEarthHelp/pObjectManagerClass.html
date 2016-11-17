@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>pObjectManager 图形对象管理类</title>	
+	<meta name="Title" content="pObjectManager Class" />
+    	<meta name="Microsoft.Help.Keywords" content="pObjectManager Class" />
+    	<meta name="Microsoft.Help.F1" content="WpfEarthLibrary.pObjectManager" />
+    	<meta name="Microsoft.Help.TocOrder" content="0" />
+	   	<meta name="Microsoft.Help.TocParent" content="Reference" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="WpfEarthLibrary.pObjectManager" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="图形对象管理类" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+    	
+    		<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style4 {
+		font-size: 11pt;
+	}
+	.auto-style5 {
+		text-align: center;
+		background-color: #C0C0C0;
+	}
+	</style>
+
+</head>
+
+<body>
+<p class="auto-style1">pObjectManager 类</p>
+<hr/>
+<p>&nbsp;&nbsp; &nbsp;pObjectManager类用于操作控件内的层对象、图形对象、图元纹理资源、几何体Mesh资源。</p>
+<p class="auto-style4">命名空间：WpfEarthLibrary</p>
+<p>1. 字段</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">zLayers</td>
+		<td>模型的层字典</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">zSymbols</td>
+		<td>图元字典</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">zStyles</td>
+		<td>风格字典（暂未使用）</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">zGeometries</td>
+		<td>几何体字典</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>2. 属性</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>3. 方法</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 343px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddBoxResource</td>
+		<td>向几何体资源字典添加立方体资源</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddCylinderResource</td>
+		<td>向几何体资源字典添加柱体或锥体</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddSphereResource</td>
+		<td>向几何体资源字典添加球体</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddSymbol(string, string)</td>
+		<td>向图元资源字典添加来源于文件的图元</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddSymbol(string, Brush, int, int, string)</td>
+		<td>向图元资源字典添加来源于Brush的图元</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddLayer</td>
+		<td>向层字典中添加层对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">find</td>
+		<td>查找模型对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">getObjList()</td>
+		<td>获取所有可见对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">getObjList(string)</td>
+		<td>获取业务扩展数据中指定busisort的所有可见对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">getAllObjList</td>
+		<td>获取所有可见和不可见对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">getBounds</td>
+		<td>获取所有可见对象所占的场景范围</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">pick</td>
+		<td>拾取对象</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">updateSymbolTexture</td>
+		<td>更新图元资源</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">updateGeomeries</td>
+		<td>更新几何体资源</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>4. 事件</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr/>
+
+<p>参见：<a href="default.html"><span class="auto-style4">帮助首页</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+﻿<Window x:Class="WcfDataServiceTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+        <Button x:Name="btn1" Content="用户一" Click="btn1_Click" Height="30" Width="100"/>
+            <Button x:Name="btn2" Content="用户二" Click="btn2_Click"  Height="30" Width="100"/>
+            <TextBlock x:Name="txtinfo"/>
+        </StackPanel>
+    </Grid>
+</Window>

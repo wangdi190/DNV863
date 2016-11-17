@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE HelpTOC SYSTEM "ms-help://hx/resources/HelpTOC.DTD">
+<HelpTOC
+   DTDVersion="1.0"
+   FileVersion="1.0"
+   LangId="1033">
+
+   <HelpTOCNode Title="dnv" Url="default.html">
+      <HelpTOCNode Title="配网规划" Url="planning.html">
+         <ToolData Name="HWFAR_H3TocOrder" Value="0"/>
+      </HelpTOCNode>
+      <ToolData Name="HWFAR_H3ParentID" Value="-1"/>
+      <ToolData Name="HWFAR_H3TocOrder" Value="1000"/>
+      <ToolData Name="MSTOCEXPST" Value="扩展"/>
+   </HelpTOCNode>
+   <ToolData Name="MSTOCEXPST" Value="扩展"/>
+   <ToolData Name="MSTOCMRUDIR" Value="F:\当前项目文件夹\程序\配网可视化863\DNV863\DNV863Help\"/>
+</HelpTOC>

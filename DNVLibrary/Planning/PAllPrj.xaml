@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="DNVLibrary.Planning.PAllPrj"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="selTemplate" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FF05004E" Offset="1" />
+            <GradientStop Color="#FFAFA6D8" Offset="0.503" />
+            <GradientStop Color="#FE79759F" Offset="0.535" />
+        </LinearGradientBrush>
+
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="transform" X="0" Y="0"/>
+    </UserControl.RenderTransform>
+    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+        <Border x:Name="brd" Width="200" Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.5">
+            <Grid>
+                <Border Background="Black" Grid.RowSpan="2" BorderBrush="Silver" BorderThickness="1" >
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+                </Border>
+                <Border Padding="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="grdHeader" Background="#AFEEEE" Cursor="Hand" MouseLeftButtonUp="grdHeader_MouseLeftButtonUp"/>
+                        <TextBlock x:Name="txtName" Text="XX方案"  Margin="5,3" IsHitTestVisible="False"/>
+                        <Rectangle x:Name="rect" Visibility="Collapsed" IsHitTestVisible="False" Width="8" Height="8" Fill="Red" HorizontalAlignment="Right" Margin="10,0" StrokeThickness="1" Stroke="Silver"/>
+                        <Grid Background="AliceBlue" Grid.Row="1" IsHitTestVisible="False">
+                            <TextBlock x:Name="txtNote" Opacity="0" Text=""  Margin="5,4,5,6" TextWrapping="Wrap" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

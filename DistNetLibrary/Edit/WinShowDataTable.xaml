@@ -1,0 +1,12 @@
+﻿<Window x:Class="DistNetLibrary.Edit.WinShowDataTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="数据表浏览" Height="400" Width="600" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid">
+    <Grid>
+        <dxg:GridControl x:Name="grid" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ShowBorder="False">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowPerPixelScrolling="True" Name="tableView1" ShowTotalSummary="False" AllowColumnFiltering="False" AllowColumnMoving="False" AllowDateTimeGroupIntervalMenu="False" AllowEditing="False" AllowFilterEditor="False" AllowGrouping="False" AllowMoveColumnToDropArea="False" IsRowCellMenuEnabled="False" IsTotalSummaryMenuEnabled="False" ShowBandsInCustomizationForm="False" ShowBandsPanel="False" ShowGroupPanel="False" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

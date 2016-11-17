@@ -1,0 +1,883 @@
+﻿<UserControl x:Class="MyControlLibrary.Controls3D.Index3D.IndexMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:local="clr-namespace:MyControlLibrary.Controls3D.Index3D"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized" Background="Transparent" MouseMove="UserControl_MouseMove">
+    <UserControl.Resources>
+        <MeshGeometry3D x:Key="model" 
+              Positions="1,0,0 1.61803399,1.90211303,0 0,3.07768354,0 -1.61803399,1.90211303,0 -1,0,0 0,1.384957593,0"
+              Normals="0,0,1 0,0,1 0,0,1 0,0,1 0,0,1"
+              TextureCoordinates="0.80901699,1 1,0.38196601 0.5,0 0,0.38196601 0.19098301,1"
+              TriangleIndices="0,3,4 0,2,3 0,1,2" />
+
+        <RadialGradientBrush x:Key="brushRed">
+            <GradientStop Color="Red" Offset="0" />
+            <GradientStop Color="#00FF0000" Offset="1" />
+        </RadialGradientBrush>
+        <RadialGradientBrush x:Key="brushYellow">
+            <GradientStop Color="#FF9900" Offset="0" />
+            <GradientStop Color="#00FF9900" Offset="1" />
+        </RadialGradientBrush>
+
+        <MaterialGroup x:Key="mat0">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <ed:RegularPolygon PointCount="5" StrokeThickness="0.1" Stretch="Fill" Width="100" Height="95.10565164" Stroke="DarkGray" Fill="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+        <MaterialGroup x:Key="mat1">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <ed:RegularPolygon PointCount="5" StrokeThickness="0.1" Stretch="Fill" Width="100" Height="95.10565164" Stroke="DarkGray" Fill="#FFFFCC" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+        <MaterialGroup x:Key="mat2">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <ed:RegularPolygon PointCount="5" StrokeThickness="0.1" Stretch="Fill" Width="100" Height="95.10565164" Stroke="DarkGray" Fill="#E5FFED" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+        <MaterialGroup x:Key="mat3">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <ed:RegularPolygon PointCount="5" StrokeThickness="0.1" Stretch="Fill" Width="100" Height="95.10565164" Stroke="DarkGray" Fill="#FFE5E6" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+        <MaterialGroup x:Key="mat4">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <ed:RegularPolygon PointCount="5" StrokeThickness="0.1" Stretch="Fill" Width="100" Height="95.10565164" Stroke="DarkGray" Fill="#FFFFE5" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+
+
+        <MaterialGroup x:Key="matRedTranslucent">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="0.3" Color="#FF7979"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matYellowTranslucent">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="0.3" Color="Orange"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matGreenTranslucent">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="0.3" Color="Green"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matWhiteTranslucent">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="0.3" Color="White"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matRed">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="1" Color="#FF7979"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matYellow">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="1" Color="Orange"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matGreen">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="1" Color="Green"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matWhite">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Opacity="1" Color="White"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+            <SpecularMaterial Brush="White" SpecularPower="90"/>
+        </MaterialGroup>
+    </UserControl.Resources>
+    <Grid x:Name="mainGrid">
+        <Viewport3D x:Name="mainViewport3D" MouseWheel="mainViewport3D_MouseWheel" MouseDown="mainViewport3D_MouseDown" MouseLeave="mainViewport3D_MouseLeave" MouseUp="mainViewport3D_MouseUp" MouseMove="mainViewport3D_MouseMove">
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="camera" Position="0,1.5,28" LookDirection="0,0,-1" UpDirection="0,1,0" FieldOfView="45">
+                    <PerspectiveCamera.Transform>
+                        <Transform3DGroup>
+                            <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                <RotateTransform3D.Rotation>
+                                    <AxisAngleRotation3D x:Name="rotationtmp" Angle="0" Axis="1,4,5"/>
+                                </RotateTransform3D.Rotation>
+                            </RotateTransform3D>
+                            <ScaleTransform3D x:Name="mScale" CenterX="0" CenterY="1.376381937" CenterZ="-2.227032723" ScaleX="0.5" ScaleY="0.5" ScaleZ="0.5"/>
+                            <TranslateTransform3D x:Name="translate" OffsetX="0" />
+                        </Transform3DGroup>
+                    </PerspectiveCamera.Transform>
+                </PerspectiveCamera>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D Transform="{Binding ElementName=camera, Path=Transform}">
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <DirectionalLight Color="WhiteSmoke" Direction="10,-10,-30" />
+                            <DirectionalLight Color="DimGray" Direction="0,0,-30" />
+                            <DirectionalLight Color="DimGray" Direction="0,-10,0" />
+                            <!--PointLight Color="Gray" Position="-10,10,20" /-->
+                            <PointLight Color="Gray" Position="0,1.5,0.51" />
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+                <ModelVisual3D x:Name="ModelMain">
+                    <ModelVisual3D x:Name="modelContent">
+                        <ModelVisual3D.Transform>
+                            <Transform3DGroup>
+                                <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <!--AxisAngleRotation3D x:Name="rotation" Angle="0" Axis="0,0,1"/-->
+                                        <QuaternionRotation3D x:Name="rotation" />
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>
+                                <!--<RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <AxisAngleRotation3D x:Name="rotation1" Angle="0" Axis="0,1,0"/>
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>
+                                <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <AxisAngleRotation3D x:Name="rotation2" Angle="0" Axis="1,0,0"/>
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>-->
+
+
+                            </Transform3DGroup>
+                        </ModelVisual3D.Transform>
+                        <ModelVisual3D x:Name="mg0">
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}" Material="{StaticResource mat0}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mg2">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA1" Angle="-63.43495" Axis="-0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mg1">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA2" Angle="-63.43495" Axis="-1,0,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mg4">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA3" Angle="-63.43495" Axis="1.61803399,1.17557051,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mg3">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="0" CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA4" Angle="-63.43495" Axis="1.61803399,-1.17557051,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mg5">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="-1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAkey" Angle="-63.43495" Axis="-0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <GeometryModel3D Geometry="{StaticResource model}"/>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D>
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D>
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="180" Axis="0,0,1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <TranslateTransform3D OffsetX="-7.854101966" OffsetY="1.90211303" />
+                                    <RotateTransform3D CenterX="-4.23606798" CenterY="0">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAB1" Angle="-63.43495" Axis="0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1" CenterY="0">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAB2" Angle="-63.43495" Axis="-0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+
+                            <ModelVisual3D x:Name="mg6">
+                                <ModelVisual3D.Transform>
+                                    <Transform3DGroup>
+                                        <RotateTransform3D CenterX="-1">
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                    </Transform3DGroup>
+                                </ModelVisual3D.Transform>
+                                <ModelVisual3D.Content>
+                                    <Model3DGroup>
+                                        <GeometryModel3D Geometry="{StaticResource model}"/>
+                                        <Model3DGroup>
+                                            <Model3DGroup.Transform>
+                                                <RotateTransform3D CenterY="1.384957593">
+                                                </RotateTransform3D>
+                                            </Model3DGroup.Transform>
+                                        </Model3DGroup>
+                                    </Model3DGroup>
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Transform>
+                                    <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rBB" Angle="-63.43495" Axis="0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </ModelVisual3D.Transform>
+                                <ModelVisual3D x:Name="mg7">
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D Geometry="{StaticResource model}"/>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mg8">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="1.61803399" CenterY="1.90211303">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB1" Angle="-63.43495" Axis="-0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D Geometry="{StaticResource model}"/>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mg9">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB2" Angle="-63.43495" Axis="-1,0,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D Geometry="{StaticResource model}"/>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mg10">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB3" Angle="-63.43495" Axis="1.61803399,1.17557051,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D Geometry="{StaticResource model}"/>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mg11">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="0" CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB4" Angle="-63.43495" Axis="1.61803399,-1.17557051,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D Geometry="{StaticResource model}"/>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                            </ModelVisual3D>
+
+                        </ModelVisual3D>
+                    </ModelVisual3D>
+                    <ModelVisual3D x:Name="modelCols">
+                        <ModelVisual3D.Transform>
+                            <Transform3DGroup>
+                                <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <QuaternionRotation3D x:Name="rotationCol" Quaternion="{Binding ElementName=rotation, Path=Quaternion}" />
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>
+
+                                <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <AxisAngleRotation3D x:Name="rotationCol1" Angle="{Binding ElementName=rotation1, Path=Angle}" Axis="0,1,0"/>
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>
+                                <RotateTransform3D CenterZ="-2.227032723" CenterY="1.376381937">
+                                    <RotateTransform3D.Rotation>
+                                        <AxisAngleRotation3D x:Name="rotationCol2" Angle="{Binding ElementName=rotation2,Path=Angle}" Axis="1,0,0"/>
+                                    </RotateTransform3D.Rotation>
+                                </RotateTransform3D>
+
+                            </Transform3DGroup>
+                        </ModelVisual3D.Transform>
+                        <ModelVisual3D x:Name="mc0">
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mc2">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA1Col" Angle="{Binding ElementName=rA1, Path=Angle}" Axis="-0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mc1">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA2Col" Angle="{Binding ElementName=rA2, Path=Angle}" Axis="-1,0,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mc4">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA3Col" Angle="{Binding ElementName=rA3, Path=Angle}" Axis="1.61803399,1.17557051,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mc3">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="0" CenterY="3.07768354">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rA4Col" Angle="{Binding ElementName=rA4, Path=Angle}" Axis="1.61803399,-1.17557051,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D x:Name="mc5">
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D CenterX="-1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAkeyCol" Angle="{Binding ElementName=rAkey, Path=Angle}" Axis="-0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+                            <ModelVisual3D.Content>
+                                <Model3DGroup>
+                                    <Model3DGroup>
+                                        <Model3DGroup.Transform>
+                                            <RotateTransform3D CenterY="1.384957593">
+                                            </RotateTransform3D>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+                        <ModelVisual3D>
+                            <ModelVisual3D.Transform>
+                                <Transform3DGroup>
+                                    <RotateTransform3D>
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D Angle="180" Axis="0,0,1"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <TranslateTransform3D OffsetX="-7.854101966" OffsetY="1.90211303" />
+                                    <RotateTransform3D CenterX="-4.23606798" CenterY="0">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAB1Col" Angle="{Binding ElementName=rAB1, Path=Angle}" Axis="0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                    <RotateTransform3D CenterX="-1" CenterY="0">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rAB2Col" Angle="{Binding ElementName=rAB2, Path=Angle}" Axis="-0.61803399,1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </Transform3DGroup>
+                            </ModelVisual3D.Transform>
+
+                            <ModelVisual3D x:Name="mc6">
+                                <ModelVisual3D.Transform>
+                                    <Transform3DGroup>
+                                        <RotateTransform3D CenterX="-1">
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                    </Transform3DGroup>
+                                </ModelVisual3D.Transform>
+                                <ModelVisual3D.Content>
+                                    <Model3DGroup>
+                                        <Model3DGroup>
+                                            <Model3DGroup.Transform>
+                                                <RotateTransform3D CenterY="1.384957593">
+                                                </RotateTransform3D>
+                                            </Model3DGroup.Transform>
+                                        </Model3DGroup>
+                                    </Model3DGroup>
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Transform>
+                                    <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                        <RotateTransform3D.Rotation>
+                                            <AxisAngleRotation3D x:Name="rBBCol" Angle="{Binding ElementName=rBB, Path=Angle}" Axis="0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                        </RotateTransform3D.Rotation>
+                                    </RotateTransform3D>
+                                </ModelVisual3D.Transform>
+                                <ModelVisual3D x:Name="mc7">
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mc8">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="1.61803399" CenterY="1.90211303">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB1Col" Angle="{Binding ElementName=rB1, Path=Angle}" Axis="-0.61803399,-1.90211303,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mc9">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="1">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB2Col" Angle="{Binding ElementName=rB2, Path=Angle}" Axis="-1,0,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mc10">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="-1.61803399" CenterY="1.90211303">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB3Col" Angle="{Binding ElementName=rB3, Path=Angle}" Axis="1.61803399,1.17557051,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D x:Name="mc11">
+                                    <ModelVisual3D.Transform>
+                                        <Transform3DGroup>
+                                            <RotateTransform3D CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D Angle="-108" Axis="0,0,-1"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                            <RotateTransform3D CenterX="0" CenterY="3.07768354">
+                                                <RotateTransform3D.Rotation>
+                                                    <AxisAngleRotation3D x:Name="rB4Col" Angle="{Binding ElementName=rB4, Path=Angle}" Axis="1.61803399,-1.17557051,0"></AxisAngleRotation3D>
+                                                </RotateTransform3D.Rotation>
+                                            </RotateTransform3D>
+                                        </Transform3DGroup>
+                                    </ModelVisual3D.Transform>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <Model3DGroup>
+                                                <Model3DGroup.Transform>
+                                                    <RotateTransform3D CenterY="1.384957593">
+                                                    </RotateTransform3D>
+                                                </Model3DGroup.Transform>
+                                            </Model3DGroup>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                            </ModelVisual3D>
+                        </ModelVisual3D>
+                    </ModelVisual3D>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+        </Viewport3D>
+        <Canvas x:Name="canvIndexView" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="2" />
+        <!--Button Width="100" Height="30" Content="测" Click="Button_Click"/-->
+        <Popup Name="pointTooltip">
+            <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+            <Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5">
+                <!--Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="#FFC1C5FF" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background-->
+                <Grid>
+                    <local:indexGauge x:Name="ttGauge"/>
+                    <TextBlock x:Name="ttContent" Width="245" Height="165" Padding="12" HorizontalAlignment="Right" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

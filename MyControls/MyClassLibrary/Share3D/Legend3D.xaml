@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="MyClassLibrary.Share3D.Legend3D"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             mc:Ignorable="d" 
+             Height="500" Width="800" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" Loaded="UserControl_Loaded">
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform x:Name="thisScale"/>
+            <TranslateTransform x:Name="thisTranslate"/>
+        </TransformGroup>
+
+    </UserControl.RenderTransform>
+    <Grid x:Name="grdmain">
+        <dxga:CircularGaugeControl>
+            <dxga:CircularGaugeControl.Layers>
+                <dxga:CircularGaugeLayer>
+                    <dxga:CircularGaugeLayer.Presentation>
+                        <dxga:ProgressiveCircularGaugeBackgroundLayerPresentation>
+                            <dxga:ProgressiveCircularGaugeBackgroundLayerPresentation.Fill>
+                                <RadialGradientBrush Center="0.5,0" GradientOrigin="0.5,0" RadiusX="2.862" RadiusY="1">
+                                    <GradientStop Color="#FF061C2B" Offset="1" />
+                                    <GradientStop Color="#FF5D667D" Offset="0.012" />
+                                    <GradientStop Color="#FF111B25" Offset="0.32" />
+                                    <GradientStop Color="#FF000207" Offset="0.32001" />
+                                </RadialGradientBrush>
+                            </dxga:ProgressiveCircularGaugeBackgroundLayerPresentation.Fill>
+                        </dxga:ProgressiveCircularGaugeBackgroundLayerPresentation>
+                    </dxga:CircularGaugeLayer.Presentation>
+                </dxga:CircularGaugeLayer>
+            </dxga:CircularGaugeControl.Layers>
+        </dxga:CircularGaugeControl>
+        <TextBlock x:Name="title" Text="图例说明" FontSize="28" Margin="0,12" HorizontalAlignment="Center" Foreground="#FFE0FA2D" />
+        <Viewport3D x:Name="mainViewport3D" Margin="15">
+            <Viewport3D.Camera>
+                <!--<PerspectiveCamera x:Name="camera" Position="0,7,20" LookDirection="0,-0.3,-1" UpDirection="0,1,0" FieldOfView="45" >
+                    <PerspectiveCamera.Transform>
+                        <MatrixTransform3D x:Name="cameratransform"/>
+                    </PerspectiveCamera.Transform>
+                </PerspectiveCamera>-->
+                <OrthographicCamera Position="0,9.5,20" LookDirection="0,-0.35,-1" UpDirection="0,1,0" Width="12">
+                    <OrthographicCamera.Transform>
+                        <RotateTransform3D>
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D Axis="0,1,0" Angle="-0"/>
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                    </OrthographicCamera.Transform>
+                </OrthographicCamera>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D Transform="{Binding ElementName=camera, Path=Transform}">
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <DirectionalLight Color="White" Direction="0.2,0.2,-1" />
+                            <AmbientLight Color="DarkGray" />
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+
+                <ModelVisual3D x:Name="Model0">
+                    <ModelVisual3D>
+
+                        <ModelVisual3D x:Name="modelMain">
+                            <ModelVisual3D.Content>
+                                <Model3DGroup x:Name="mgAll">
+                                    <Model3DGroup x:Name="mgLeft">
+                                        <Model3DGroup.Transform>
+                                            <Transform3DGroup>
+                                                <TranslateTransform3D OffsetX="-3"/>
+                                            </Transform3DGroup>
+                                        </Model3DGroup.Transform>
+                                    </Model3DGroup>
+                                    <Model3DGroup x:Name="mgRight">
+                                        <Model3DGroup.Transform>
+                                            <Transform3DGroup>
+                                                <RotateTransform3D>
+                                                    <RotateTransform3D.Rotation>
+                                                        <AxisAngleRotation3D x:Name="rotationY"/>
+                                                    </RotateTransform3D.Rotation>
+                                                </RotateTransform3D>
+                                                <ScaleTransform3D ScaleX="2" ScaleY="2" ScaleZ="2"/>
+                                                <TranslateTransform3D OffsetX="3" OffsetY="1"/>
+
+                                            </Transform3DGroup>
+                                        </Model3DGroup.Transform>
+
+                                    </Model3DGroup>
+                                </Model3DGroup>
+                            </ModelVisual3D.Content>
+                        </ModelVisual3D>
+
+                        <!--<share:Cylinder3D>
+                            <share:Cylinder3D.Material>
+                                <MaterialGroup>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <SolidColorBrush Color="#80FF6347"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </MaterialGroup>
+                            </share:Cylinder3D.Material>
+                            <share:Cylinder3D.BackMaterial>
+                                <MaterialGroup>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <SolidColorBrush Color="#80FF6347"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </MaterialGroup>
+                            </share:Cylinder3D.BackMaterial>
+                        </share:Cylinder3D>-->
+
+                    </ModelVisual3D>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+
+        </Viewport3D>
+        <Grid x:Name="grdFlag">
+
+        </Grid>
+        <StackPanel x:Name="colorFlag" Orientation="Horizontal" VerticalAlignment="Bottom" Height="24" Margin="0,0,0,12" HorizontalAlignment="Center">
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,184 @@
+﻿<UserControl xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"  x:Class="DNVLibrary.Run.RHistoryReplayPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300" Initialized="UserControl_Initialized" Foreground="Cyan" >
+    <UserControl.Resources>
+        <!--事件列表模板-->
+        <DataTemplate x:Key="eventtemplate">
+            <StackPanel Orientation="Horizontal" ToolTip="{Binding eContent}">
+                <Rectangle Width="16" Height="16" Fill="{Binding icon}" Margin="5,0"/>
+                <TextBlock Text="{Binding strStartTime}" Foreground="Cyan"/>
+                <TextBlock Text="{Binding eTitle}" Foreground="White"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid x:Name="grdMain">
+        <!--时间线控制板-->
+            <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,30" Background="#80000000" BorderBrush="AliceBlue" BorderThickness="0.5" Grid.Row="1" Grid.ColumnSpan="5" >
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock x:Name="txtDate" Text="" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="10,5,10,5" FontSize="28" Foreground="Yellow" >
+                <TextBlock.Effect>
+                    <DropShadowEffect/>
+                </TextBlock.Effect>
+                    </TextBlock>
+                    <StackPanel x:Name="controlPanel" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                        <Button x:Name="btnPlay" Content=" 播放 " Height="24" Width="60" Foreground="White" Template="{StaticResource ButtonBlue}" Click="btnPlay_Click"/>
+                        <Button x:Name="btnPause" Content=" 暂停 " Height="24" Width="60" Foreground="White" Template="{StaticResource ButtonBlue}" Margin="0,0,10,0" Click="btnPause_Click"/>
+                        <Button x:Name="btnPlus" Content=" 加速 " Height="24" Width="60" Foreground="White" Template="{StaticResource ButtonBlue}" Click="btnPlus_Click"/>
+                        <Button x:Name="btnReduce" Content=" 减速 " Height="24" Width="60" Foreground="White" Template="{StaticResource ButtonBlue}" Click="btnReduce_Click"/>
+                        <TextBlock x:Name="txtRad" Text="" Foreground="AliceBlue" VerticalAlignment="Center" ToolTip="历史数据间隔时间"/>
+                        <dxe:TrackBarEdit x:Name="trc" Margin="10,0,10,0" Width="500" Minimum="0" Maximum="1" LargeStep="0.1" SmallStep="0.005" IsMoveToPointEnabled="True" IsSnapToTickEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        <!--指标板-->
+
+        <Grid Width="320" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,300">
+            <Grid.Effect>
+                <DropShadowEffect/>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="供电负荷：" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <dxga:DigitalGaugeControl Text="{Binding curLoad}" Height="65" Margin="-10,-25,-10,-20" HorizontalContentAlignment="Right" Grid.Column="1">
+                <dxga:DigitalGaugeControl.SymbolView>
+                    <dxga:SevenSegmentsView>
+                        <dxga:SevenSegmentsView.Presentation>
+                            <dxga:DefaultSevenSegmentsPresentation FillActive="Yellow" FillInactive="#0F555555" />
+                        </dxga:SevenSegmentsView.Presentation>
+                    </dxga:SevenSegmentsView>
+                </dxga:DigitalGaugeControl.SymbolView>
+            </dxga:DigitalGaugeControl>
+            <TextBlock Text="MW"  FontSize="20" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <TextBlock Text="清洁能源出力：" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"/>
+            <dxga:DigitalGaugeControl Text="{Binding greenPower}" Height="65" Margin="-10,-20" Grid.Row="1" Grid.Column="1">
+                <dxga:DigitalGaugeControl.SymbolView>
+                    <dxga:SevenSegmentsView>
+                        <dxga:SevenSegmentsView.Presentation>
+                            <dxga:DefaultSevenSegmentsPresentation FillActive="Lime" FillInactive="#0F555555" />
+                        </dxga:SevenSegmentsView.Presentation>
+                    </dxga:SevenSegmentsView>
+                </dxga:DigitalGaugeControl.SymbolView>
+            </dxga:DigitalGaugeControl>
+            <TextBlock Text="MW"  FontSize="20" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <TextBlock Text="充电桩负荷："  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"/>
+            <dxga:DigitalGaugeControl Text="{Binding carLoad}" Height="65" Margin="-10,-20" Grid.Row="2" Grid.Column="1">
+                <dxga:DigitalGaugeControl.SymbolView>
+                    <dxga:SevenSegmentsView>
+                        <dxga:SevenSegmentsView.Presentation>
+                            <dxga:DefaultSevenSegmentsPresentation FillActive="Yellow" FillInactive="#0F555555" />
+                        </dxga:SevenSegmentsView.Presentation>
+                    </dxga:SevenSegmentsView>
+                </dxga:DigitalGaugeControl.SymbolView>
+            </dxga:DigitalGaugeControl>
+            <TextBlock Text="MW"  FontSize="20" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <TextBlock Text="大客户负荷："  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3"/>
+            <dxga:DigitalGaugeControl Text="{Binding customLoad}" Height="65" Margin="-10,-20" Grid.Row="3" Grid.Column="1">
+                <dxga:DigitalGaugeControl.SymbolView>
+                    <dxga:SevenSegmentsView>
+                        <dxga:SevenSegmentsView.Presentation>
+                            <dxga:DefaultSevenSegmentsPresentation FillActive="Yellow" FillInactive="#0F555555" />
+                        </dxga:SevenSegmentsView.Presentation>
+                    </dxga:SevenSegmentsView>
+                </dxga:DigitalGaugeControl.SymbolView>
+            </dxga:DigitalGaugeControl>
+            <TextBlock Text="MW"  FontSize="20" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <TextBlock Text="停电损失负荷："  FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="4"/>
+            <dxga:DigitalGaugeControl Text="{Binding cutLoad}" Height="65" Margin="-10,-20" Grid.Row="4" Grid.Column="1">
+                <dxga:DigitalGaugeControl.SymbolView>
+                    <dxga:SevenSegmentsView>
+                        <dxga:SevenSegmentsView.Presentation>
+                            <dxga:DefaultSevenSegmentsPresentation FillActive="#FFFF5D5D" FillInactive="#0F555555" />
+                        </dxga:SevenSegmentsView.Presentation>
+                    </dxga:SevenSegmentsView>
+                </dxga:DigitalGaugeControl.SymbolView>
+            </dxga:DigitalGaugeControl>
+            <TextBlock Text="MW"  FontSize="20" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <ListBox ItemsSource="{Binding lstEvent}" ItemTemplate="{StaticResource eventtemplate}" Background="Transparent" Height="200" Width="250" Margin="0,20,0,0" BorderBrush="Transparent" Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Right"/>
+        </Grid>
+        
+        <!--图表-->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,80" >
+            <dxc:ChartControl x:Name="cht" Width="600" Height="200" Background="#5E000000" BorderBrush="Transparent">
+                <dxc:ChartControl.CrosshairOptions>
+                    <dxc:CrosshairOptions GroupHeaderPattern="{}{A}" />
+                </dxc:ChartControl.CrosshairOptions>
+                <dxc:ChartControl.Palette>
+                    <dxc:CustomPalette>
+                        <dxc:CustomPalette.Colors>
+                            <Color>#00FFFF</Color>
+                            <Color>#00FF00</Color>
+                            <Color>#FFFF00</Color>
+                            <Color>#0099FF</Color>
+                            <Color>#FF1900</Color>
+                        </dxc:CustomPalette.Colors>
+                    </dxc:CustomPalette>
+                </dxc:ChartControl.Palette>
+
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend HorizontalPosition="Center" VerticalPosition="BottomOutside" Orientation="Horizontal" Background="Transparent" Foreground="#F5F5F5" Padding="0" UseCheckBoxes="True" />
+                </dxc:ChartControl.Legend>
+                <dxc:XYDiagram2D x:Name="diagram" SeriesDataMember="sort" MouseLeftButtonDown="diagram_MouseLeftButtonDown">
+                    <dxc:XYDiagram2D.AxisY>
+                        <dxc:AxisY2D Brush="#FFCECBCB">
+                            <dxc:AxisY2D.Label>
+                                <dxc:AxisLabel Foreground="WhiteSmoke" />
+                            </dxc:AxisY2D.Label>
+                        </dxc:AxisY2D>
+                    </dxc:XYDiagram2D.AxisY>
+                    <dxc:XYDiagram2D.DefaultPane>
+                        <dxc:Pane DomainBrush="#00000000" Padding="0" />
+                    </dxc:XYDiagram2D.DefaultPane>
+                    <dxc:XYDiagram2D.AxisX>
+                        <dxc:AxisX2D Interlaced="True" Brush="#FFC7C7C7">
+                            <dxc:AxisX2D.ConstantLinesInFront>
+                                <dxc:ConstantLine x:Name="chtlin" CheckedInLegend="False" CheckableInLegend="False" Brush="#FFDADB00">
+                                    <dxc:ConstantLine.LineStyle>
+                                        <dxc:LineStyle />
+                                    </dxc:ConstantLine.LineStyle>
+                                </dxc:ConstantLine>
+                            </dxc:AxisX2D.ConstantLinesInFront>
+                            <dxc:AxisX2D.Label>
+                                <dxc:AxisLabel Foreground="WhiteSmoke" />
+                            </dxc:AxisX2D.Label>
+                            <dxc:AxisX2D.DateTimeScaleOptions>
+                                <dxc:ManualDateTimeScaleOptions GridAlignment="Day" MeasureUnit="Hour" />
+                            </dxc:AxisX2D.DateTimeScaleOptions>
+                        </dxc:AxisX2D>
+                    </dxc:XYDiagram2D.AxisX>
+                    <dxc:XYDiagram2D.SeriesTemplate>
+                        <dxc:LineSeries2D ArgumentDataMember="argudate" ArgumentScaleType="DateTime" ValueDataMember="value" CrosshairLabelPattern="{}{S}:{V:f1}MW">
+                            <dxc:LineSeries2D.LineStyle>
+                                <dxc:LineStyle />
+                            </dxc:LineSeries2D.LineStyle>
+                        </dxc:LineSeries2D>
+                    </dxc:XYDiagram2D.SeriesTemplate>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl>
+        </StackPanel>
+        
+
+    </Grid>
+</UserControl>

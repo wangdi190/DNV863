@@ -1,0 +1,306 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  x:Class="DNVLibrary.Planning.PEvaluteSensitiveMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Xpf.Core.v14.1"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" Initialized="UserControl_Initialized" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors">
+    <Grid x:Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <dxc:ChartControl Grid.Column="0" DataSource="{Binding sorts[0].pnts}" dx:ThemeManager.ThemeName="MetropolisDark" Margin="5" AnimationMode="OnLoad" >
+            <dxc:ChartControl.Legend>
+                <dxc:Legend Orientation="Horizontal" HorizontalPosition="Center" VerticalPosition="BottomOutside" />
+            </dxc:ChartControl.Legend>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="{Binding sorts[0].name}" HorizontalAlignment="Center" />
+            </dxc:ChartControl.Titles>
+            <dxc:XYDiagram2D SeriesDataMember="sort">
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Interlaced="True">
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%"/>
+                        </dxc:AxisX2D.Label>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.Range>
+                            <dxc:AxisRange MaxValue="150" MinValue="50" />
+                        </dxc:AxisY2D.Range>
+                        <dxc:AxisY2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%" />
+                        </dxc:AxisY2D.Label>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:LineSeries2D ArgumentDataMember="argudouble" ValueDataMember="value" CrosshairLabelPattern="{}{S}变化{A}%：收益率={V:f1}%">
+                        <dxc:LineSeries2D.SeriesAnimation>
+                            <dxc:Line2DUnwrapHorizontallyAnimation />
+                        </dxc:LineSeries2D.SeriesAnimation>
+                    </dxc:LineSeries2D>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+
+        <dxc:ChartControl Grid.Column="1" DataSource="{Binding sorts[1].pnts}"  dx:ThemeManager.ThemeName="MetropolisDark" Margin="5" AnimationMode="OnLoad">
+            <dxc:ChartControl.Legend>
+                <dxc:Legend Orientation="Horizontal" HorizontalPosition="Center" VerticalPosition="BottomOutside" />
+            </dxc:ChartControl.Legend>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="{Binding sorts[1].name}" HorizontalAlignment="Center" />
+            </dxc:ChartControl.Titles>
+            <dxc:XYDiagram2D SeriesDataMember="sort">
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Interlaced="True">
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%"/>
+                        </dxc:AxisX2D.Label>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.Range>
+                            <dxc:AxisRange MaxValue="150" MinValue="50" />
+                        </dxc:AxisY2D.Range>
+                        <dxc:AxisY2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%" />
+                        </dxc:AxisY2D.Label>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:LineSeries2D ArgumentDataMember="argudouble" ValueDataMember="value" CrosshairLabelPattern="{}{S}变化{A}%：收益率={V:f1}%">
+                        <dxc:LineSeries2D.SeriesAnimation>
+                            <dxc:Line2DUnwrapHorizontallyAnimation />
+                        </dxc:LineSeries2D.SeriesAnimation>
+                    </dxc:LineSeries2D>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+
+        <dxc:ChartControl Grid.Column="2" DataSource="{Binding sorts[2].pnts}"  dx:ThemeManager.ThemeName="MetropolisDark" Margin="5" AnimationMode="OnLoad">
+            <dxc:ChartControl.Legend>
+                <dxc:Legend Orientation="Horizontal" HorizontalPosition="Center" VerticalPosition="BottomOutside" />
+            </dxc:ChartControl.Legend>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="{Binding sorts[2].name}" HorizontalAlignment="Center" />
+            </dxc:ChartControl.Titles>
+            <dxc:XYDiagram2D SeriesDataMember="sort">
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Interlaced="True">
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%"/>
+                        </dxc:AxisX2D.Label>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.Range>
+                            <dxc:AxisRange MaxValue="150" MinValue="50" />
+                        </dxc:AxisY2D.Range>
+                        <dxc:AxisY2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%" />
+                        </dxc:AxisY2D.Label>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:LineSeries2D ArgumentDataMember="argudouble" ValueDataMember="value" CrosshairLabelPattern="{}{S}变化{A}%：收益率={V:f1}%">
+                        <dxc:LineSeries2D.SeriesAnimation>
+                            <dxc:Line2DUnwrapHorizontallyAnimation />
+                        </dxc:LineSeries2D.SeriesAnimation>
+                    </dxc:LineSeries2D>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+
+        <dxc:ChartControl Grid.Column="3" DataSource="{Binding sorts[3].pnts}"  dx:ThemeManager.ThemeName="MetropolisDark" Margin="5" AnimationMode="OnLoad">
+            <dxc:ChartControl.Legend>
+                <dxc:Legend Orientation="Horizontal" HorizontalPosition="Center" VerticalPosition="BottomOutside" />
+            </dxc:ChartControl.Legend>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="{Binding sorts[3].name}" HorizontalAlignment="Center" />
+            </dxc:ChartControl.Titles>
+            <dxc:XYDiagram2D SeriesDataMember="sort">
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Interlaced="True">
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%"/>
+                        </dxc:AxisX2D.Label>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.Range>
+                            <dxc:AxisRange MaxValue="150" MinValue="50" />
+                        </dxc:AxisY2D.Range>
+                        <dxc:AxisY2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{V}%" />
+                        </dxc:AxisY2D.Label>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:LineSeries2D ArgumentDataMember="argudouble" ValueDataMember="value" CrosshairLabelPattern="{}{S}变化{A}%：收益率={V:f1}%">
+                        <dxc:LineSeries2D.SeriesAnimation>
+                            <dxc:Line2DUnwrapHorizontallyAnimation />
+                        </dxc:LineSeries2D.SeriesAnimation>
+                    </dxc:LineSeries2D>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+
+        
+        
+        
+        <!--表格-->
+        
+        <dxg:GridControl AutoGenerateColumns="AddNew" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding sorts[0].griddata}" dx:ThemeManager.ThemeName="MetropolisDark" Margin="5">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowGroupPanel="False" ShowIndicator="False" AutoWidth="True">
+                    <dxg:TableView.FormatConditions>
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightGreenFill" Rule="TopItems" Threshold="1" />
+                        <dxg:IconSetFormatCondition FieldName="senesitive" PredefinedFormatName="Arrows3ColoredIconSet" />
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightRedFill" Rule="BottomItems" Threshold="1" />
+                    </dxg:TableView.FormatConditions>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="项目" FieldName="name" HorizontalHeaderContentAlignment="Center" />
+                <dxg:GridColumn Header="变化" FieldName="changeorg" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益率" FieldName="changedest" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益变化率" FieldName="changerate" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="敏感系数" FieldName="senesitive" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <dxg:GridControl AutoGenerateColumns="AddNew" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding sorts[1].griddata}" dx:ThemeManager.ThemeName="MetropolisDark" Margin="5">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowGroupPanel="False" ShowIndicator="False" AutoWidth="True">
+                    <dxg:TableView.FormatConditions>
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightGreenFill" Rule="TopItems" Threshold="1" />
+                        <dxg:IconSetFormatCondition FieldName="senesitive" PredefinedFormatName="Arrows3ColoredIconSet" />
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightRedFill" Rule="BottomItems" Threshold="1" />
+                    </dxg:TableView.FormatConditions>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="项目" FieldName="name" HorizontalHeaderContentAlignment="Center" />
+                <dxg:GridColumn Header="变化" FieldName="changeorg" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益率" FieldName="changedest" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益变化率" FieldName="changerate" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="敏感系数" FieldName="senesitive" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <dxg:GridControl AutoGenerateColumns="AddNew" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding sorts[2].griddata}" dx:ThemeManager.ThemeName="MetropolisDark" Margin="5">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowGroupPanel="False" ShowIndicator="False" AutoWidth="True">
+                    <dxg:TableView.FormatConditions>
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightGreenFill" Rule="TopItems" Threshold="1" />
+                        <dxg:IconSetFormatCondition FieldName="senesitive" PredefinedFormatName="Arrows3ColoredIconSet" />
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightRedFill" Rule="BottomItems" Threshold="1" />
+                    </dxg:TableView.FormatConditions>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="项目" FieldName="name" HorizontalHeaderContentAlignment="Center" />
+                <dxg:GridColumn Header="变化" FieldName="changeorg" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益率" FieldName="changedest" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益变化率" FieldName="changerate" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="敏感系数" FieldName="senesitive" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <dxg:GridControl AutoGenerateColumns="AddNew" Grid.Column="3" Grid.Row="1" ItemsSource="{Binding sorts[3].griddata}" dx:ThemeManager.ThemeName="MetropolisDark" Margin="5">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowGroupPanel="False" ShowIndicator="False" AutoWidth="True">
+                    <dxg:TableView.FormatConditions>
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightGreenFill" Rule="TopItems" Threshold="1" />
+                        <dxg:IconSetFormatCondition FieldName="senesitive" PredefinedFormatName="Arrows3ColoredIconSet" />
+                        <dxg:TopBottomRuleFormatCondition Expression="[senesitive]" FieldName="{x:Null}" PredefinedFormatName="LightRedFill" Rule="BottomItems" Threshold="1" />
+                    </dxg:TableView.FormatConditions>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="项目" FieldName="name" HorizontalHeaderContentAlignment="Center" />
+                <dxg:GridColumn Header="变化" FieldName="changeorg" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益率" FieldName="changedest" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings HorizontalContentAlignment="Center" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="收益变化率" FieldName="changerate" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="敏感系数" FieldName="senesitive" HorizontalHeaderContentAlignment="Center">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+    </Grid>
+</UserControl>

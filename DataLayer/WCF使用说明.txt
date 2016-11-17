@@ -1,0 +1,26 @@
+﻿用户名和口令的认证方式
+
+1. 服务器端需生成证书
+set SERVER_NAME=localhost
+certmgr.exe -del -r CurrentUser -s TrustedPeople -c -n %SERVER_NAME%
+certmgr.exe -del -r LocalMachine -s My -c -n %SERVER_NAME%
+makecert.exe -sr LocalMachine -ss MY -a sha1 -n CN=%SERVER_NAME% -sky exchange -pe
+certmgr.exe -add -r LocalMachine -s My -c -n %SERVER_NAME% -r CurrentUser -s TrustedPeople
+
+2.客户端配置需增加
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="myBehavior">
+          <clientCredentials>
+            <serviceCertificate>
+              <authentication certificateValidationMode="None"/>
+            </serviceCertificate>
+          </clientCredentials>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+且：在<endpoint 增加behaviorConfiguration="myBehavior"
+
+
+3. 增加传输字节大小，缺省的大小一般不够传回数据库读取内容，应增加如maxReceivedMessageSize="12800000"
+<binding name="WSHttpBinding_IDataService" maxReceivedMessageSize="12800000">

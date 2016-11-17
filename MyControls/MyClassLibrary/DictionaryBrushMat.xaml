@@ -1,0 +1,287 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--与3D材质配套SolidColor画刷-->
+    <SolidColorBrush x:Key="colorRed" Color="Red" Opacity="1" />
+    <SolidColorBrush x:Key="colorTransRed" Color="#FFFF8080" Opacity="0.7" />
+    <SolidColorBrush x:Key="colorLightRed" Color="#FFFF8080" />
+    <SolidColorBrush x:Key="colorDarkRed" Color="DarkRed" Opacity="1" />
+
+    <SolidColorBrush x:Key="colorYellow" Color="Chocolate" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorTransYellow" Color="Orange" Opacity="0.7"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorLightYellow" Color="Orange" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorDarkYellow" Color="OrangeRed" Opacity="1"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorBlue" Color="Blue" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorTransBlue" Color="#0099FF" Opacity="0.7"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorLightBlue" Color="#6666FF" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorDarkBlue" Color="DarkBlue" Opacity="1"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorGreen" Color="Green" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorTransGreen" Color="Lime" Opacity="0.7"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorLightGreen" Color="Lime" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorDarkGreen" Color="DarkGreen" Opacity="1"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorWhite" Color="Gainsboro" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorLightWhite" Color="#FFFFFF" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorTransWhite" Color="#FFFFFF" Opacity="0.5"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorDarkWhite" Color="Silver" Opacity="1"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorTransparent" Color="#FFFFFF" Opacity="0.3"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorBlack" Color="DimGray" Opacity="1"/>
+    <SolidColorBrush x:Key="colorTransBlack" Color="DarkGray" Opacity="0.7"/>
+    <SolidColorBrush x:Key="colorLightBlack" Color="DarkGray" />
+    <SolidColorBrush x:Key="colorDarkBlack" Color="Black" />
+
+    <SolidColorBrush x:Key="colorGray" Color="Silver" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorTransGray" Color="Gainsboro" Opacity="0.7"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorLightGray" Color="Gainsboro" Opacity="1"></SolidColorBrush>
+    <SolidColorBrush x:Key="colorDarkGray" Color="DarkGray" Opacity="1"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="colorPurple" Color="Purple" Opacity="1"/>
+    <SolidColorBrush x:Key="colorTransPurple" Color="Magenta" Opacity="0.7"/>
+    <SolidColorBrush x:Key="colorLightPurple" Color="Magenta" />
+    <SolidColorBrush x:Key="colorDarkPurple" Color="Indigo" />
+
+    <SolidColorBrush x:Key="colorBrown" Color="Brown" Opacity="1"/>
+    <SolidColorBrush x:Key="colorTransBrown" Color="Peru" Opacity="0.7"/>
+    <SolidColorBrush x:Key="colorLightBrown" Color="Peru" />
+    <SolidColorBrush x:Key="colorDarkBrown" Color="Firebrick" />
+
+
+    <!--3D常用材质-->
+
+
+    <MaterialGroup x:Key="matRed">
+        <DiffuseMaterial Brush="{StaticResource colorRed}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransRed">
+        <DiffuseMaterial Brush="{StaticResource colorTransRed}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightRed">
+        <DiffuseMaterial Brush="{StaticResource colorLightRed}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkRed">
+        <DiffuseMaterial Brush="{StaticResource colorDarkRed}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matYellow">
+        <DiffuseMaterial Brush="{StaticResource colorYellow}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransYellow">
+        <DiffuseMaterial Brush="{StaticResource colorTransYellow}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightYellow">
+        <DiffuseMaterial Brush="{StaticResource colorLightYellow}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkYellow">
+        <DiffuseMaterial Brush="{StaticResource colorDarkYellow}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matBlue">
+        <DiffuseMaterial Brush="{StaticResource colorBlue}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransBlue">
+        <DiffuseMaterial Brush="{StaticResource colorTransBlue}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightBlue">
+        <DiffuseMaterial Brush="{StaticResource colorLightBlue}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkBlue">
+        <DiffuseMaterial Brush="{StaticResource colorDarkBlue}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matGreen">
+        <DiffuseMaterial Brush="{StaticResource colorGreen}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransGreen">
+        <DiffuseMaterial Brush="{StaticResource colorTransGreen}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightGreen">
+        <DiffuseMaterial Brush="{StaticResource colorLightGreen}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkGreen">
+        <DiffuseMaterial Brush="{StaticResource colorDarkGreen}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matWhite">
+        <DiffuseMaterial Brush="{StaticResource colorWhite}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightWhite">
+        <DiffuseMaterial Brush="{StaticResource colorLightWhite}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransWhite">
+        <DiffuseMaterial Brush="{StaticResource colorTransWhite}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkWhite">
+        <DiffuseMaterial Brush="{StaticResource colorDarkWhite}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matTransparent">
+        <DiffuseMaterial Brush="{StaticResource colorTransparent}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matBlack">
+        <DiffuseMaterial Brush="{StaticResource colorBlack}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransBlack">
+        <DiffuseMaterial Brush="{StaticResource colorTransBlack}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightBlack">
+        <DiffuseMaterial Brush="{StaticResource colorLightBlack}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkBlack">
+        <DiffuseMaterial Brush="{StaticResource colorDarkBlack}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matGray">
+        <DiffuseMaterial Brush="{StaticResource colorGray}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransGray">
+        <DiffuseMaterial Brush="{StaticResource colorTransGray}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightGray">
+        <DiffuseMaterial Brush="{StaticResource colorLightGray}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkGray">
+        <DiffuseMaterial Brush="{StaticResource colorDarkGray}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matPurple">
+        <DiffuseMaterial Brush="{StaticResource colorPurple}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransPurple">
+        <DiffuseMaterial Brush="{StaticResource colorTransPurple}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightPurple">
+        <DiffuseMaterial Brush="{StaticResource colorLightPurple}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkPurple">
+        <DiffuseMaterial Brush="{StaticResource colorDarkPurple}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matBrown">
+        <DiffuseMaterial Brush="{StaticResource colorBrown}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matTransBrown">
+        <DiffuseMaterial Brush="{StaticResource colorTransBrown}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matLightBrown">
+        <DiffuseMaterial Brush="{StaticResource colorLightBrown}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matDarkBrown">
+        <DiffuseMaterial Brush="{StaticResource colorDarkBrown}"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <!--电厂材质-->
+    <MaterialGroup x:Key="matHDNormal">
+        <DiffuseMaterial >
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/plantmatNormal.jpg" />
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matHDHighLight">
+        <DiffuseMaterial AmbientColor="Red">
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/plantmatNormal.jpg" />
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matSDNormal">
+        <DiffuseMaterial >
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/plantmatNormal.jpg" />
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matSDHighLight">
+        <DiffuseMaterial AmbientColor="Blue">
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/plantmatNormal.jpg" />
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <MaterialGroup x:Key="matFDNormal">
+        <DiffuseMaterial Brush="DarkGray"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matFDHighLight">
+        <DiffuseMaterial Brush="DarkGray" AmbientColor="Red"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    
+    <MaterialGroup x:Key="matGFNormal">
+        <DiffuseMaterial Brush="DarkGray"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <MaterialGroup x:Key="matGFHighLight">
+        <DiffuseMaterial Brush="DarkGray" AmbientColor="Red"/>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+    <!--电力设施材质-->
+    <!--开关-->
+    <MaterialGroup x:Key="matSwitch"> 
+        <DiffuseMaterial>
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/switch.png"/>
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+    <!--光伏-->
+    <MaterialGroup x:Key="matLightPower">
+        <DiffuseMaterial>
+            <DiffuseMaterial.Brush>
+                <ImageBrush ImageSource="/MyClassLibrary;component/Images/lightPower.jpg"/>
+            </DiffuseMaterial.Brush>
+        </DiffuseMaterial>
+        <SpecularMaterial SpecularPower="90" Brush="{StaticResource colorLightWhite}"/>
+    </MaterialGroup>
+
+</ResourceDictionary>

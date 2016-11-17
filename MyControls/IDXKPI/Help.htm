@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+	    <style type="text/css">
+            .style1
+            {
+                font-size: medium;
+            }
+        </style>
+	</head>
+	<body bgcolor="#eeffff" style="font-size: x-small">
+	
+	    <p class="style1" style="text-align: center">
+            <strong>指数计算说明</strong></p>
+            <hr />
+        <p>
+
+            　　指数计算以指标参考范围为基准量，将量纲各不相同的指标统一到指数以便进行分类评价。</p>
+        <p>
+
+            
+            　　指数在60以下时，表明相对参考值评价结果不理想，指数在60以上时，表明相对参考值评价结果理想。</p>
+        <p>
+
+            　　系统指数计算转换算法如下：</p>
+        <p>
+
+            1. 指标转换指数</p>
+        <p style="margin-left: 40px">
+
+            例1：参考范围 index&gt;80%，则设定80%时，指数为60；100%时，指数为100；0%时指数为0。0%-80%和80%-100%两区段线性变化。</p>
+        <p style="margin-left: 40px">
+
+            例2：参考范围 index&lt;80%，则设定80%时，指数为60；100%时，指数为0；0%时指数为100。0%-80%和80%-100%两区段线性变化。</p>
+        <p style="margin-left: 40px">
+
+            例3：参考范围 60%&lt;index&lt;80%，则设定60%和80%时，指数为60；70%时，指数为100；0%-70%和70%-100%两区段线性变化。</p>
+        <p style="margin-left: 40px">
+
+            例4：参考范围 index&gt;200，则设定200时，指数为60；400（临界值两倍）时，指数为100；0时指数为0。0-200和200以上两区段线性变化。</p>
+        <p style="margin-left: 40px">
+
+            例5：参考范围 100&lt;index&lt;200，则设定100和200时，指数为60；150（临界值平均值）时，指数为100。0-150和150以上两区段线性变化。</p>
+        <p style="margin-left: 40px">
+
+            若计算指数超过0-100区间，强制设定为0或100。&nbsp;</p>
+        <p>
+
+            2. 分类综合指数计算</p>
+        <p style="margin-left: 40px">
+分类综合指数按分类中指标的重要性加权。</p>
+        <p style="margin-left: 40px">
+
+            指标分为必要性指标和普通指标，若某必要性指标的指数在60以下，则该指标所在分类综合指数最大值为60（正常情况为100）。</p>
+        <p>
+
+            &nbsp;</p>
+        <p>
+
+            &nbsp;</p>
+	
+	</body>
+</html>

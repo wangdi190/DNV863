@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>PowerBasicObject 图形对象基类</title>	
+	<meta name="Title" content="PowerBasicObject Class" />
+    	<meta name="Microsoft.Help.Keywords" content="PowerBasicObject Class" />
+    	<meta name="Microsoft.Help.F1" content="WpfEarthLibrary.PowerBasicObject" />
+    	<meta name="Microsoft.Help.TocOrder" content="0" />
+	   	<meta name="Microsoft.Help.TocParent" content="Reference" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="WpfEarthLibrary.PowerBasicObject" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+    	
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        .style1
+        {
+            width: 201px;
+            height: 27px;
+        }
+        .style2
+        {
+            height: 27px;
+        }
+        .style3
+        {
+            text-align: center;
+            font-size: x-large;
+        }
+    </style>
+
+</head>
+
+<body>
+<p class="style3">PowerBasicObject 模型对象基类</p>
+<hr/>
+<p>&nbsp;&nbsp; &nbsp;PowerBasicObject 类为模型对象基类，它是抽象类。</p>
+<p class="auto-style4">命名空间：WpfEarthLibrary</p>
+<p>1. 字段</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">submodels</td>
+		<td>该模型对象的子对象字典集合。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">VecLocation</td>
+		<td>模型对象在三D空间的位置，可用于移动相机以观看此模型对象。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">center</td>
+		<td>中心点经纬度，y经 x纬</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">bounds</td>
+		<td>原始坐标表示的范围，若为经纬度，x表示纬度, y表示经度</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isHandled</td>
+		<td>动态载入时使用，是否已处理</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">latitude</td>
+		<td>纬度</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">groundHeight</td>
+		<td>离地高度</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">visualMaxDistance</td>
+		<td>可视的最大距离，缺省100，即相机远端距离，动态显示模式下有效</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">visualMinDistance</td>
+		<td>可视最小距离，缺省0，动态显示模式下有效</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>2. 属性</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">id</td>
+		<td>模型对象ID</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">name</td>
+		<td>模型对象名称</td>
+	</tr>
+	<tr>
+		<td class="style1">isShow</td>
+		<td class="style2">此模型是否显示</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isShowSubObject</td>
+		<td>是否显示此模型的子对象</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">busiData</td>
+		<td>扩展的业务数据对象</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">busiAccount</td>
+		<td>扩展的台账数据对象</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">Progress</td>
+		<td>控制绘制进度</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">Label</td>
+		<td>对象的内置文字标签</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">isShowLabel</td>
+		<td>是否显示内置文字标签，isShowLabel应最后设置，之前设置的标签属性才能生效</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">LabelPanelKey</td>
+		<td>内置标签文字面板的纹理键，可不设置。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">LabelSizeX</td>
+		<td>内置标签X缩放系数, 缺省1</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">LabelSizeY</td>
+		<td>内置标签Y缩放系数, 缺省1</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">LabelColor</td>
+		<td>内置标签文字色</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">tooltipMoveTemplate</td>
+		<td>设置mouse move形态的模板名</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">tooltipMoveContent</td>
+		<td>设置mouse move形态的内容</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">tooltipClickTemplate</td>
+		<td>设置mouse click形态的模板名</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">tooltipClickContent</td>
+		<td>设置mouse click形态的内容</td>
+	</tr>
+	</table>
+<p>3. 方法</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 343px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">AddSubObject</td>
+		<td>添加数据对象到submodels。</td>
+	</tr>
+	<tr>
+		<td style="width: 343px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>4. 事件</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p class="auto-style4">派生关系：</p>
+<p class="auto-style4"><strong>PowerBasicObject</strong></p>
+<p class="auto-style6">pDotObject(点性质模型对象)</p>
+<p class="auto-style7">pSymbolObject（图元对象）</p>
+<p class="auto-style7">pText（文字对象）</p>
+<p class="auto-style7">pData（可视数据对象，可用几何体或文字表现）</p>
+<p class="auto-style7">pModel3D（3维模型对象，暂无）</p>
+<p class="auto-style6">pRangeObject（区域性质模型对象）</p>
+<p class="auto-style7">pPowerLine（折线对象）</p>
+<p class="auto-style7">pArea（多边形区域对象）</p>
+<p class="auto-style7">pContour（等值图对象）</p>
+<p class="auto-style4">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr/>
+
+<p>参见：<a href="default.html"><span class="auto-style4">帮助首页</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

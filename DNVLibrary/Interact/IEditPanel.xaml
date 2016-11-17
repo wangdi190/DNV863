@@ -1,0 +1,358 @@
+﻿<UserControl x:Class="DNVLibrary.Interact.IEditPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="MyScaleLayerTemplate">
+            <Grid RenderTransformOrigin="0.5, 0.5" Width="160" Height="160">
+
+                <!--<Ellipse Margin="7">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFAFAFC" Offset="0"/>
+                            <GradientStop Color="#FF9499AB" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse Margin="10" Fill="White"/>-->
+                <Ellipse Margin="10,11,10,10" Fill="#79003D00" Stroke="#004B06" StrokeThickness="1">
+
+                </Ellipse>
+            </Grid>
+        </ControlTemplate>
+
+
+    </UserControl.Resources>
+    <Grid>
+        <!--仪表部分-->
+        <StackPanel x:Name="gaugePanel" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,90,20,0" Width="150"  IsHitTestVisible="False">
+            <dxga:CircularGaugeControl EnableAnimation="True" Margin="-20,-40">
+                <dxga:CircularGaugeControl.Scales>
+                    <dxga:ArcScale ShowLabels="False" ShowSpindleCap="True">
+                        <dxga:ArcScale.Markers>
+                            <dxga:ArcScaleMarker Value="67">
+                                <dxga:ArcScaleMarker.Presentation>
+                                    <dxga:CosmicArcScaleMarkerPresentation>
+                                        <dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="Lime" Offset="0" />
+                                                <GradientStop Color="#FF006F00" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                    </dxga:CosmicArcScaleMarkerPresentation>
+                                </dxga:ArcScaleMarker.Presentation>
+                            </dxga:ArcScaleMarker>
+                        </dxga:ArcScale.Markers>
+                        <dxga:ArcScale.SpindleCapPresentation>
+                            <dxga:DefaultSpindleCapPresentation>
+                                <dxga:DefaultSpindleCapPresentation.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Lime" Offset="0" />
+                                        <GradientStop Color="#FF007900" Offset="1" />
+                                        <GradientStop Color="#FF005E00" Offset="0.779" />
+                                    </RadialGradientBrush>
+                                </dxga:DefaultSpindleCapPresentation.Fill>
+                            </dxga:DefaultSpindleCapPresentation>
+                        </dxga:ArcScale.SpindleCapPresentation>
+                        <dxga:ArcScale.Layers>
+                            <dxga:ArcScaleLayer>
+                                <dxga:ArcScaleLayer.Presentation>
+                                    <dxga:CustomArcScaleLayerPresentation ScaleLayerTemplate="{StaticResource MyScaleLayerTemplate}" />
+                                </dxga:ArcScaleLayer.Presentation>
+                            </dxga:ArcScaleLayer>
+                        </dxga:ArcScale.Layers>
+                        <dxga:ArcScale.CustomElements>
+                            <dxga:ScaleCustomElement Content="平均负载率" Foreground="#FFCC00" Margin="0,47,0,0" />
+                        </dxga:ArcScale.CustomElements>
+                        <dxga:ArcScale.CustomLabels>
+                            <dxga:ScaleCustomLabel Content="0%" Foreground="Lime" Offset="-56" Value="2" />
+                            <dxga:ScaleCustomLabel Content="20%" Foreground="Lime" Offset="-45" Value="22" />
+                            <dxga:ScaleCustomLabel Content="40%" Foreground="Lime" Offset="-45" Value="38.5" />
+                            <dxga:ScaleCustomLabel Content="60%" Foreground="Lime" Offset="-55" Value="57" />
+                            <dxga:ScaleCustomLabel Content="80%" Foreground="Lime" Offset="-68" Value="78" />
+                            <dxga:ScaleCustomLabel Content="100%" Foreground="Lime" Offset="-65" Value="102" />
+
+                        </dxga:ArcScale.CustomLabels>
+                        <dxga:ArcScale.Needles>
+                            <dxga:ArcScaleNeedle IsInteractive="True" Value="67">
+                                <dxga:ArcScaleNeedle.Animation>
+                                    <dxga:IndicatorAnimation />
+                                </dxga:ArcScaleNeedle.Animation>
+                                <dxga:ArcScaleNeedle.Presentation>
+                                    <dxga:CleanWhiteArcScaleNeedlePresentation Fill="Lime" />
+                                </dxga:ArcScaleNeedle.Presentation>
+                            </dxga:ArcScaleNeedle>
+                        </dxga:ArcScale.Needles>
+                        <dxga:ArcScale.TickmarksPresentation>
+                            <dxga:CleanWhiteTickmarksPresentation MajorTickBrush="#00CC00" MinorTickBrush="#FF00830E" />
+                        </dxga:ArcScale.TickmarksPresentation>
+                    </dxga:ArcScale>
+                </dxga:CircularGaugeControl.Scales>
+            </dxga:CircularGaugeControl>
+
+            <dxga:CircularGaugeControl EnableAnimation="True"  Margin="-20,-40">
+                <dxga:CircularGaugeControl.Scales>
+                    <dxga:ArcScale ShowLabels="False" ShowSpindleCap="True">
+                        <dxga:ArcScale.Markers>
+                            <dxga:ArcScaleMarker Value="48">
+                                <dxga:ArcScaleMarker.Presentation>
+                                    <dxga:CosmicArcScaleMarkerPresentation>
+                                        <dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="Lime" Offset="0" />
+                                                <GradientStop Color="#FF006F00" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                    </dxga:CosmicArcScaleMarkerPresentation>
+                                </dxga:ArcScaleMarker.Presentation>
+                            </dxga:ArcScaleMarker>
+                        </dxga:ArcScale.Markers>
+                        <dxga:ArcScale.SpindleCapPresentation>
+                            <dxga:DefaultSpindleCapPresentation>
+                                <dxga:DefaultSpindleCapPresentation.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Lime" Offset="0" />
+                                        <GradientStop Color="#FF007900" Offset="1" />
+                                        <GradientStop Color="#FF005E00" Offset="0.779" />
+                                    </RadialGradientBrush>
+                                </dxga:DefaultSpindleCapPresentation.Fill>
+                            </dxga:DefaultSpindleCapPresentation>
+                        </dxga:ArcScale.SpindleCapPresentation>
+
+                        <dxga:ArcScale.Layers>
+                            <dxga:ArcScaleLayer>
+                                <dxga:ArcScaleLayer.Presentation>
+                                    <dxga:CustomArcScaleLayerPresentation ScaleLayerTemplate="{StaticResource MyScaleLayerTemplate}" />
+                                </dxga:ArcScaleLayer.Presentation>
+                            </dxga:ArcScaleLayer>
+                        </dxga:ArcScale.Layers>
+                        <dxga:ArcScale.CustomElements>
+                            <dxga:ScaleCustomElement Content="平均电压标么值" Foreground="#FFCC00" Margin="0,47,0,0" />
+                        </dxga:ArcScale.CustomElements>
+                        <dxga:ArcScale.CustomLabels>
+                            <dxga:ScaleCustomLabel Content="0.75" Foreground="Lime" Offset="-53" Value="3" />
+                            <dxga:ScaleCustomLabel Content="0.85" Foreground="Lime" Offset="-45" Value="22" />
+                            <dxga:ScaleCustomLabel Content="0.95" Foreground="Lime" Offset="-45" Value="38.5" />
+                            <dxga:ScaleCustomLabel Content="1.05" Foreground="Lime" Offset="-55" Value="57" />
+                            <dxga:ScaleCustomLabel Content="1.15" Foreground="Lime" Offset="-68" Value="78" />
+                            <dxga:ScaleCustomLabel Content="1.25" Foreground="Lime" Offset="-63" Value="102" />
+                        </dxga:ArcScale.CustomLabels>
+                        <dxga:ArcScale.Needles>
+                            <dxga:ArcScaleNeedle IsInteractive="True" Value="48">
+                                <dxga:ArcScaleNeedle.Animation>
+                                    <dxga:IndicatorAnimation />
+                                </dxga:ArcScaleNeedle.Animation>
+                                <dxga:ArcScaleNeedle.Presentation>
+                                    <dxga:CleanWhiteArcScaleNeedlePresentation Fill="#FF00E300" />
+                                </dxga:ArcScaleNeedle.Presentation>
+                            </dxga:ArcScaleNeedle>
+                        </dxga:ArcScale.Needles>
+                        <dxga:ArcScale.TickmarksPresentation>
+                            <dxga:CleanWhiteTickmarksPresentation MajorTickBrush="#FF00BE10" MinorTickBrush="#FF00830E" />
+                        </dxga:ArcScale.TickmarksPresentation>
+                    </dxga:ArcScale>
+                </dxga:CircularGaugeControl.Scales>
+            </dxga:CircularGaugeControl>
+
+            <dxga:CircularGaugeControl EnableAnimation="True"  Margin="-20,-40">
+                <dxga:CircularGaugeControl.Scales>
+                    <dxga:ArcScale ShowLabels="False" ShowSpindleCap="True">
+                        <dxga:ArcScale.Markers>
+                            <dxga:ArcScaleMarker Value="77">
+                                <dxga:ArcScaleMarker.Presentation>
+                                    <dxga:CosmicArcScaleMarkerPresentation>
+                                        <dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="Lime" Offset="0" />
+                                                <GradientStop Color="#FF006F00" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                    </dxga:CosmicArcScaleMarkerPresentation>
+                                </dxga:ArcScaleMarker.Presentation>
+                            </dxga:ArcScaleMarker>
+                        </dxga:ArcScale.Markers>
+                        <dxga:ArcScale.SpindleCapPresentation>
+                            <dxga:DefaultSpindleCapPresentation>
+                                <dxga:DefaultSpindleCapPresentation.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Lime" Offset="0" />
+                                        <GradientStop Color="#FF007900" Offset="1" />
+                                        <GradientStop Color="#FF005E00" Offset="0.779" />
+                                    </RadialGradientBrush>
+                                </dxga:DefaultSpindleCapPresentation.Fill>
+                            </dxga:DefaultSpindleCapPresentation>
+                        </dxga:ArcScale.SpindleCapPresentation>
+
+                        <dxga:ArcScale.Layers>
+                            <dxga:ArcScaleLayer>
+                                <dxga:ArcScaleLayer.Presentation>
+                                    <dxga:CustomArcScaleLayerPresentation ScaleLayerTemplate="{StaticResource MyScaleLayerTemplate}" />
+                                </dxga:ArcScaleLayer.Presentation>
+                            </dxga:ArcScaleLayer>
+                        </dxga:ArcScale.Layers>
+
+                        <dxga:ArcScale.CustomElements>
+                            <dxga:ScaleCustomElement Content="负荷(MW)" Foreground="#FFCC00" Margin="0,47,0,0" />
+                        </dxga:ArcScale.CustomElements>
+                        <dxga:ArcScale.CustomLabels>
+                            <dxga:ScaleCustomLabel Content="200" Foreground="Lime" Offset="-45" Value="22" />
+                            <dxga:ScaleCustomLabel Content="400" Foreground="Lime" Offset="-45" Value="38.5" />
+                            <dxga:ScaleCustomLabel Content="600" Foreground="Lime" Offset="-55" Value="57" />
+                            <dxga:ScaleCustomLabel Content="800" Foreground="Lime" Offset="-68" Value="78" />
+                        </dxga:ArcScale.CustomLabels>
+                        <dxga:ArcScale.Needles>
+                            <dxga:ArcScaleNeedle IsInteractive="True" Value="77">
+                                <dxga:ArcScaleNeedle.Animation>
+                                    <dxga:IndicatorAnimation />
+                                </dxga:ArcScaleNeedle.Animation>
+                                <dxga:ArcScaleNeedle.Presentation>
+                                    <dxga:CleanWhiteArcScaleNeedlePresentation Fill="#FF00E300" />
+                                </dxga:ArcScaleNeedle.Presentation>
+                            </dxga:ArcScaleNeedle>
+                        </dxga:ArcScale.Needles>
+                        <dxga:ArcScale.TickmarksPresentation>
+                            <dxga:CleanWhiteTickmarksPresentation MajorTickBrush="#FF00BE10" MinorTickBrush="#FF00830E" />
+                        </dxga:ArcScale.TickmarksPresentation>
+                    </dxga:ArcScale>
+                </dxga:CircularGaugeControl.Scales>
+            </dxga:CircularGaugeControl>
+
+            <dxga:CircularGaugeControl EnableAnimation="True"  Margin="-20,-40">
+                <dxga:CircularGaugeControl.Scales>
+                    <dxga:ArcScale ShowLabels="False" ShowSpindleCap="True">
+                        <dxga:ArcScale.Markers>
+                            <dxga:ArcScaleMarker Value="23">
+                                <dxga:ArcScaleMarker.Presentation>
+                                    <dxga:CosmicArcScaleMarkerPresentation>
+                                        <dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="Lime" Offset="0" />
+                                                <GradientStop Color="#FF006F00" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </dxga:CosmicArcScaleMarkerPresentation.Fill>
+                                    </dxga:CosmicArcScaleMarkerPresentation>
+                                </dxga:ArcScaleMarker.Presentation>
+                            </dxga:ArcScaleMarker>
+                        </dxga:ArcScale.Markers>
+                        <dxga:ArcScale.SpindleCapPresentation>
+                            <dxga:DefaultSpindleCapPresentation>
+                                <dxga:DefaultSpindleCapPresentation.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="Lime" Offset="0" />
+                                        <GradientStop Color="#FF007900" Offset="1" />
+                                        <GradientStop Color="#FF005E00" Offset="0.779" />
+                                    </RadialGradientBrush>
+                                </dxga:DefaultSpindleCapPresentation.Fill>
+                            </dxga:DefaultSpindleCapPresentation>
+                        </dxga:ArcScale.SpindleCapPresentation>
+
+                        <dxga:ArcScale.Layers>
+                            <dxga:ArcScaleLayer>
+                                <dxga:ArcScaleLayer.Presentation>
+                                    <dxga:CustomArcScaleLayerPresentation ScaleLayerTemplate="{StaticResource MyScaleLayerTemplate}" />
+                                </dxga:ArcScaleLayer.Presentation>
+                            </dxga:ArcScaleLayer>
+                        </dxga:ArcScale.Layers>
+
+                        <dxga:ArcScale.CustomElements>
+                            <dxga:ScaleCustomElement Content="清洁能源渗透率" Foreground="#FFCC00" Margin="0,47,0,0" />
+                        </dxga:ArcScale.CustomElements>
+                        <dxga:ArcScale.CustomLabels>
+                            <dxga:ScaleCustomLabel Content="0%" Foreground="Lime" Offset="-56" Value="2" />
+                            <dxga:ScaleCustomLabel Content="10%" Foreground="Lime" Offset="-45" Value="21.5" />
+                            <dxga:ScaleCustomLabel Content="20%" Foreground="Lime" Offset="-42" Value="38.5" />
+                            <dxga:ScaleCustomLabel Content="30%" Foreground="Lime" Offset="-53" Value="56" />
+                            <dxga:ScaleCustomLabel Content="40%" Foreground="Lime" Offset="-68" Value="78" />
+                            <dxga:ScaleCustomLabel Content="50%" Foreground="Lime" Offset="-65" Value="102" />
+                        </dxga:ArcScale.CustomLabels>
+                        <dxga:ArcScale.Needles>
+                            <dxga:ArcScaleNeedle IsInteractive="True" Value="23">
+                                <dxga:ArcScaleNeedle.Animation>
+                                    <dxga:IndicatorAnimation />
+                                </dxga:ArcScaleNeedle.Animation>
+                                <dxga:ArcScaleNeedle.Presentation>
+                                    <dxga:CleanWhiteArcScaleNeedlePresentation Fill="#FF00E300" />
+                                </dxga:ArcScaleNeedle.Presentation>
+                            </dxga:ArcScaleNeedle>
+                        </dxga:ArcScale.Needles>
+                        <dxga:ArcScale.TickmarksPresentation>
+                            <dxga:CleanWhiteTickmarksPresentation MajorTickBrush="#FF00BE10" MinorTickBrush="#FF00830E" />
+                        </dxga:ArcScale.TickmarksPresentation>
+                    </dxga:ArcScale>
+                </dxga:CircularGaugeControl.Scales>
+            </dxga:CircularGaugeControl>
+
+            <Border Background="#79003D00" BorderBrush="#004B06" Margin="0,25,0,15" CornerRadius="5" BorderThickness="1">
+            <StackPanel Margin="2">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="可靠性" FontSize="14" Foreground="#FFCC00" Margin="0"/>
+                    <dxga:DigitalGaugeControl Height="60" Width="200" Margin="-40,-20" Text="99.999%" Foreground="#FF00FF12" SymbolCount="6">
+                            <dxga:DigitalGaugeControl.SymbolView>
+                                <dxga:SevenSegmentsView>
+                                    <dxga:SevenSegmentsView.Presentation>
+                                        <dxga:DefaultSevenSegmentsPresentation FillActive="#FF00ff00" FillInactive="#0F555555" />
+                                    </dxga:SevenSegmentsView.Presentation>
+                                </dxga:SevenSegmentsView>
+                            </dxga:DigitalGaugeControl.SymbolView>
+                        </dxga:DigitalGaugeControl>
+                    </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="指标二" FontSize="14" Foreground="#FFCC00" />
+                        <dxga:DigitalGaugeControl Height="60" Width="200" Margin="-40,-20" Text=" 858.5" SymbolCount="6">
+                            <dxga:DigitalGaugeControl.SymbolView>
+                                <dxga:SevenSegmentsView>
+                                    <dxga:SevenSegmentsView.Presentation>
+                                        <dxga:DefaultSevenSegmentsPresentation FillActive="#FF00ff00" FillInactive="#0F555555" />
+                                    </dxga:SevenSegmentsView.Presentation>
+                                </dxga:SevenSegmentsView>
+                            </dxga:DigitalGaugeControl.SymbolView>
+                        </dxga:DigitalGaugeControl>
+                    </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="指标三" FontSize="14" Foreground="#FFCC00" />
+                        <dxga:DigitalGaugeControl Height="60" Width="200" Margin="-40,-20" Text="  35.3" SymbolCount="6">
+                            <dxga:DigitalGaugeControl.SymbolView>
+                                <dxga:SevenSegmentsView>
+                                    <dxga:SevenSegmentsView.Presentation>
+                                        <dxga:DefaultSevenSegmentsPresentation FillActive="#FF00ff00" FillInactive="#0F555555" />
+                                    </dxga:SevenSegmentsView.Presentation>
+                                </dxga:SevenSegmentsView>
+                            </dxga:DigitalGaugeControl.SymbolView>
+                        </dxga:DigitalGaugeControl>
+                    </StackPanel>
+            </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!--场景控制板-->
+            <Border BorderBrush="#000000" BorderThickness="1" Background="#D0000000" Width="1425" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,360,30">
+                <Border BorderBrush="#D3D3D3" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!--横向列表-->
+                        <Grid>
+                            <StackPanel x:Name="scenepanel" Orientation="Horizontal" Margin="3,0,0,0">
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Button Content=" 负荷序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White"/>
+                                <Button Content=" 电压序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White"/>
+                                <Button Content=" 负载序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White"/>
+                                <Button Content=" 清洁能源序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                        <!--场景-->
+                        <TextBlock Text="场景23：清洁能源出力433.7MW，供电负荷1345.2MW，中压电压9.98KV，平均负载率67%，可靠性99.9980%。" Grid.Row="1" VerticalAlignment="Center" Foreground="Yellow" Margin="10,0,0,0" FontSize="14"/>
+                        <!--可编辑参数-->
+                        <Button x:Name="btnChangeSceneEdit" Content="  计算典型场景  " Grid.Row="1" HorizontalAlignment="Right" Height="28" Width="140" Margin="20,0" FontSize="15" Template="{StaticResource ButtonBlue}" Foreground="White" Click="btnChangeSceneEdit_Click"/>
+                    </Grid>
+                </Border>
+            </Border>
+    </Grid>
+</UserControl>

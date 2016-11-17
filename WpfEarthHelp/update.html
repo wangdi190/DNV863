@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>更新</title>	
+	<meta name="Title" content="更新" />
+    	<meta name="Microsoft.Help.Keywords" content="更新" />
+    	<meta name="Microsoft.Help.TocOrder" content="103" />
+	   	<meta name="Microsoft.Help.TocParent" content="Intro" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="update" />
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="更新说明" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style1 {
+		font-size: x-large;
+		text-align: center;
+	}
+	.auto-style2 {
+	font-size: small;
+	margin-left: 40px;
+}
+.auto-style3 {
+	font-size: small;
+}
+.auto-style4 {
+	margin-left: 40px;
+}
+.auto-style5 {
+	font-size: small;
+	color: #0000FF;
+	border-style: solid;
+	border-width: 1px;
+	padding: 1px 4px;
+}
+	</style>
+</head>
+
+<body>
+
+<p class="auto-style1">更新日志</p>
+<hr/>
+    <p class="auto-style3"><strong>2016.05.30</strong></p>
+    <p class="auto-style3">1. 
+	实现基于wcf的用户验证、角色管理、模块授权、日志体系。详见如何使用基于wcf的安全体系。</p>
+<p class="auto-style2">基于用户口令的用户验证，无需客户端安装证书，便于部署。</p>
+<p class="auto-style2">基于用户=&gt;角色=&gt;模块=&gt;数据源的授权链管理，提供的模块权限获取方法可实现客户端模块权限的处理。</p>
+<p class="auto-style2">与客户端DataLayer类库配套提供管理界面，可直接调用。</p>
+<p class="auto-style2">与客户端DataLayer类库配套，可方便地在验证和无验证方式间切换。</p>
+<p class="auto-style2">日志数据表自动管理，提供多种配置选项，提供包括业务数据读写、管理行为、合法登录、非法尝试登录的日志记录。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.05.17</strong></p>
+    <p class="auto-style3">1. 
+	增加三维地形的功能（适用于主网或流域应用），缺省关闭，需相应的高程文件支持（目前只能找到90精度高程文件）。earthmanager增加地形相关属性如下：</p>
+<p class="auto-style3">&nbsp;///&lt;summary&gt;是否允许显示3D地形&lt;/summary&gt;<br />
+public bool TerrainAllow {get;set;}<br />
+///&lt;summary&gt;地形显示离地高度限制，显示3D地形的最大离地高度，只有小于该值才会显示3D地形，缺省0&lt;/summary&gt;<br />
+public double TerrainMaxDistance { get; set; }<br />
+///&lt;summary&gt;地形显示地心线角高度限制，显示3D地形的最大地面夹角(角度值)，只有大于该值才显示3D地形，缺省0&lt;/summary&gt;<br />
+public double TerrainMaxAngle { get; set; }<br />
+///&lt;summary&gt;高程图黑色代表的最小高度（系统内部坐标系）&lt;/summary&gt;<br />
+public float TerrainMinHeight = 0;<br />
+///&lt;summary&gt;高程图最大高度落差，即minHeight+dropHeight为高程图白色表示的最大高度（系统内部坐标系）&lt;/summary&gt;<br />
+public float TerrainDropHeight = 2;<br />
+///&lt;summary&gt;地形显示层号限制，允许显示地形的最大层号，只有大于等于最大层号且小于等于最小层号的瓦片才能显示地形&lt;/summary&gt;<br />
+public int TerrainMaxLayer = 12;<br />
+///&lt;summary&gt;地形显示层号限制，允许显示地形的最小层号&lt;/summary&gt;<br />
+public int TerrainMinLayer = 10;<br />
+///&lt;summary&gt;地形显示时，TerrainMaxLayer属性（允许显示地形的最大层号）的瓦片分切分数(缺省16)，瓦片层每小1，切分数*2&lt;/summary&gt;<br />
+public int TerrainMaxLayerSliceCount = 16;</p>
+    <p class="auto-style3">2. 
+	因为三维功能的需要，对以前的程序有如下影响：camera额外增加了MinGroundDistance和MaxGroundDistance属性专门用于指定允许相机的离地高度，取代以前由相机近平面和远平面计算得到的允许高度，因此以前的程序需补充指定MinGroundDistance和MaxGroundDistance两个属性的值（一般可分别设定为略大于近平面和略小于远平面）。</p>
+<p class="auto-style3"><strong>2016.05.04</strong></p>
+    <p class="auto-style3">1. 
+	myBaseControl类库增加静态类screen\screenprogress，实现显示诸如载入进度、计算进度的窗体。界面显示有实际进度条和动画两种方式，show方法的参数决定显示形式，hide方法关闭进度窗体。title属性指定窗体标题, 
+	info属性指定文字信息，progress属性指定完成进度，上述静态属性的值可在show()方法与hide()方法之间的任何代码段中插入。</p>
+<p class="auto-style3">2. 修复折线对象绘制和擦除bug。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.05.04</strong></p>
+    <p class="auto-style3">1. 
+	myBaseControl类库增加静态类screen\screenprogress，实现显示诸如载入进度、计算进度的窗体。界面显示有实际进度条和动画两种方式，show方法的参数决定显示形式，hide方法关闭进度窗体。title属性指定窗体标题, 
+	info属性指定文字信息，progress属性指定完成进度，上述静态属性的值可在show()方法与hide()方法之间的任何代码段中插入。</p>
+<p class="auto-style3">2. 修复折线对象绘制和擦除bug。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.04.26</strong></p>
+    <p class="auto-style3">1. 
+	myBaseControl类库增加静态类logtool\log，实现日志功能，调用addlog方法写日志，日志文件为运行目录下的log.txt，每次运行均会清除上一次的日志文件。</p>
+<p class="auto-style3">
+日志分类为记录、告警、错误、重要四类，记录类型自动附加时间，其它三类日志若信息相同，将只写一次，避免在循环中产生大量日志，同理应避免在循环中写记录类型的日志。</p>
+<p class="auto-style3">
+通过log类的静态字段isEnabled可关闭日志功能，通过设置log类的maxLines，可限定日志文件的最大行数，避免超大日志文件产生，缺省为1000行。</p>
+<p class="auto-style3">对于使用了try的地方尤其应写入日志。日志也可记录一些特征参数。（以后应实现系统级的服务端日志，采用服务来完成）</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.04.19</strong></p>
+    <p class="auto-style3">1. 
+	pLayer对象的可视性相关做了较大修改，与PowerBasicObject对象一样，pLayer对象增加了visualMinDistance、visualMaxDistance字段，增加了logicVisibility和rangeVisibility属性，原isShow属性改为只读，原对isShow的设置应改为设置logicVisibility。上述修改是为了适应大于5万个对象时，通过设置visualMinDistance、visualMaxDistance字段可启用层的可视距离检查以提高性能。</p>
+<p class="auto-style3">2. 对象可视性检查缺省的方式由经纬检查改为视锥体检查，大幅提升了性能。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.04.15</strong></p>
+<p class="auto-style3">1.属性位置进行了大量调整，earth增加了config对象用于一般性配置，camera调整到earth下，其它配置属性根据属性性质分散到相应的objManager、earthManager等管理器中, 
+global不再公开。</p>
+<p class="auto-style3">2.增加earth.earthManager.earthpara.isDepthStencil属性，控制d3d是否打开深度测试。</p>
+<p class="auto-style3">3.earth增加hitTest点击测试方法。</p>
+<p class="auto-style3">
+4.camera增加operateMode属性，控制三维场景如何响应用户操作，枚举类型：地图模式，轨迹球模式，自由视角。轨迹球模式需指定traceBallCenter属性（轨迹球中心），注：轨迹球和自由视角下需设置ObjectCheckMode属性为视锥体检查。</p>
+<p class="auto-style3">5.objManager增加ObjectCheckMode属性，控制对象可视性检查按经纬度检查或视锥体检查。</p>
+<p class="auto-style3">6.objManager增加isCheckPoints属性，指定是否对区域或折线的输入点集字串进行检查处理，以剔除不合格的点（重复点或过近的点）和多余的点（直线点), 
+设置checkPointsMinLength属性指定最小点距。</p>
+<p class="auto-style3">
+7.折线修改为可指定分片数，可形成精细的圆柱连线。折线现在通过设置strGroundHeights属性，可实现三维空间折线。修复折线夹角为0或180度时的显示bug。</p>
+<p class="auto-style3">8.增加pCustomObject类，该类对象使用传入的顶点、法线、点序、纹理坐标来生成模型。</p>
+<p class="auto-style3">9.PowerBasicObject增加ID2属性，仅为适应图形与对象分离的情形。</p>
+<p class="auto-style3">10.PowerBasicObject增加pickFlag标志，配合hitTest可点击测试返回指定标志对象。</p>
+<p class="auto-style3">
+11.PowerBasicObject增加isReceivePick属性，指明该对象是否接受点击测试，缺省为True。</p>
+<p class="auto-style3">12.PowerBasicObject增加axis和angle属性，指明该对象的初始旋转轴和角度（弧度）。</p>
+<p class="auto-style3">13.所有对象子类的颜色属性提升到基类color属性。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2016.01.13</strong></p>
+<p class="auto-style3">1.重写通用状态中的提示信息，请参见“<a href="HowToDo2.html#A4">如何使用通用状态栏？</a>”</p>
+<p class="auto-style3">2.图例管理器新增渐变图例类型。</p>
+<p class="auto-style3">3.配网类库内置电压等值图图例。</p>
+<p class="auto-style3"><strong>2016.01.08</strong></p>
+    <p class="auto-style3">
+	1.earth增加图例管理器，暂支持色块、图元图例，请参见“<a href="HowToDo.html#A12">如何使用图例管理器</a>”。</p>
+<p class="auto-style3">
+	2. 
+	earth.objManager增加saveVisionProperty、restoreVisionProperty、clearVisionProperty三个方法，用于保存、恢复和清除对象的视觉属性。</p>
+<p class="auto-style3"><strong>2016.01.02</strong></p>
+    <p class="auto-style3">
+	1.修改基本图形库的color属性，将color属性从各派生类中提升到基类，不再使用lineColor和areaColor，统一使用color。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2015.12.26</strong></p>
+    <p class="auto-style3">1.提供内置拓扑功能，请参见“<a href="HowToDo2.html#A5">如何使用内置拓扑功能</a>？”</p>
+<p class="auto-style3">
+2.因为内置拓扑的需要，为了减小对象占用空间，PowerBasicObject类的busiData属性，不再直接初始化，要使用这个属性须自行初始化。若占用空间仍太大，以后可能会用接口改写配网类，修改幅度太大，根据实际使用情况再决定是否改写。</p>
+<p class="auto-style3">3.因为内置拓扑搜索的需要，改写了部分台账类和运行类，以接口实现如长度、容量属性。</p>
+    <p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2015.12.17</strong></p>
+    <p class="auto-style3">1.修复数据库描述工具测试中update无效的bug。</p>
+    <p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2015.12.15</strong></p>
+    <p class="auto-style3">1.MyBaseControls类库实现通用状态栏，请参见“<a href="HowToDo2.html#A4">如何使用通用状态栏？</a>”</p>
+    <p class="auto-style3">&nbsp;</p>
+
+    <p class="auto-style3"><strong>2015.12.07</strong></p>
+    <p class="auto-style3">1.MyBaseControls类库实现通用配置机制，请参见“<a href="HowToDo2.html#A3">如何使用通用配置机制？</a>”</p>
+    <p class="auto-style3">&nbsp;</p>
+
+    <p class="auto-style3"><strong>2015.11.25</strong></p>
+    <p class="auto-style3">1.实现动态线宽。请参见“<a href="HowToDo2.html#A2">如何设置使用动态线宽？</a>”</p>
+    <p class="auto-style3">2.实现导航地图功能，已集成入工具栏。”</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.11.07</strong></p>
+    <p class="auto-style3">1.DistNetLibrary类库实现数据库配置功能，请参见“<a href="HowToDo2.html#A1">如何使用数据库配置工具，以实现自动创建和编辑配网对象功能？</a>”</p>
+    <p class="auto-style3">2.修正斜视地图瓦片显示不正常的bug。”</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.10.21</strong></p>
+    <p class="auto-style3">1.增加原始坐标内置转换机制，通过设置转换参数，可直接使用平面坐标，注：有精度损失，不宜于使用在需要编辑的应用中，未来会提供平面坐标的直接支持。</a>”</p>
+
+
+    <p class="auto-style3"><strong>2015.7.2</strong></p>
+    <p class="auto-style3">1.实现对自定义切分瓦片的支持，请参见“<a href="HowToDo.html#A10">如何配置系统，以使用自定义切分瓦片为地理背景？</a>”</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.6.18</strong></p>
+    <p class="auto-style3">1.实现tooltip机制。两种形态：mouse move和mouse click，可以同时使用。</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.6.15</strong></p>
+    <p class="auto-style3">1.实现.X文件模型的使用机制，它与图元对象挂钩，图元对象可以呈现为原2D形态，也可呈现为xmodel的3D形态。</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.6.10</strong></p>
+<p class="auto-style3">1.更新瓦片载入为多线程载入，提高载入速度。</p>
+    <p class="auto-style3">&nbsp;</p>
+    <p class="auto-style3"><strong>2015.5.10</strong></p>
+<p class="auto-style3">1.实现图形对象的加载模式：</p>
+<ul>
+	<li class="auto-style3">全体加载全体显示</li>
+	<li class="auto-style3">全体加载动态显示</li>
+	<li class="auto-style3">动态加载动态显示</li>
+</ul>
+<p class="auto-style3">2.增加与动态加载相关的类、属性、事件和方法</p>
+<ul>
+	<li class="auto-style3">Camera.ViewRange结构</li>
+	<li class="auto-style3">Camera.curCamearaViewRange属性</li>
+	<li class="auto-style3">Camera.getScreenCenterGeo方法</li>
+	<li class="auto-style3">Camera.curCameraDistanceToGround属性</li>
+	<li class="auto-style3">Camera.curCameraAngle属性</li>
+	<li class="auto-style3">Earth.VisualRangeChanged事件</li>
+	<li class="auto-style3">Global.isDynShow属性</li>
+	<li class="auto-style3">Global.isDynLoad属性</li>
+</ul>
+<p class="auto-style3">3.增中调试信息显示，通过Earth.global.isShowDebugInfo属性可以打开和关闭显示调试信息。</p>
+<p class="auto-style2">调试信息可以显示当前相机视野范围、相机位置（可用于获取初始化相机位置）、对象加载信息。</p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2015.4.15</strong></p>
+<p><span class="auto-style3">1. 
+Earth类增加色彩管理器colorManager，以便于在切换地图时采用不同的配色。增加isUseColorManager属性(是否使用色彩管理, 
+缺省为false)，增加refreshColor方法（在恢复色彩管理后调用刷新色彩）</span></p>
+<p class="auto-style4"><span class="auto-style3">
+色彩管理器预设了色彩集，通过地图类型mapType、对象类型objType,objtypesring（枚举或字串）、状态objStatus,objstatusstring（枚举或字串）三者共同来确定色彩。</span></p>
+<p class="auto-style4"><span class="auto-style3">
+上述objtype类和objstatus类均有枚举和字串两种格式，枚举是系统内部定义，方便使用，字串为便于用户自定义</span></p>
+<p class="auto-style4"><span class="auto-style3">
+pPowerLine、pSymbol、pArea增加三个属性：objType和objtypestring（对象类型，分别为枚举和字串，静态分类，加载网架时确定，缺省值为_通用）objStatus和objstatusstring(对象状态，动态，它的改变会引起色彩变化，缺省值为_正常) 
+isColorManaged(色彩是否被管理，用于单个对象的是否按受管理判断)</span></p>
+<p class="auto-style4"><span class="auto-style3">
+objType和objStatus是依据pPowerLine、pSymbol、pArea各不相同的枚举类型</span></p>
+<p class="auto-style4"><span class="auto-style3">
+objStatus包含5个用户自定义状态，用户可预先使用setColor方法定义他们关联的色彩</span></p>
+<p class="auto-style4"><span class="auto-style5">
+重要：应尽量通过设置对象的状态属性来改变色彩（objStatus），而不要直接设置对象色彩，否则切换地图时色彩不可控</span></p>
+<p class="auto-style2">色彩配置以colorcfg.xml保存，以后提供工具来调整修改。</p>
+<p class="auto-style4"><span class="auto-style3">
+对于以值来渲染的对象，可以将earth.isUseColorManager设置为false来关闭色彩管理，之后通过设置为ture并调用refreshColor方法来恢复色彩管理，也可单独针对个体对象的isColorManaged属性来决定该对象是否接受色彩管理。</span></p>
+<p class="auto-style3">2. 
+图元对象pSymbolObject更新，可使用color属性来渲染图元，增加isUseColor属性，ture（缺省）：图元由color属性决定图元的颜色，false：呈现图元纹理本身的颜色(如使用图标时)</p>
+<p class="auto-style3">3. 线路改为四棱柱，改善斜视角时线路虚线状况。 </p>
+<p class="auto-style3">&nbsp;</p>
+<p class="auto-style3"><strong>2015.4.14:</strong></p>
+<p class="auto-style3">1. 增加lightManager控制光源机制, 
+光源暂只对立体物体有明显作用，暂时预建立两个可用光源0号（缺省生效，普通效果）,1号（缺省disable，通透效果），它们都为右侧光源</p>
+<p class="auto-style3">2. 
+powerbasicobject增加自动计算的bound属性（仅pArea和Ppowerline有效）。camera增加adjustcamerarange方法，功能为按引bound自动定位和缩放相机，以使屏幕显示适应bound的范围大小。</p>
+<p class="auto-style3">3. 修复切换地图时弹出错误。修改非卫星地图为最大只能到15层。</p>
+<p class="auto-style3">&nbsp;</p>
+
+<p class="auto-style3"><strong>2015.4.12:</strong></p>
+<p class="auto-style3">1. 
+更新camera.adjustCamera方法为adjustCameraAngle方法，参数为与地面垂直射线的夹角。</p>
+<p class="auto-style3">2. 增加camera.adjustCameraDistance方法，用于调整相机距地面目标的距离。</p>
+<p><span class="auto-style3">3. 
+ppowerline增加from、to、fromID、toID属性，psymbolobject增加relationID集合属性，这些属性本身不提供逻辑，需在构建基础网架时赋值，以建立网架的拓扑关系。</span><br class="auto-style3" />
+<span class="auto-style3">(应用案例：在863规划中，应用于电源追溯和供电范围)</span></p>
+<p><span class="auto-style3">4. 
+增加RangeGenerator类，用于生成范围纹理，用法：与等值图类似，但采用RangeGenerator生成范围画刷(等值图用contour类来生成画刷)，再用pContour类应用到图层中生效。</span><br class="auto-style3" />
+<span class="auto-style3">(应用案例：在863规划中，应用于表现供电范围)</span></p>
+<p><span class="auto-style3">5. 
+更改powerbasicobject类的isShowData属性为isShowSubObject, 同时subObjects集合属性从&lt;string, 
+pData&gt;更改为&lt;string,powerBasicObject&gt;, 即子对象可以是任意基类为powerbasicobject的对象。</span><br class="auto-style3" />
+<span class="auto-style3">上述修改是为了便于实现下方 6 的内置Label显示，同时避免原名称产生歧义</span></p>
+<p><span class="auto-style3">6. 
+对所有基类为powerbasicobject的对象，均可方便的通过设置Label和isShowLabel显示文字标签, 
+以Label为前缀的属性可控制标签显示效果</span><br class="auto-style3" />
+<span class="auto-style3">改变isShowLabel后需调用earth对象的updatemodel方法批量提交,</span><br class="auto-style3" />
+<span class="auto-style3">改变label不需调用updatemodel(未完成),</span><br class="auto-style3" />
+<span class="auto-style3">要显示标签，除isShowLabel为真外，还需isShowSubObject为真（缺省为真）</span></p>
+
+</body>
+
+</html>

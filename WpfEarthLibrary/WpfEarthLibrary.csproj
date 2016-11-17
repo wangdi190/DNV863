@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43F7DBCA-E685-40BA-8397-A4DC0542E9FB}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WpfEarthLibrary</RootNamespace>
+    <AssemblyName>WpfEarthLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Debug\WpfEarthLibrary.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="CoordinateManager.cs" />
+    <Compile Include="busiBase.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="ColorManager.cs" />
+    <Compile Include="contour.cs" />
+    <Compile Include="D3DManager.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="Earth.xaml.cs">
+      <DependentUpon>Earth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EarthData.cs" />
+    <Compile Include="EarthPara.cs" />
+    <Compile Include="geohelper.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Helpler.cs" />
+    <Compile Include="LegendManager.cs" />
+    <Compile Include="LightManager.cs" />
+    <Compile Include="MapHelper.cs" />
+    <Compile Include="EarthManager.cs" />
+    <Compile Include="minimap\minimap.xaml.cs">
+      <DependentUpon>minimap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="minimap\minimapdata.cs" />
+    <Compile Include="minimap\winSetupMinimap.xaml.cs">
+      <DependentUpon>winSetupMinimap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pLayer.cs" />
+    <Compile Include="pObjectManager.cs" />
+    <Compile Include="pPowerModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="pSymbol.cs" />
+    <Compile Include="RangeGenerator.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="TerrainHelp.cs" />
+    <Compile Include="Tools\CalCoordinateTransformPara.xaml.cs">
+      <DependentUpon>CalCoordinateTransformPara.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\LightSetTool.xaml.cs">
+      <DependentUpon>LightSetTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\LightSet.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Earth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="minimap\minimap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="minimap\winSetupMinimap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\CalCoordinateTransformPara.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\LightSetTool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="备忘.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dark.png" />
+    <Resource Include="Images\down.png" />
+    <Resource Include="Images\light.png" />
+    <Resource Include="Images\none.png" />
+    <Resource Include="Images\road.png" />
+    <Resource Include="Images\sat.png" />
+    <Resource Include="Images\sat2.png" />
+    <Resource Include="Images\terrain.png" />
+    <Resource Include="Images\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\jw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="更新.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mapinmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyControls\MyBaseControls\MyBaseControls.csproj">
+      <Project>{EC0D7F66-0C42-4B67-8526-C1F05A739745}</Project>
+      <Name>MyBaseControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyControls\MyClassLibrary\MyClassLibrary.csproj">
+      <Project>{E0C6D662-8443-44BC-8BDD-838632397683}</Project>
+      <Name>MyClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\lamp.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

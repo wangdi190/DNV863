@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>ColorManager 颜色管理器类</title>	
+	<meta name="Title" content="ColorManager Class" />
+    	<meta name="Microsoft.Help.Keywords" content="ColorManager Class" />
+    	<meta name="Microsoft.Help.F1" content="WpfEarthLibrary.ColorManager" />
+    	<meta name="Microsoft.Help.TocOrder" content="0" />
+	   	<meta name="Microsoft.Help.TocParent" content="Reference" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="WpfEarthLibrary.ColorManager" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="颜色管理类" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+    	
+    		<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style4 {
+		font-size: 11pt;
+	}
+	.auto-style5 {
+		text-align: center;
+		background-color: #C0C0C0;
+	}
+			.auto-style6 {
+				margin-left: 40px;
+			}
+	</style>
+
+</head>
+
+<body>
+<p class="auto-style1">ColorManager 类</p>
+<hr/>
+<p>&nbsp;&nbsp; &nbsp;ColorManager 类用于管理模型对象颜色。</p>
+<p class="auto-style6">
+颜色管理器管理模型对象颜色的目的是：当切换地图瓦片类型后，其背景或为深色或为浅色的背景，若模型对象使用单一色彩，可能造成模型在不同的背景下分辨不清。</p>
+<p class="auto-style6">
+通过颜色管理器，配合通过状态设置颜色（而非直接置色），则在切换地图瓦片类型时，控制根据地图类型、模型类型、模型型号、模型状态，自动转换模型颜色为合适该背景下的色彩。</p>
+<p class="auto-style6">
+色彩的预定义通过colorcfg.xml文件读取，若没有该文件，系统自动生成一个缺省定义的该文件。用户或开发者可以修改该文件中的色彩定义来改变色彩预定义。</p>
+<p class="auto-style6">色彩预计通过程序方式来设置较为困难，应使用工具来进行预定义生成colorcfg.xml文件。</p>
+<p class="auto-style4">命名空间：WpfEarthLibrary</p>
+<p>1. 字段</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px; height: 27px;">
+		ColorDatas</td>
+		<td style="height: 27px">预定义的色彩集合</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>2. 属性</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>3. 方法</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 200px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">getColor</td>
+		<td>获取预定义的颜色</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">setColor</td>
+		<td>设置预定义颜色</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">saveColor</td>
+		<td>保存色彩预定义到colorcfg.xml</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">loadColor</td>
+		<td>从colorcfg.xml读取色彩预定义</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 200px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>4. 事件</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr/>
+
+<p>参见：<a href="default.html"><span class="auto-style4">帮助首页</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

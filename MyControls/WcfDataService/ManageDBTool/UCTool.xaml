@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="ManageDBTool.UCTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1900" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <DataTemplate x:Key="templateApplication">
+            <TextBlock Text="{Binding ApplicationName}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="templateRole">
+            <TextBlock Text="{Binding RoleName}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="templateUser">
+            <TextBlock Text="{Binding UserName}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="templateModel">
+                <TextBlock Text="{Binding ModelName}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="templateConn">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding DatasourceName}"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding ConnName}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="templateRoleUser">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding UserName}"/>
+                <TextBlock Text="——>"/>
+                <TextBlock Text="{Binding RoleName}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="templateRoleModel">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding RoleName}"/>
+                <TextBlock Text="——>"/>
+                <TextBlock Text="{Binding ModelName}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="templateModelConn">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ModelName}"/>
+                <TextBlock Text="——>"/>
+                <TextBlock Text="{Binding DatasourceName}"/>
+                <TextBlock Text="{Binding ConnName}"/>
+                <TextBlock Text="（"/>
+                <TextBlock Text="{Binding flag}"/>
+                <TextBlock Text="）"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="应用列表">
+            <ListBox x:Name="lstApplication" ItemsSource="{Binding dtApplication}" ItemTemplate="{StaticResource templateApplication}" SelectedItem="{Binding ApplicationSel}" Background="#FFF5EE"/>
+        </GroupBox>
+        <GroupBox Header="用户列表" Grid.Column="1">
+            <ListBox x:Name="lstUser" ItemsSource="{Binding dtUser}" ItemTemplate="{StaticResource templateUser}" Background="AliceBlue"/>
+        </GroupBox>
+        <GroupBox Header="角色列表" Grid.Column="3">
+            <ListBox x:Name="lstRole" ItemsSource="{Binding dtRole}" ItemTemplate="{StaticResource templateRole}" Background="AliceBlue"/>
+        </GroupBox>
+        <GroupBox Header="模块列表" Grid.Column="5">
+            <ListBox x:Name="lstModel" ItemsSource="{Binding dtModel}" ItemTemplate="{StaticResource templateModel}" Background="AliceBlue"/>
+        </GroupBox>
+        <GroupBox Header="数据源列表" Grid.Column="7">
+            <ListBox x:Name="lstConn" ItemsSource="{Binding dtConn}" ItemTemplate="{StaticResource templateConn}" Background="AliceBlue"/>
+        </GroupBox>
+        <GroupBox Header="用户-角色关系表" Grid.Column="2">
+            <ListBox x:Name="lstRoleUser" ItemsSource="{Binding dtRoleUser}" ItemTemplate="{StaticResource templateRoleUser}"/>
+        </GroupBox>
+        <GroupBox Header="角色-模块关系表" Grid.Column="4">
+            <ListBox x:Name="lstRoleModel" ItemsSource="{Binding dtRoleModel}" ItemTemplate="{StaticResource templateRoleModel}"/>
+        </GroupBox>
+        <GroupBox Header="模块-数据源关系表" Grid.Column="6">
+            <ListBox x:Name="lstModelConn" ItemsSource="{Binding dtModelConn}" ItemTemplate="{StaticResource templateModelConn}" SelectionChanged="lstModelConn_SelectionChanged"/>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1">
+            <TextBox x:Name="txtAppName" Background="AliceBlue"/>
+            <Button x:Name="btnNewApp" Content="新增应用" Click="btnNewApp_Click"/>
+            <Button x:Name="btnEditApp" Content="编辑应用" Click="btnEditApp_Click"/>
+            <Button x:Name="btnDelApp" Content="删除应用" Click="btnDelApp_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3">
+            <TextBox x:Name="txtRoleName" Background="AliceBlue"/>
+            <Button x:Name="btnNewRole" Content="新增角色" Click="btnNewRole_Click"/>
+            <Button x:Name="btnEditRole" Content="编辑角色" Click="btnEditRole_Click"/>
+            <Button x:Name="btnDelRole" Content="删除角色" Click="btnDelRole_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="txtUserName" Background="AliceBlue" ToolTip="输入用户名"/>
+            <TextBox x:Name="txtPassword" Background="AliceBlue" ToolTip="输入口令"/>
+            <Button x:Name="btnNewUser" Content="新增用户" Click="btnNewUser_Click"/>
+            <Button x:Name="btnEditUser" Content="编辑用户" Click="btnEditUser_Click"/>
+            <Button x:Name="btnDelUser" Content="删除用户" Click="btnDelUser_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="5">
+            <TextBox x:Name="txtModelName" Background="AliceBlue" ToolTip="输入模块名称"/>
+            <Button x:Name="btnNewModel" Content="新增模块" Click="btnNewModel_Click"/>
+            <Button x:Name="btnEditModel" Content="编辑模块" Click="btnEditModel_Click"/>
+            <Button x:Name="btnDelModel" Content="删除模块" Click="btnDelModel_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="7">
+            <TextBox x:Name="txtDBSName" Background="AliceBlue" ToolTip="输入数据源名称"/>
+            <TextBox x:Name="txtConnName" Background="AliceBlue" ToolTip="输入连接名称"/>
+            <Button x:Name="btnNewDBS" Content="新增数据源" Click="btnNewDBS_Click"/>
+            <Button x:Name="btnEditDBS" Content="编辑数据源" Click="btnEditDBS_Click"/>
+            <Button x:Name="btnDelDBS" Content="删除数据源" Click="btnDelDBS_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button x:Name="btnAddRoleUserRelation" Content="建立角色用户关联" Click="btnAddRoleUserRelation_Click"/>
+            <Button x:Name="btnDelRoleUserRelation" Content="删除角色用户关联" Click="btnDelRoleUserRelation_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="4">
+            <Button x:Name="btnAddRoleModelRelation" Content="建立角色模块关联" Click="btnAddRoleModelRelation_Click"/>
+            <Button x:Name="btnDelRoleModelRelation" Content="删除角色模块关联" Click="btnDelRoleModelRelation_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="6">
+            <Button x:Name="btnAddModelConnRelation" Content="建立模块数据源关联" Click="btnAddModelConnRelation_Click"/>
+            <Button x:Name="btnDelModelConnRelation" Content="删除模块数据源关联" Click="btnDelModelConnRelation_Click"/>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <RadioButton x:Name="rdor" Content="只读" GroupName="111" Checked="rdor_Checked"/>
+                <RadioButton x:Name="rdow" Content="读写" Margin="20,0" GroupName="111" Checked="rdow_Checked"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="7">
+            <TextBlock Text="1. 每一个应用程序均应添加名为管理员的角色，它提供读写管理数据库的能力和其它所有权限。"/>
+        </StackPanel>
+        <TextBlock x:Name="txtInfo" Grid.Row="3" Grid.ColumnSpan="7" Text="消息" TextAlignment="Left" Padding="10,7,0,0" Foreground="Blue" Background="AliceBlue"/>
+    </Grid>
+</UserControl>

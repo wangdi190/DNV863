@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>基本流程</title>	
+	<meta name="Title" content="基本流程" />
+    	<meta name="Microsoft.Help.Keywords" content="基本流程" />
+    	<meta name="Microsoft.Help.TocOrder" content="110" />
+	   	<meta name="Microsoft.Help.TocParent" content="Guide" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="Basic" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style3 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style4 {
+	color: #0000FF;
+}
+	.auto-style6 {
+		border-style: solid;
+		border-width: 1px;
+		padding: 1px 4px;
+	}
+	
+	
+	.auto-style7 {
+	color: #009900;
+}
+	</style>
+</head>
+
+<body>
+
+<p class="auto-style3">基本流程示例</p>
+<hr/>
+
+
+<p>UCSample4.xmal</p>
+
+<pre class="auto-style6">
+&lt;UserControl x:Class="DNV863.UCSample4"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded"&gt;
+    &lt;Grid&gt;
+        &lt;Grid x:Name="grdMain"&gt;
+
+        &lt;/Grid&gt;
+        &lt;Popup x:Name="Tooltip"&gt;
+            &lt;Popup.AllowsTransparency&gt;True&lt;/Popup.AllowsTransparency&gt;
+            &lt;Border Background="#A8299BFF" Padding="3" BorderBrush="#FFFF99" BorderThickness="1" CornerRadius="5"&gt;
+                &lt;TextBlock x:Name="txtToolTips" Foreground="Yellow"/&gt;
+            &lt;/Border&gt;
+        &lt;/Popup&gt;
+    &lt;/Grid&gt;
+&lt;/UserControl&gt;
+
+</pre>
+
+<p class="auto-style4">流程步骤请参见示例中<strong><span class="auto-style7">绿字</span></strong></p>
+<p>UCSample4.xmal.cs</p>
+
+<pre class="auto-style6">
+using System;
+using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using WpfEarthLibrary;
+
+namespace DNV863
+{
+    /// &lt;summary&gt;
+    /// UCSample4.xaml 的交互逻辑
+    /// &lt;/summary&gt;
+    public partial class UCSample4 : UserControl
+    {
+        public UCSample4()
+        {
+            InitializeComponent();
+        }
+
+        Earth uc; //1.定义Earth对象
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (uc == null)
+            {
+                uc = new Earth(); //2 .创建Earth对象
+                uc.global.isShowDebugInfo = true;  //在屏下方显示相机信息
+                uc.global.isDynShow = true;  //根据相机视界动态显示图形对象
+                grdMain.Children.Add(uc);//3.Earth对象添加入容器中
+
+                loadModel();//4.装载模型对象
+                uc.global.XRotationScale = 0.8;
+
+            }     
+        }
+
+
+
+        #region ======================= 基础网架载入 ========================
+        //------------------------------------------------------------------------------------------
+        // 说明：从数据库中载入北京主城区配网数据为示例，经纬度坐标
+        //------------------------------------------------------------------------------------------
+
+
+        Random rd = new Random();
+
+        protected DataTable dtsymbol, dtsymbolitem, dttext, dtlayer, dtstyle, dtshareobject; //dtsymbol为symbol和symbolitem的合集
+        protected DataTable dtproject, dtallproject, dtdata;
+        protected DataTable dtdictype, dtdicproperty, dtobject, dtproperty;
+        protected DataRow curprj = null;
+        int curprjkey;
+        void loadModel()
+        {
+
+            //读取数据
+            curprjkey = 13;
+            dtallproject = DataLayer.DataProvider.getDataTableFromSQL("select * from map_project");
+            dtproject = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select * from map_project where id={0}", curprjkey));
+            curprj = dtproject.Rows[0];
+            string sqlwhere = PrjHelper.genProjectsExpress(curprjkey, dtallproject);
+            string sqlwhere2 = PrjHelper.genProjectsExpress(curprjkey, dtallproject, "t1.");
+            dtobject = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select t1.*,t2.layer from map_object t1 join map_svg_layer t2 on t1.layerid=t2.id where points is not null and {0}", sqlwhere2));
+            dtlayer = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select * from map_svg_layer where {0}", sqlwhere));
+            dttext = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select t1.*,t2.layer from map_svg_text t1 join map_svg_layer t2 on t1.layerid=t2.id where points is not null and {0}", sqlwhere2));
+            dtsymbol = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select t2.svgsymbolid,t2.name,t2.viewbox,t2.preserveAspectRatio,t1.shapetype,t1.data,t1.fill,t1.stroke,t1.width from map_svg_symbolitem t1 join map_svg_symbol t2 on t1.symbolid=t2.id where t2.svgsymbolid in (select distinct replace(symbolid,'#','') from map_object where points is not null and ({0})) and ({0})", sqlwhere)); //仅使用了的图元
+
+            dtstyle = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select * from map_svg_style where {0}", sqlwhere));
+            int KGID = 11;
+            dtshareobject = DataLayer.DataProvider.getDataTableFromSQL(string.Format("select * from map_share_object where prjid={0} or layername='区县图层'", KGID));
+
+            //生成图元字典，图元字典内容会被传送到d3d生成公用材质，下面的厂站，将使用图元字典中的键值来决定在d3d中的材质
+            genSymbolBrush();//4.1 创建图元所使用的纹理资源
+            //另外直接添加材质, SubstationEntityDisH2为键值
+            uc.objManager.AddSymbol("SubstationEntityDisH2", "SubstationEntityDisH2.dds");
+
+
+            //生成几何体资源字典，几何体资源字典内容会被传送到d3d生成公用几何体数据，下面的数据呈现用的柱体，将使用几何体字典中的键值来决定在d3d中的形态
+            genGeomeries();//4.2 创建几何体Mesh资源
+
+
+            //添加对象层
+            foreach (DataRow item in dtlayer.Rows) //4.3 循环创建层
+                uc.objManager.AddLayer(item["layer"].ToString(), item["id"].ToString(), item["layer"].ToString()); //示例中以层的名字为键值
+
+
+            int idx = 0;
+            //对象
+            bool isfind;
+            PowerBasicObject obj;
+            pLayer containerLayer;
+
+
+
+            foreach (DataRow item in dtobject.AsEnumerable().OrderBy(p =&gt; p.Field&lt;int&gt;("prjid"))) //4.4 循环创建模型对象
+            {
+                obj = null;
+                if (item["shapetype"].ToString() == "dot")
+                {
+                    isfind = uc.objManager.zLayers.TryGetValue(item["layer"].ToString(), out containerLayer);  //查找是否有对象所属层
+                    if (isfind)
+                    {
+                        isfind = containerLayer.pModels.TryGetValue(item["id"].ToString(), out obj);
+                        if (!isfind)
+                        {
+                            obj = new pSymbolObject(containerLayer)
+                            {
+                                id = item["id"].ToString(),
+                                name = item["objname"].ToString(),
+                                location = item["points"].ToString(),
+                                symbolid = item["symbolid"].ToString().Replace("#", ""),  //材质Key
+                                isH = true
+                            };
+                            if ((obj as pSymbolObject).symbolid == "SwitchStationOpen")
+                            {
+                                obj.busiData.busiSort = "开关站";
+                                (obj as pSymbolObject).color = Colors.Aqua;
+                                obj.visualMaxDistance = 10;
+                            }
+                            else if ((obj as pSymbolObject).symbolid == "SubstationEntityDisH")
+                            {
+                                obj.busiData.busiSort = "变电站";
+                                (obj as pSymbolObject).color = Colors.Lime;
+                            }
+                            else if ((obj as pSymbolObject).symbolid == "Pole")
+                            {
+                                obj.busiData.busiSort = "杆塔";
+                                (obj as pSymbolObject).color = Color.FromRgb(0xCC, 0xFF, 0xFF);
+                                obj.visualMaxDistance = 5;
+                            }
+
+                            //(obj as pSymbolObject).aniTwinkle.isDoAni = true; 
+
+
+                            Regex regex = new Regex("translate\\(.*\\) ?rotate\\(.*\\) ?scale\\((\\d*.?\\d*), ?(\\d*.?\\d*)\\)", RegexOptions.Multiline);
+                            Match m = regex.Match(item["data"].ToString());
+                            if (m.Success)
+                            {
+                                (obj as pSymbolObject).scaleX = uc.objManager.zSymbols[(obj as pSymbolObject).symbolid].sizeX * Math.Pow(double.Parse(m.Groups[1].Value), 0.7) / 400;
+                                (obj as pSymbolObject).scaleY = uc.objManager.zSymbols[(obj as pSymbolObject).symbolid].sizeY * Math.Pow(double.Parse(m.Groups[1].Value), 0.7) / 400;
+                            }
+                            else
+                                (obj as pSymbolObject).scaleX = (obj as pSymbolObject).scaleY = 0.025;
+
+
+                            containerLayer.AddObject(item["id"].ToString(), obj);//也可直接加如：containerLayer.pModels.Add(item["id"].ToString(), obj);
+
+
+                        }
+                    }
+                    if (idx == 0)
+                    {
+                        obj = new pModel3D(containerLayer)  //测试实物模型用，暂无效
+                        {
+                            id = item["id"].ToString() + "3d",
+                            name = item["objname"].ToString(),
+                            location = item["points"].ToString(),
+                            Model3DType = EPowerModel3DType.风电
+                        };
+                        containerLayer.AddObject(item["id"].ToString() + "3d", obj);
+                        idx++;
+                    }
+
+                }
+                else if (item["shapetype"].ToString() == "path")
+                {
+                    isfind = uc.objManager.zLayers.TryGetValue(item["layer"].ToString(), out containerLayer);
+                    if (isfind)
+                    {
+                        isfind = containerLayer.pModels.TryGetValue(item["id"].ToString(), out obj);
+                        if (!isfind)
+                        {
+                            obj = new pPowerLine(containerLayer)
+                            {
+                                id = item["id"].ToString(),
+                                name = item["objname"].ToString(),
+                                strPoints = item["points"].ToString(),
+                                lineColor = Color.FromRgb(0xFF, 0xCC, 0x00),
+                                arrowColor = Colors.Blue,
+                                isFlow = true,
+                                thickness = 0.002f
+                            };
+                            //(obj as pPowerLine).aniDraw.aniType=EAniType.绘制; //注意：只有aniDraw属性可以是擦除或绘制两者之一，其它的动画属性大多没有可选性，请不要更改它们的动画类型
+                            //(obj as pPowerLine).aniDraw.isDoAni = true; 
+                            //(obj as pPowerLine).aniTwinkle.isDoAni = true; 
+
+                            //zh注：对不合理的过近的相邻点进行处理，这部分应放入位置数据入库前
+                            PointCollection pc = PointCollection.Parse(item["points"].ToString());
+                            PointCollection newpc = new PointCollection();
+                            newpc.Add(pc[0]);
+                            for (int i = 1; i &lt; pc.Count; i++)
+                            {
+                                if ((pc[i] - pc[i - 1]).Length &gt; 0.00001)
+                                {
+                                    if (i &lt; pc.Count - 1)
+                                    {
+                                        Vector v1 = pc[i] - pc[i - 1]; v1.Normalize();
+                                        Vector v2 = pc[i + 1] - pc[i]; v2.Normalize();
+                                        if (v1 != v2)
+                                            newpc.Add(pc[i]);
+                                    }
+                                    else
+                                        newpc.Add(pc[i]);
+                                }
+                            }
+                            (obj as pPowerLine).strPoints = newpc.ToString();
+
+
+                            if (newpc.Count &gt; 1)
+                                containerLayer.pModels.Add(item["id"].ToString(), obj);
+
+
+
+
+
+                        }
+                    }
+
+
+                    idx++;
+                }
+
+
+            }
+
+
+
+        }
+
+
+        ///&lt;summary&gt;生成几何体资源&lt;/summary&gt;
+        void genGeomeries()
+        {
+            uc.objManager.AddBoxResource("立方体", 1, 1, 1);
+            uc.objManager.AddCylinderResource("圆柱体", 1, 1, 1, 16, 1);
+            uc.objManager.AddCylinderResource("圆锥体", 0, 1, 1, 16, 1);
+            uc.objManager.AddSphereResource("球体", 1, 16, 16);
+        }
+
+
+        ///&lt;summary&gt;生成图元Brush&lt;/summary&gt;
+        protected void genSymbolBrush()
+        {
+            SolidColorBrush defaultbrush = new SolidColorBrush(Colors.Lime);
+            Brush brush;
+
+
+
+            foreach (IGrouping&lt;string, DataRow&gt; g in dtsymbol.AsEnumerable().GroupBy(p =&gt; p.Field&lt;string&gt;("svgsymbolid")))
+            {
+                string sid = g.Key;
+                string name = g.First().Field&lt;string&gt;("name");
+
+                DrawingGroup drawgroup = new DrawingGroup();
+                GeometryDrawing aDrawing;
+
+
+                double sizeX = 10;
+                double sizeY = 10;
+                int idx = 0;
+                foreach (DataRow item in dtsymbol.AsEnumerable().Where(p =&gt; p.Field&lt;string&gt;("svgsymbolid") == sid))
+                {
+                    if (idx == 0)//获取尺寸
+                    {
+                        Rect tmp = Rect.Parse(item["viewbox"].ToString());
+                        sizeX = tmp.Width;
+                        sizeY = tmp.Height;
+                    }
+
+
+                    string shapetype = item["shapetype"].ToString();
+                    string data = item["data"].ToString();
+                    if (shapetype == "circle")
+                    {
+                        Regex regex = new Regex("(\\d*.?\\d*,\\d*.?\\d*)\\|(\\d*.?\\d*)", RegexOptions.Multiline);
+                        Match m = regex.Match(data);
+                        if (m.Success)
+                        {
+                            Point pc = Point.Parse(m.Groups[1].Value);
+                            double r = double.Parse(m.Groups[2].Value);
+
+                            EllipseGeometry geo = new EllipseGeometry(pc, r, r);
+                            aDrawing = new GeometryDrawing();
+                            aDrawing.Geometry = geo;
+
+                            Pen pen = new Pen();
+                            double thickness = double.Parse(item["width"].ToString());
+                            thickness = thickness &lt; 2 ? 2 : thickness;
+                            pen.Thickness = thickness;
+                            brush = defaultbrush;//强制缺省用黄色//brush = anaBrush(item["fill"].ToString());
+                            pen.Brush = brush;
+                            aDrawing.Pen = pen;
+                            drawgroup.Children.Add(aDrawing);
+                        }
+                    }
+                    else if (shapetype == "path")
+                    {
+                        Geometry geo = PathGeometry.Parse(data);
+                        aDrawing = new GeometryDrawing();
+                        aDrawing.Geometry = geo;
+
+                        brush = defaultbrush;//强制缺省用黄色//brush = anaBrush(item["fill"].ToString());
+                        aDrawing.Brush = brush;
+                        Pen pen = new Pen();
+                        pen.Thickness = double.Parse(item["width"].ToString());
+                        brush = defaultbrush;
+                        pen.Brush = brush;
+                        aDrawing.Pen = pen;
+                        drawgroup.Children.Add(aDrawing);
+                    }
+                    idx++;
+                }
+
+                DrawingBrush myDrawingBrush = new DrawingBrush();
+                myDrawingBrush.Drawing = drawgroup;
+
+
+                pSymbol sym = new pSymbol() { id = sid, sizeX = sizeX, sizeY = sizeY, brush = myDrawingBrush, name = name };
+                //可选以文件生成材质, 否则以brush生成材质
+                if (sid == "SubstationEntityDisH")
+                    sym.texturefile = "SubstationEntityDisH.dds";
+                if (sid == "SwitchStationOpen")
+                    sym.texturefile = "SwitchStationOpen.dds";
+                if (sid == "Pole")
+                    sym.texturefile = "Pole.dds";
+
+                uc.objManager.zSymbols.Add(sid, sym);
+
+
+            }
+
+        }
+
+       
+        #endregion
+
+
+    }
+}
+
+</pre>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

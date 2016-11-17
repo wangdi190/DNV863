@@ -1,0 +1,17 @@
+﻿数据层暂只实现了直接数据库连接。
+
+数据层特征：
+1.允许多个连接，读取数据时，依次读到数据为止，执行SQL语句则对所有数据库连接执行语句，达到依次读，全部写的目的。（以后可扩展为分类别的连接串集，以操作不同内容的数据库）
+
+
+
+使用前要做如下设置和初始化：
+1.若数据库服务器允许Ping, 可在调用程序中，添加如下语句：
+	DataLayer.DirectDBAccessor.isFirstTestIP=true;
+2.初始化连接信息，可在调用程序中，添加如下语句：
+    DataLayer.DirectDBAccessor.connections.Add(new DataLayer.ConnInfo(xjMeeting.Properties.Settings.Default.conn,xjMeeting.Properties.Settings.Default.ip));
+    DataLayer.DirectDBAccessor.connections.Add(new DataLayer.ConnInfo(xjMeeting.Properties.Settings.Default.conn2,xjMeeting.Properties.Settings.Default.ip2));
+	上述的conn和conn2为两台同内容服务器的连接串，如：
+		Data Source=10.218.230.15;Initial Catalog=DMSDB;User ID=ch;Password=root.2011 (注意，取消了timeout，保持其缺省值，以免查询语句复杂时意外中止)
+		Data Source=192.168.1.234;Initial Catalog=DMSDB;User ID=sa;Password=123456
+	上述的ip和ip2则分别为10.218.230.15和192.168.1.234

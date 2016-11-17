@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Camera 相机类</title>	
+	<meta name="Title" content="Camera Class" />
+    	<meta name="Microsoft.Help.Keywords" content="Camera Class" />
+    	<meta name="Microsoft.Help.F1" content="WpfEarthLibrary.Camera" />
+    	<meta name="Microsoft.Help.TocOrder" content="0" />
+	   	<meta name="Microsoft.Help.TocParent" content="Reference" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="WpfEarthLibrary.Camera" />
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="相机类" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+    	
+    		<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style4 {
+		font-size: 11pt;
+	}
+	.auto-style5 {
+		text-align: center;
+		background-color: #C0C0C0;
+	}
+	</style>
+
+</head>
+
+<body>
+<p class="auto-style1">Camera 类</p>
+<hr/>
+<p>&nbsp;&nbsp; &nbsp;Camera 类用于相机相关的设置和操作。</p>
+<p class="auto-style4">命名空间：WpfEarthLibrary</p>
+<p>1. 字段</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">FieldOfView</td>
+		<td>相机焦距，缺省45度，弧度单位</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">Near</td>
+		<td>相机近平面距离，缺省0.1</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">Far</td>
+		<td>相机远平面距离，缺省100</td>
+	</tr>
+</table>
+<p>2. 属性</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">cameraPosition</td>
+		<td>获取或设置相机位置</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">cameraLookat</td>
+		<td>获取或设置相机看向位置</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">cameraUp</td>
+		<td>获取或设置相机上方向向量</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">curCamearaViewRange</td>
+		<td>获取当前相机可视范围经纬度范围</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">curCameraDistanceToGround</td>
+		<td>获取当前相机离屏幕中心距离</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">curCameraAngle</td>
+		<td>获取当前相机方向与地心线夹角</td>
+	</tr>
+</table>
+<p>3. 方法</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">calCamera</td>
+		<td>设置相机参数后调用，计算相机视图和投影矩阵。</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">getCrossGround</td>
+		<td>获取相机中心射线与地面的交点</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">adjustCameraAngle</td>
+		<td>调整相机观察角，有效范围0-60角度（指相机方向与地心线夹角，0为俯视）</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">adjustCameraDistance</td>
+		<td>调整相机离地面距离</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">adjustCameraRange</td>
+		<td>调整相机距离以显示指定范围</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">updateD3DCamera</td>
+		<td>提交更新相机变化</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">aniLook</td>
+		<td>动画移动相机查看指定位置</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">getScreenCenterGeo</td>
+		<td>获取屏幕中心经纬坐标，x纬度, y经度</td>
+	</tr>
+</table>
+<p>4. 事件</p>
+<table style="width: 100%" cellpadding="5" class="auto-style4" >
+	<tr>
+		<td class="auto-style5" style="width: 201px">名称</td>
+		<td class="auto-style5">说 明</td>
+	</tr>
+	<tr>
+		<td style="width: 201px">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr/>
+
+<p>参见：<a href="default.html"><span class="auto-style4">帮助首页</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

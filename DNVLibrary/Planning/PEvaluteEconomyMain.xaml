@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="DNVLibrary.Planning.PEvaluteEconomyMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Xpf.Core.v14.1"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" Initialized="UserControl_Initialized" 
+             MaxWidth="1000" MaxHeight="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>        
+            <TextBlock Text="财务评价指标" FontSize="24" HorizontalAlignment="Center" Foreground="#FFFFF0" VerticalAlignment="Center"/>
+            <dxg:GridControl x:Name="grid" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" dx:ThemeManager.ThemeName="TouchlineDark" FontSize="16" Grid.Row="1">
+                <dxg:GridControl.View>
+                    <dxg:TableView AllowPerPixelScrolling="True" Name="tableView1" ShowTotalSummary="False" AllowGrouping="False" AllowEditing="False" AutoWidth="True" ShowGroupPanel="False" AllowSorting="False"/>
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="序号" FieldName="t2" Width="60" HorizontalHeaderContentAlignment="Center">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="项目" FieldName="t3" HorizontalHeaderContentAlignment="Center"/>
+                    <dxg:GridColumn Header="单位" FieldName="t4"  Width="60" HorizontalHeaderContentAlignment="Center" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="指标" FieldName="v1" HorizontalHeaderContentAlignment="Center">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+            </dxg:GridControl>
+    </Grid>
+</UserControl>

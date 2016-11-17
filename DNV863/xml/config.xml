@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <items>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.线宽</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>线宽</property>
+          <status />
+          <flag />
+          <value>0.0005</value>
+          <note />
+          <valueType>数字</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.线宽</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.颜色.重载</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>颜色</property>
+          <status>重载</status>
+          <flag />
+          <value>#FFFF4B4B</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.颜色.重载</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.颜色.正常</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>颜色</property>
+          <status>正常</status>
+          <flag />
+          <value>#FFF6F600</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.颜色.正常</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压变电站</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压变电站</obj>
+          <property />
+          <status />
+          <flag />
+          <valueType>字符串</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>true</isInAddTree>
+          <id>中压变电站</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.颜色</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>颜色</property>
+          <status />
+          <flag />
+          <valueType>字符串</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>true</isInAddTree>
+          <id>中压输电线路.颜色</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.颜色.轻载</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>颜色</property>
+          <status>轻载</status>
+          <flag />
+          <value>#FF87E587</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.颜色.轻载</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.箭头大小</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>箭头大小</property>
+          <status />
+          <flag />
+          <value>0.0006</value>
+          <note />
+          <valueType>数字</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.箭头大小</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.箭头颜色</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>箭头颜色</property>
+          <status />
+          <flag />
+          <value>#FF0000E9</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.箭头颜色</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路.动态线宽</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property>动态线宽</property>
+          <status />
+          <flag />
+          <value>true</value>
+          <note />
+          <valueType>布尔</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压输电线路.动态线宽</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压变电站.颜色</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压变电站</obj>
+          <property>颜色</property>
+          <status />
+          <flag />
+          <value>#FF4BCB4B</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压变电站.颜色</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压输电线路</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压输电线路</obj>
+          <property />
+          <status />
+          <flag />
+          <valueType>字符串</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>true</isInAddTree>
+          <id>中压输电线路</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>中压变电站.大小</string>
+      </key>
+      <value>
+        <Item>
+          <obj>中压变电站</obj>
+          <property>大小</property>
+          <status />
+          <flag />
+          <value>0.009</value>
+          <note />
+          <valueType>数字</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>中压变电站.大小</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>母线</string>
+      </key>
+      <value>
+        <Item>
+          <obj>母线</obj>
+          <property />
+          <status />
+          <flag />
+          <note />
+          <valueType>字符串</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>母线</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>母线.颜色</string>
+      </key>
+      <value>
+        <Item>
+          <obj>母线</obj>
+          <property>颜色</property>
+          <status />
+          <flag />
+          <value>#FFFF4B4B</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>母线.颜色</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>母线.线宽</string>
+      </key>
+      <value>
+        <Item>
+          <obj>母线</obj>
+          <property>线宽</property>
+          <status />
+          <flag />
+          <value>0.0001</value>
+          <note />
+          <valueType>数字</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>母线.线宽</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>站内连接线</string>
+      </key>
+      <value>
+        <Item>
+          <obj>站内连接线</obj>
+          <property />
+          <status />
+          <flag />
+          <value />
+          <note />
+          <valueType>字符串</valueType>
+          <isUserEditable>false</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>站内连接线</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>站内连接线.颜色</string>
+      </key>
+      <value>
+        <Item>
+          <obj>站内连接线</obj>
+          <property>颜色</property>
+          <status />
+          <flag />
+          <value>#FFF6F600</value>
+          <note />
+          <valueType>颜色</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>站内连接线.颜色</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+    <SerializableDictionary>
+      <key>
+        <string>站内连接线.线宽</string>
+      </key>
+      <value>
+        <Item>
+          <obj>站内连接线</obj>
+          <property>线宽</property>
+          <status />
+          <flag />
+          <value>0.00002</value>
+          <note />
+          <valueType>数字</valueType>
+          <isUserEditable>true</isUserEditable>
+          <isInAddTree>false</isInAddTree>
+          <id>站内连接线.线宽</id>
+        </Item>
+      </value>
+    </SerializableDictionary>
+  </items>
+  <sort1>对象名</sort1>
+  <sort2>属性名</sort2>
+  <sort3>状态</sort3>
+  <sort4>标志</sort4>
+</ConfigData>

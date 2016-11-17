@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{299C9B07-A653-45EE-BD36-4DFC43C129EC}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNVLibrary</RootNamespace>
+    <AssemblyName>DNVLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Charts.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Docking.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Gauges.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Printing.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Layout.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.NavBar.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Ribbon.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Spreadsheet.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppBase.cs" />
+    <Compile Include="BaseMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePanel.xaml.cs">
+      <DependentUpon>BasePanel.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataGenerator.cs" />
+    <Compile Include="DataProvider.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="global.cs" />
+    <Compile Include="Interact\ComboTree.xaml.cs">
+      <DependentUpon>ComboTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\IEditController.cs" />
+    <Compile Include="Interact\IEditInstanceManagerWindow.xaml.cs">
+      <DependentUpon>IEditInstanceManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\IEditInstanceViewModel.cs" />
+    <Compile Include="Interact\IEditPanel.xaml.cs">
+      <DependentUpon>IEditPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\IInvert.cs" />
+    <Compile Include="Interact\IInvertController.cs" />
+    <Compile Include="Interact\IInvertPanel.xaml.cs">
+      <DependentUpon>IInvertPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\IParaSet.cs" />
+    <Compile Include="Interact\IParaSetClassification.cs" />
+    <Compile Include="Interact\IParaSetSummary.cs" />
+    <Compile Include="Interact\IRollVerify.cs" />
+    <Compile Include="Interact\IRollVerifyController.cs" />
+    <Compile Include="Interact\IRollVerifyPanel.xaml.cs">
+      <DependentUpon>IRollVerifyPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\ITimes.cs" />
+    <Compile Include="Interact\ITimesApp.cs" />
+    <Compile Include="Interact\ITimesPanel.xaml.cs">
+      <DependentUpon>ITimesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\ITimesController.cs" />
+    <Compile Include="Interact\ITimesTop.xaml.cs">
+      <DependentUpon>ITimesTop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\LoadChoose.xaml.cs">
+      <DependentUpon>LoadChoose.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\LoadClassData.cs" />
+    <Compile Include="Interact\LoadClassification.xaml.cs">
+      <DependentUpon>LoadClassification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\LoadSummary.xaml.cs">
+      <DependentUpon>LoadSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\LoadSummaryData.cs" />
+    <Compile Include="Interact\objAdjustData.cs" />
+    <Compile Include="Interact\RadarChart.cs" />
+    <Compile Include="Interact\SceneData.cs" />
+    <Compile Include="Interact\IEdit.cs" />
+    <Compile Include="Interact\Top.xaml.cs">
+      <DependentUpon>Top.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interact\UCGauge.xaml.cs">
+      <DependentUpon>UCGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manage\MHelp.cs" />
+    <Compile Include="Manage\MLog.cs" />
+    <Compile Include="Manage\MRoleManage.cs" />
+    <Compile Include="Manage\MUserInfo.cs" />
+    <Compile Include="Manage\MUserManage.cs" />
+    <Compile Include="Manage\MVisualConfig.cs" />
+    <Compile Include="Planning\PAll.cs" />
+    <Compile Include="Planning\PAllClass.cs" />
+    <Compile Include="Planning\PAllGauge.xaml.cs">
+      <DependentUpon>PAllGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAllPanel.xaml.cs">
+      <DependentUpon>PAllPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAllPrj.xaml.cs">
+      <DependentUpon>PAllPrj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAllTimeLine.xaml.cs">
+      <DependentUpon>PAllTimeLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAllYearPorjects.xaml.cs">
+      <DependentUpon>PAllYearPorjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAnalyseCompare.cs" />
+    <Compile Include="Planning\PAnalyseComparePanel.xaml.cs">
+      <DependentUpon>PAnalyseComparePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAnalyseInitiative.cs" />
+    <Compile Include="Planning\PAnalyseInitiativePanel.xaml.cs">
+      <DependentUpon>PAnalyseInitiativePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAnalyseN1.cs" />
+    <Compile Include="Planning\PAnalyseN1Panel.xaml.cs">
+      <DependentUpon>PAnalyseN1Panel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PEvalute.cs" />
+    <Compile Include="Planning\PAnalyse.cs" />
+    <Compile Include="Planning\PAnalyseAuto.cs" />
+    <Compile Include="Planning\PAnalyseAutoPanel.xaml.cs">
+      <DependentUpon>PAnalyseAutoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PChoiceCar.cs" />
+    <Compile Include="Planning\PChoiceCarPanel.xaml.cs">
+      <DependentUpon>PChoiceCarPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PEvaluteEconomy.cs" />
+    <Compile Include="Planning\PEvaluteEconomyMain.xaml.cs">
+      <DependentUpon>PEvaluteEconomyMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PEvaluteIDX.cs" />
+    <Compile Include="Planning\PEvaluteIndex.cs" />
+    <Compile Include="Planning\PEvaluteIndexFish.cs" />
+    <Compile Include="Planning\PEvaluteKPI.cs" />
+    <Compile Include="Planning\PEvaluteKPIMain.xaml.cs">
+      <DependentUpon>PEvaluteKPIMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PEvaluteSensitive.cs" />
+    <Compile Include="Planning\PEvaluteSensitiveMain.xaml.cs">
+      <DependentUpon>PEvaluteSensitiveMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PRunLoadContour.cs" />
+    <Compile Include="Planning\PTimesEvolve.cs" />
+    <Compile Include="Planning\PTimesEvolvePanel.xaml.cs">
+      <DependentUpon>PTimesEvolvePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PTimesEvolveTimeline.xaml.cs">
+      <DependentUpon>PTimesEvolveTimeline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PRunFlow.cs" />
+    <Compile Include="Planning\PRunFlowPanel.xaml.cs">
+      <DependentUpon>PRunFlowPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PRunLoadForcast.cs" />
+    <Compile Include="Planning\PRunLoadForcastPanel.xaml.cs">
+      <DependentUpon>PRunLoadForcastPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PAnalyseReliability.cs" />
+    <Compile Include="Planning\PAnalyseReliabilityPanel.xaml.cs">
+      <DependentUpon>PAnalyseReliabilityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PRunRetrospect.cs" />
+    <Compile Include="Planning\PRunRetrospectPanel.xaml.cs">
+      <DependentUpon>PRunRetrospectPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PRun.cs" />
+    <Compile Include="Planning\PRunSupplyRange.cs" />
+    <Compile Include="Planning\PRunSupplyRangePanel.xaml.cs">
+      <DependentUpon>PRunSupplyRangePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\PChoice.cs" />
+    <Compile Include="Planning\PRunSection.cs" />
+    <Compile Include="Planning\PTimes.cs" />
+    <Compile Include="Planning\PAllOneGauge.xaml.cs">
+      <DependentUpon>PAllOneGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planning\_Global.cs" />
+    <Compile Include="Run\DataGenerator.cs" />
+    <Compile Include="Run\PanelData.cs" />
+    <Compile Include="Run\RFullViewGridArea.cs" />
+    <Compile Include="Run\RFullViewIndexFish.cs" />
+    <Compile Include="Run\RFullView.cs" />
+    <Compile Include="Run\RFullViewProduceCount.xaml.cs">
+      <DependentUpon>RFullViewProduceCount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RFullViewProduceDataGenerator.cs" />
+    <Compile Include="Run\RFullViewSize.cs" />
+    <Compile Include="Run\RFullViewProduce.cs" />
+    <Compile Include="Run\RFullViewSizeDataGenerator.cs" />
+    <Compile Include="Run\RFullViewStatData.cs" />
+    <Compile Include="Run\RFullViewStatPanel.xaml.cs">
+      <DependentUpon>RFullViewStatPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RFuture.cs" />
+    <Compile Include="Run\RHistory.cs" />
+    <Compile Include="Run\RHistoryIndexFish.cs" />
+    <Compile Include="Run\RHistoryReplay.cs" />
+    <Compile Include="Run\RHistoryReplayPanel.xaml.cs">
+      <DependentUpon>RHistoryReplayPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RHistoryStat.cs" />
+    <Compile Include="Run\RRealTime.cs" />
+    <Compile Include="Run\RRunFlow.cs" />
+    <Compile Include="Run\RRunFlowPanel.xaml.cs">
+      <DependentUpon>RRunFlowPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RRunInfoPanel.xaml.cs">
+      <DependentUpon>RRunInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RFullViewSizePanel.xaml.cs">
+      <DependentUpon>RFullViewSizePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\RFullViewSizeSubPanel.xaml.cs">
+      <DependentUpon>RFullViewSizeSubPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Run\TreeViewDataBind.cs" />
+    <Compile Include="Run\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShareClass.cs" />
+    <Compile Include="Planning\PShareGrid.xaml.cs">
+      <DependentUpon>PShareGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl2.xaml.cs">
+      <DependentUpon>UserControl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="zButton.cs" />
+    <Compile Include="zMenuButton.cs" />
+    <Compile Include="zSubButton.cs" />
+    <Page Include="BasePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="btn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\ComboTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\IEditInstanceManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\IEditPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\IInvertPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\IRollVerifyPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\ITimesPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\ITimesTop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\LoadChoose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interact\LoadClassification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interact\LoadSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interact\Top.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interact\UCGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllPrj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllTimeLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllYearPorjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAnalyseAutoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAnalyseComparePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAnalyseInitiativePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAnalyseN1Panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PChoiceCarPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PEvaluteEconomyMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PEvaluteKPIMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PEvaluteSensitiveMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PTimesEvolvePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PTimesEvolveTimeline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PRunFlowPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Planning\PRunLoadForcastPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAnalyseReliabilityPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PRunRetrospectPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PRunSupplyRangePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PAllOneGauge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Run\RFullViewProduceCount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Run\RFullViewStatPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Run\RHistoryReplayPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Run\RRunFlowPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Run\RRunInfoPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Run\RFullViewSizePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Run\RFullViewSizeSubPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Run\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Section.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UCDNV863.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planning\PShareGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="BaseIPanel.cs" />
+    <Compile Include="btn.xaml.cs">
+      <DependentUpon>btn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrjHelper.cs" />
+    <Compile Include="Section.cs" />
+    <Compile Include="Section.xaml.cs">
+      <DependentUpon>Section.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UCDNV863.xaml.cs">
+      <DependentUpon>UCDNV863.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UserControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\863.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\testback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyControls\FishBone\FishBone.csproj">
+      <Project>{20C03CF7-1146-441A-814E-E44471561271}</Project>
+      <Name>FishBone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyControls\IDXKPI\IDXKPI.csproj">
+      <Project>{7F0D7986-EAD2-412A-93D3-AF3ABA56079E}</Project>
+      <Name>IDXKPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyControls\Index3D\Index3D.csproj">
+      <Project>{4820BB81-6C55-470D-9C3B-C06182C6B91A}</Project>
+      <Name>Index3D</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyControls\MyBaseControls\MyBaseControls.csproj">
+      <Project>{EC0D7F66-0C42-4B67-8526-C1F05A739745}</Project>
+      <Name>MyBaseControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyControls\MyClassLibrary\MyClassLibrary.csproj">
+      <Project>{E0C6D662-8443-44BC-8BDD-838632397683}</Project>
+      <Name>MyClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfEarthLibrary\WpfEarthLibrary.csproj">
+      <Project>{43F7DBCA-E685-40BA-8397-A4DC0542E9FB}</Project>
+      <Name>WpfEarthLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{0DEF49F5-A680-424B-BC84-751D7C5FBB0D}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DistNetLibrary\DistNetLibrary.csproj">
+      <Project>{DC273D29-9B6D-4637-9570-F00CAAAA5696}</Project>
+      <Name>DistNetLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\133.png" />
+    <Resource Include="Images\173.png" />
+    <Resource Include="Images\22.png" />
+    <Resource Include="Images\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\test.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Nav\interaction.png" />
+    <Resource Include="Images\Nav\run.png" />
+    <Resource Include="Images\Nav\planning.png" />
+    <Resource Include="Images\Nav\manage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon\run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon\choice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon\valuate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon\times.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon\analyse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Arrows3_1.png" />
+    <Resource Include="Images\Arrows3_2.png" />
+    <Resource Include="Images\Arrows3_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lamp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Planning\PAnalyseInitiative主动性分析.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Planning\PAll.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table_green_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\85.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Input\gybig.png" />
+    <Resource Include="Images\Input\gysmall.png" />
+    <Resource Include="Images\Input\jmbig.png" />
+    <Resource Include="Images\Input\jmsmall.png" />
+    <Resource Include="Images\Input\sybig.png" />
+    <Resource Include="Images\Input\sysmall.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

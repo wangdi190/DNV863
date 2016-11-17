@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>通用状态栏</title>	
+	<meta name="Title" content="通用状态栏" />
+    	<meta name="Microsoft.Help.Keywords" content="状态栏" />
+    	<meta name="Microsoft.Help.TocOrder" content="11" />
+	   	<meta name="Microsoft.Help.TocParent" content="WpfEarthControl" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="Expand" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style2 {
+		margin-left: 40px;
+	}
+		
+	.auto-style7 {
+		margin-left: 40px;
+	}
+	.auto-style9 {
+		border-style: solid;
+		border-width: 1px;
+		padding: 1px 4px;
+		margin-left: 40px;
+	}
+
+	.auto-style10 {
+	color: #0007FF;
+}
+
+	</style>
+</head>
+
+<body>
+
+<p class="auto-style1">通用状态栏</p>
+<hr/>
+<p>1. 简述</p>
+    <p class="auto-style2">通用状态栏代码位于MyBaseControls类库，要使用它必须引用该类库。</p>
+<p class="auto-style2">通用状态栏的主类MyBaseControls.StatusBarTool.StatusBarTool为静态态，方便全局范围使用。它的statusBar属性，提供了真正呈现给用户的状态栏界面，开发者应在主程序中将它加在适当的位置。</p>
+<p class="auto-style2">
+状态栏预定义了一些常用的功能，开发者也可以加入从MyBaseControls.StatusBarTool.InfoBase派生的自已定义的状态栏功能类，加入后统一由主类管理，包括自动布局和通用的部分效果功能等。</p>
+<p class="auto-style2">
+调用方法参见<a href="HowToDo2.html#A4">如何使用通用状态栏？</a></p>
+<p>2. 特征说明</p>
+<ul>
+	<li>
+	<p class="auto-style2">布局</p>
+	<ul>
+		<li>
+		<p class="auto-style2">
+		状态栏静态主类StatusBarTool管理着基类为InfoBase的信息栏列表infos，InfoBase的order和width决定信息栏的布局，order从小到大决定信息栏从左到右的顺序，width决定信息栏宽度，width&gt;1则表示该信息栏的宽度为width, 
+		若width&lt;1则表示该信息栏为动态宽度，动态宽度值是相对的，动态宽度下：宽度= 
+		（状态栏宽度-所有固定宽度）*动态宽度值/所有动态宽值之和。width缺省值为0.2。</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style2">图标</p>
+	<ul>
+		<li>
+		<p class="auto-style2">除状态信息栏外，所有信息栏还可以选择前置图标，相关属性有iconselect和icon，iconselect可以直接选用内置的图标，icon可接受开发者自定义的图标brush。</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style2">效果</p>
+	<ul>
+		<li>
+		<p class="auto-style2">信息栏还支持一些内置的效果，包括 淡入, 持续闪烁, 闪烁5次, 粗字体, 
+		斜字体，其中字体效果仅预定义的信息栏支持。相关属性为infobase.effect。</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+<p>3. 预定义信息栏</p>
+<p class="auto-style2">
+状态栏预定义了一些常用的功能，开发者也可以加入从MyBaseControls.StatusBarTool.InfoBase派生的自已定义的状态栏功能类，加入后统一由主类管理，包括自动布局和通用的部分效果功能等。</p>
+<p class="auto-style2">已预定义的功能有：</p>
+<ul>
+	<li>
+	<p class="auto-style7">实时信息，适宜于呈现坐标、时间等实时更新的信息&nbsp;</p>
+	<ul>
+		<li>
+		<p class="auto-style7">方法：showInfo(string text)</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style7">报告信息，适宜于呈现程序返回的信息，如错误信息，异步完成信息，报告信息可以有时效性</p>
+	<ul>
+		<li>
+		<p class="auto-style7">方法：showInfo(string text, int timeout)&nbsp; 
+		//timeout表示多少秒后信息消失，0为不消失</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style7">提示信息，适宜于呈现对用户的操作提示，提示信息允许多条滚动显示，提示信息有两种使用方式：直接代码方式和xml文件方式（归并tips便于管理，代码只需设置程序域即可，推荐使用这种方式）</p>
+	<ul>
+		<li>
+		<p class="auto-style7">程序代码方式：通过在程序代码中控制增删infos列表中的项目，这些项目始终将轮换显示。</p>
+		</li>
+		<li>
+		<p class="auto-style7">
+		xml文件方式（tips.xml）：在初始化后一次性从xml文件中载入所有tips，然后在代码中使用push\pop方法以及curDomain属性，控制tips的显示。可以使用push和pop方法配合来应用堆栈恢复上级界面tips，也可以直接设置curDomain属性来切换tips内容。</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style7">
+	状态图标，状态图标预定义了告警状态、计算状态、连接状态三种类型状态，此外开发都也可加入从MyBaseControls.StatusBarTool.StatusBase派生的状态类。</p>
+	<ul>
+		<li>
+		<p class="auto-style7">
+		告警状态：设置statusInfo.warningStatus.status属性，status是枚举类型，当设为隐藏时，状态图标不显示。枚举包括隐藏, 
+		无告警, 一般告警, 严重告警</p>
+		</li>
+		<li>
+		<p class="auto-style7">计算状态：设置statusInfo.calStatus.status属性。枚举包括隐藏, 无计算, 
+		计算中, 计算完成</p>
+		</li>
+		<li>
+		<p class="auto-style7">
+		连接状态：设置statusInfo.onlineStatus.status属性，注：暂无应用，未完成</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p class="auto-style7">调试信息，供开发者使用。</p>
+	<ul>
+		<li>
+		<p class="auto-style7">调试信息栏为方便开发者调试使用，showInfo(string 
+		text)可显示需要调试的信息，调试信息栏右边有按钮，点击可打开窗体以textbox显示调试信息，可复制粘贴。</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+<p>4. 如何自定义信息栏</p>
+<p class="auto-style2">仿如下报告信息栏即可</p>
+<pre class="auto-style9"> ///&lt;summary&gt;支持具有时效性的信息&lt;/summary&gt;
+public class ReportInfo : InfoBase
+{
+	public ReportInfo()
+	{
+		content = txt;
+		tmr.Tick += new EventHandler(tmr_Tick);
+		panel.Visibility = System.Windows.Visibility.Hidden;
+	}
+
+	void tmr_Tick(object sender, EventArgs e)
+	{
+		txt.Text = "";
+		panel.Visibility = System.Windows.Visibility.Hidden;
+	}
+
+	TextBlock txt = new TextBlock() { Padding = new System.Windows.Thickness(0), Foreground = Brushes.Navy }; <span class="auto-style10">//信息文字显示控件</span>
+	System.Windows.Threading.DispatcherTimer tmr = new System.Windows.Threading.DispatcherTimer();  <span class="auto-style10">//为实现时效消失的timer</span>
+
+	///&lt;summary&gt;timeout信息有效时间（秒），小于等于0为永久直到被下一条信息冲掉&lt;/summary&gt;
+	public void showInfo(string text, int timeout)
+	{
+		if (string.IsNullOrWhiteSpace(text))
+		{
+			txt.Text = "";
+			panel.Visibility = System.Windows.Visibility.Hidden;  <span class="auto-style10">//使用基类中的panel容器以连带图标一同隐藏</span>
+		}
+		else
+		{
+			tmr.Stop();
+			txt.Text = text;
+			panel.Visibility = System.Windows.Visibility.Visible;  
+			doeffect();  //执行效果
+			if (timeout &gt; 0)  //若有时效，开始计时
+			{
+				tmr.Interval = TimeSpan.FromSeconds(timeout);
+				tmr.Start();
+	
+			}
+		}
+	}
+
+}
+</pre>
+<p>&nbsp;</p>
+<p>5. 如何自定义状态图标类</p>
+<p class="auto-style2">仿如下告警状态即可</p>
+<pre class="auto-style9">
+ public class WarningStatus : StatusBase
+{
+	public WarningStatus(): base()
+	{
+		rect.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(rect_MouseLeftButtonUp);  
+	}
+
+	void rect_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)  <span class="auto-style10">//实现点击图标执行委托程序</span>
+	{
+		if ((status == EStatus.一般告警 || status == EStatus.严重告警) &amp;&amp; gotoWarning != null)
+			gotoWarning();
+	}
+
+	public enum EStatus { 隐藏, 无告警, 一般告警, 严重告警 }  <span class="auto-style10">//定义的四种状态</span>
+	private EStatus _status;
+	public EStatus status
+	{
+		get { return _status; }
+		set
+		{
+			_status = value;
+			isVisible = value != EStatus.隐藏;
+			rect.Cursor = System.Windows.Input.Cursors.Arrow;
+			rect.BeginAnimation(System.Windows.Shapes.Rectangle.OpacityProperty, null);
+			switch (value)
+			{
+				case EStatus.无告警:
+					brush = geticonbrush("warn1.png");
+					break;
+				case EStatus.一般告警:
+					brush = geticonbrush("warn2.png");
+					ani.Duration = TimeSpan.FromSeconds(1.5);
+					rect.BeginAnimation(System.Windows.Shapes.Rectangle.OpacityProperty, ani);  <span class="auto-style10">//图标动画</span>
+					if (gotoWarning != null)
+						rect.Cursor = System.Windows.Input.Cursors.Hand;  <span class="auto-style10">//改变光标</span>
+					break;
+				case EStatus.严重告警:
+					brush = geticonbrush("warn3.png");
+					ani.Duration = TimeSpan.FromSeconds(0.5);
+					rect.BeginAnimation(System.Windows.Shapes.Rectangle.OpacityProperty, ani);  
+					if (gotoWarning != null)
+						rect.Cursor = System.Windows.Input.Cursors.Hand;
+					break;
+			}
+			rect.Background = brush;
+			rect.ToolTip = value.ToString();  <span class="auto-style10">//改变tooltip</span>
+		}
+	}
+
+	DoubleAnimation ani = new DoubleAnimation() { AutoReverse = true, RepeatBehavior = RepeatBehavior.Forever, From = 0.2, To = 1 };
+
+	public delegate bool GotoWarning();
+	///&lt;summary&gt;调用程序委托，点击图标调用,以前往处理或查看告警&lt;/summary&gt;
+	public GotoWarning gotoWarning { get; set; }
+
+}</pre>
+
+<p class="auto-style2">&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

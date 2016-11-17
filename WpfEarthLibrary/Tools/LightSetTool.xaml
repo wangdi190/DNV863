@@ -1,0 +1,294 @@
+﻿<UserControl x:Class="WpfEarthLibrary.Tools.LightSetTool"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="300" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <DataTemplate x:Key="lighttemplate">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding isEnable}"/>
+                <TextBlock Text="光源"/>
+                <TextBlock Text="{Binding num}"/>
+                <TextBlock Text="{Binding LightType}" Margin="5,0,5,0"/>
+                <TextBox Text="{Binding lightname}" Width="60" BorderThickness="0"/>
+
+
+            </StackPanel>
+        </DataTemplate>
+
+        <MaterialGroup x:Key="matGround">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Color="#590000FF"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+        <MaterialGroup x:Key="matCone">
+            <DiffuseMaterial>
+                <DiffuseMaterial.Brush>
+                    <SolidColorBrush Color="Red"/>
+                </DiffuseMaterial.Brush>
+            </DiffuseMaterial>
+        </MaterialGroup>
+
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="translate"/>
+    </UserControl.RenderTransform>
+    <Grid x:Name="grdMain" Width="300" Height="735">
+        <Border Background="#8098FB98" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseMove="Border_MouseMove"/>
+        <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black"  Padding="5">
+            <StackPanel>
+                <GroupBox Header="全局">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Rectangle Width="10" Height="10" Margin="3">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding AmbientLight}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="环境光："/>
+                        </StackPanel>
+                        <Rectangle Grid.Row="0" Grid.Column="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Slider Grid.Row="0" Grid.Column="1" Value="{Binding AmbientSlider}" Maximum="255" SmallChange="1" />
+                        <Button x:Name="btnAbmColor" Content="..." Grid.Row="0" Grid.Column="2" Click="btnAbmColor_Click"/>
+
+                        <TextBlock Text="镜面反射：" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="光源">
+                    <ListBox Height="150" ItemsSource="{Binding lights}" ItemTemplate="{StaticResource lighttemplate}" SelectedItem="{Binding curLight}" SelectionChanged="ListBox_SelectionChanged" />
+                </GroupBox>
+                <GroupBox Visibility="{Binding curVisibiliy}">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding curLight.num}"/>
+                            <TextBlock Text="#光源" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding curLight.lightname}"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.55*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="光源类型：" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding LightTypes}" SelectedIndex="{Binding curLight.lighttypenum}"/>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Rectangle Width="10" Height="10" Margin="3">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding curLight.Diffuse}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="漫反射光："/>
+                        </StackPanel>
+                        <Rectangle Grid.Row="1" Grid.Column="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Slider Grid.Row="1" Grid.Column="1" Value="{Binding curLight.DiffuseSlider}" Maximum="255" SmallChange="1"/>
+                        <Button x:Name="btnDiffColor" Content="..." Grid.Row="1" Grid.Column="2"/>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Rectangle Width="10" Height="10" Margin="3">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding AmbientLight}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="镜面反射："/>
+                        </StackPanel>
+                        <Rectangle Grid.Row="2" Grid.Column="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Slider Grid.Row="2" Grid.Column="1" Value="{Binding curLight.SpecularSlider}" Maximum="255" SmallChange="1"/>
+                        <Button x:Name="btnSpecColor" Content="..." Grid.Row="2" Grid.Column="2"/>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Rectangle Width="10" Height="10" Margin="3">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding AmbientLight}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="环境光照："/>
+                        </StackPanel>
+                        <Rectangle Grid.Row="3" Grid.Column="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Slider Grid.Row="3" Grid.Column="1" Value="{Binding curLight.AmbientSlider}" Maximum="255" SmallChange="1"/>
+                        <Button x:Name="btnAbColor" Content="..." Grid.Row="3" Grid.Column="2"/>
+
+                        <TextBlock Text="光源位置：" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding curLight.DirectionVisibility}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox/>
+                            <TextBox Grid.Column="1"/>
+                            <TextBox Grid.Column="2"/>
+                        </Grid>
+
+                        <TextBlock Text="光照方向：" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Visibility="{Binding curLight.DirectionVisibility}"/>
+                        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Width="190" Height="190" Visibility="{Binding curLight.DirectionVisibility}">
+                            <Viewport3D x:Name="mainViewport3D"  >
+                                <Viewport3D.Camera>
+                                    <PerspectiveCamera x:Name="camera" Position="0,-3,0.3" LookDirection="0,1,0" UpDirection="0,0,1" FieldOfView="45">
+                                        <PerspectiveCamera.Transform>
+                                            <Transform3DGroup>
+                                                <RotateTransform3D >
+                                                    <RotateTransform3D.Rotation>
+                                                        <AxisAngleRotation3D x:Name="rotationtmp" Angle="0" Axis="0,0,0"/>
+                                                    </RotateTransform3D.Rotation>
+                                                </RotateTransform3D>
+                                            </Transform3DGroup>
+                                        </PerspectiveCamera.Transform>
+                                    </PerspectiveCamera>
+                                </Viewport3D.Camera>
+                                <Viewport3D.Children>
+                                    <ModelVisual3D Transform="{Binding ElementName=camera, Path=Transform}">
+                                        <ModelVisual3D.Content>
+                                            <Model3DGroup>
+                                                <AmbientLight Color="Silver"/>
+                                                <DirectionalLight Color="WhiteSmoke" Direction="10,-10,-30" />
+                                                <DirectionalLight Color="DimGray" Direction="0,0,-30" />
+                                                <DirectionalLight Color="DimGray" Direction="0,-10,0" />
+                                            </Model3DGroup>
+                                        </ModelVisual3D.Content>
+                                    </ModelVisual3D>
+                                    <ModelVisual3D x:Name="ModelMain">
+                                        <ModelVisual3D x:Name="modelContent">
+                                            <ModelVisual3D x:Name="mgGround">
+                                                <ModelVisual3D.Content>
+                                                    <Model3DGroup>
+                                                        <GeometryModel3D x:Name="geoGround" Material="{StaticResource matGround}"/>
+                                                    </Model3DGroup>
+                                                </ModelVisual3D.Content>
+                                            </ModelVisual3D>
+                                            <ModelVisual3D x:Name="mgCone">
+                                                <ModelVisual3D.Content>
+                                                    <Model3DGroup>
+                                                        <Model3DGroup.Transform>
+                                                            <RotateTransform3D>
+                                                                <RotateTransform3D.Rotation>
+                                                                    <AxisAngleRotation3D Axis="1,0,0" Angle="-90" />
+                                                                </RotateTransform3D.Rotation>
+                                                            </RotateTransform3D>
+                                                        </Model3DGroup.Transform>
+                                                        <GeometryModel3D x:Name="geoCone" Material="{StaticResource matCone}"/>
+                                                        <GeometryModel3D x:Name="geoCyl" Material="{StaticResource matCone}">
+                                                            <GeometryModel3D.Transform>
+                                                                <ScaleTransform3D ScaleX="0.02" ScaleZ="0.02" ScaleY="0.82"/>
+                                                            </GeometryModel3D.Transform>
+                                                        </GeometryModel3D>
+                                                    </Model3DGroup>
+                                                </ModelVisual3D.Content>
+                                            </ModelVisual3D>
+
+                                        </ModelVisual3D>
+
+                                    </ModelVisual3D>
+                                </Viewport3D.Children>
+                            </Viewport3D>
+                            <Border Name="myElement" Background="Transparent" />
+                        </Grid>
+                        <Grid Grid.Row="6" Grid.ColumnSpan="3" Visibility="{Binding curLight.DirectionVisibility}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Slider Minimum="-1" Maximum="1" Value="{Binding curLight.dirX}" IsSnapToTickEnabled="True" TickFrequency="0.1" TickPlacement="TopLeft" />
+                            <Slider Grid.Column="1" Minimum="-1" Maximum="1" Value="{Binding curLight.dirY}" IsSnapToTickEnabled="True" TickFrequency="0.1" TickPlacement="TopLeft" />
+                            <Slider Grid.Column="2" Minimum="-1" Maximum="1" Value="{Binding curLight.dirZ}" IsSnapToTickEnabled="True" TickFrequency="0.1" TickPlacement="TopLeft" />
+                            <TextBox Text="{Binding curLight.dirX}" Grid.Row="1"/>
+                            <TextBox Text="{Binding curLight.dirY}" Grid.Column="1" Grid.Row="1"/>
+                            <TextBox Text="{Binding curLight.dirZ}" Grid.Column="2" Grid.Row="1"/>
+                        </Grid>
+
+
+
+                        <TextBlock Text="光照范围：" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding curLight.Range}" Visibility="{Binding curLight.ConeDotVisibility}"/>
+
+                        <TextBlock Text="Falloff：" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Text="1" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+
+                        <TextBlock Text="Attenuation0：" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" Text="1" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBlock Text="Attenuation1：" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBox Grid.Row="10" Grid.Column="1" Text="0" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBlock Text="Attenuation2：" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.ConeDotVisibility}"/>
+                        <TextBox Grid.Row="11" Grid.Column="1" Text="0" Visibility="{Binding curLight.ConeDotVisibility}"/>
+
+                        <TextBlock Text="Theta：" Grid.Row="12" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+                        <TextBox Grid.Row="12" Grid.Column="1" Text="0" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+                        <TextBlock Text="Phi：" Grid.Row="13" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+                        <TextBox Grid.Row="13" Grid.Column="1" Text="0" Visibility="{Binding curLight.OnlyConeVisibility}"/>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Bottom" Margin="5">
+            <Button x:Name="btnSave" Content="保存到XML" Click="btnSave_Click"  Background="#40FFFFFF" Width="210"/>
+            <Button x:Name="btnHide" Content="隐藏" Click="btnHide_Click" Background="#40FFFFFF" Width="80"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

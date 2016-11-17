@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DNVLibrary.Run.RFullViewStatPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" IsHitTestVisible="False" Loaded="UserControl_Loaded" VerticalAlignment="Top" HorizontalAlignment="Right">
+    <UserControl.Resources>
+        <ImageBrush x:Key="warnning" ImageSource="/DNVLibrary;component/Images/4.png"/>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Orientation="Horizontal" Height="{Binding rowheight}">
+                <StackPanel Orientation="Horizontal" Width="{Binding headerwidth}" FlowDirection="RightToLeft"  Margin="0,0,10,0">
+                    <TextBlock Text="{Binding header}" TextAlignment="Right" Foreground="{Binding headerbrush}" FontSize="{Binding fontsize}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+                    <Rectangle Fill="{StaticResource warnning}" Width="32" Height="32" Visibility="{Binding warnningVisual}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="{Binding info}" Foreground="{Binding valuebrush}" FontSize="{Binding fontsize}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="grdMain">
+        <Grid.Effect>
+            <DropShadowEffect />
+        </Grid.Effect>
+        <ListBox x:Name="lst" ItemTemplate="{StaticResource listTemplate}" Background="Transparent" BorderThickness="0">
+            <!--<ListBox.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="White" />
+            </ListBox.Effect>-->
+        </ListBox>
+    </Grid>
+</UserControl>

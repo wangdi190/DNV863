@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="DNVLibrary.Interact.IInvertPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" 
+             xmlns:local="clr-namespace:DNVLibrary.Interact"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <DataTemplate x:Key="adjObjListTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="【" Foreground="White"/>
+                <TextBlock Text="{Binding typeInfo}" Foreground="{Binding typeBrush}"/>
+                <TextBlock Text="】" Foreground="White"/>
+                <TextBlock Text="{Binding objName}" Foreground="White"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="grdMain">
+
+        <!--仪表部分-->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,90,10,0" Width="310">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="520"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="gaugePanel" >
+                <local:UCGauge DataContext="{Binding idx1}" gaugeMode="小"/>
+                <local:UCGauge DataContext="{Binding idx2}" gaugeMode="小"/>
+                <local:UCGauge DataContext="{Binding idx3}" gaugeMode="小"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <local:UCGauge DataContext="{Binding idx4}" gaugeMode="可编辑"/>
+                <local:UCGauge DataContext="{Binding idx5}" gaugeMode="小"/>
+                <local:UCGauge DataContext="{Binding idx6}" gaugeMode="小"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+                <Button x:Name="btnInvertCal" Content="  反演计算  " HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="200" FontSize="15" Template="{StaticResource ButtonBlue}" Foreground="White" Click="btnInvertCal_Click"/>
+                <ProgressBar x:Name="bar" Height="3" Foreground="Lime" Margin="30,5"/>
+            </StackPanel>
+
+            <Border x:Name="pnlList" Background="#80000000" CornerRadius="10" BorderBrush="Silver" BorderThickness="1" Visibility="Collapsed" Grid.ColumnSpan="3" Grid.Row="2" Margin="0,0">
+                <StackPanel>
+                    <TextBlock Text="调整列表" Foreground="Yellow" FontSize="16" HorizontalAlignment="Center" Margin="5"/>
+                    <ListBox x:Name="lstAdjust" Height="290" Background="Transparent" BorderBrush="Transparent" ItemTemplate="{StaticResource adjObjListTemplate}" SelectionChanged="lstAdjust_SelectionChanged" />
+                </StackPanel>
+            </Border>
+
+        </Grid>
+        <!--场景控制板-->
+        <Border x:Name="pnlScene" Visibility="Collapsed" BorderBrush="#000000" BorderThickness="1" Background="#D0000000" Width="1425" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,360,30">
+            <Border BorderBrush="#D3D3D3" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <!--横向列表-->
+                    <Grid>
+                        <StackPanel x:Name="scenepanel" Orientation="Horizontal" Margin="3,0,0,0">
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Button x:Name="btnord1" Content=" 权重序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White" Click="btnord1_Click"/>
+                            <Button x:Name="btnord2" Content=" 供电负载序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White" Click="btnord2_Click"/>
+                            <Button x:Name="btnord3" Content=" 清洁能源序 " Height="24" FontSize="13" Template="{StaticResource ButtonBlack}" Foreground="White" Click="btnord3_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--场景-->
+                    <TextBlock Text="{Binding info}" Grid.Row="1" VerticalAlignment="Center" Foreground="Yellow" Margin="10,0,0,0" FontSize="14"/>
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>

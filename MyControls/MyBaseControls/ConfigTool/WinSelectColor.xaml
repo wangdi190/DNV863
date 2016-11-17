@@ -1,0 +1,19 @@
+﻿<Window xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="MyBaseControls.ConfigTool.WinSelectColor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="颜色选择" Height="340" Width="300"
+        Initialized="Window_Initialized" Loaded="Window_Loaded"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        
+        <dxe:ColorEdit x:Name="colorEdit1" ShowNoColorButton="True"/>
+        
+        <Button x:Name="btnOk" Content="确定" Click="btnOk_Click" Grid.Row="1" Width="60" Height="30"/>
+        <Button x:Name="btnCancel" Content="取消" Click="btnCancel_Click"  Grid.Row="1" Width="60" Height="30" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    </Grid>
+
+</Window>

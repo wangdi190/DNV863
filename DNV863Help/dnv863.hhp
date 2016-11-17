@@ -1,0 +1,24 @@
+[OPTIONS]
+Contents File=Contents.hhc
+Index File=dnv863.hhk
+Binary TOC=No
+Binary Index=Yes
+Compiled File=F:\当前项目文件夹\程序\配网可视化863\DNV863\DNV863\bin\Debug\dnv863.chm
+Default Window=
+Default Topic=default.html
+Default Font=,,134
+Full-text search=Yes
+Auto Index=Yes
+Language=0x804 中文(简体/中国)
+Title=主动配网平台说明
+Create CHI file=No
+Compatibility=1.1 or later
+Error log file=_errorlog.txt
+Full text search stop list file=
+Display compile progress=Yes
+Display compile notes=Yes
+
+[FILES]
+default.html
+planning.html
+

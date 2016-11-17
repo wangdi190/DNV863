@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>调用方法</title>	
+	<meta name="Title" content="DistNetLibrary类库简述" />
+    	<meta name="Microsoft.Help.Keywords" content="DistNet intro" />
+    	<meta name="Microsoft.Help.TocOrder" content="11" />
+	   	<meta name="Microsoft.Help.TocParent" content="DistNet" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="DistNet" />
+    	<meta name="Microsoft.Help.Id" content="DistNet" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style2 {
+	margin-left: 40px;
+}
+	</style>
+</head>
+
+<body>
+
+<p class="auto-style1">DistNetLibrary配网类库简单介绍</p>
+<hr/>
+<p>
+一、DistNetLibray配网类库基于WpfEarth类库，配网对象为WpfEarth类库中的pSymbol图元类、pPowerline折线类等的派生类，因此，它们的基类均为PowerBasicObject类。</p>
+<p>　　配网对象类，扩展使用了PowerBasicObject类的下面四个属性 </p>
+<p class="auto-style2">///&lt;summary&gt;扩展业务对象描述数据，一般为静态数据&lt;/summary&gt;<br />
+public object busiDesc { get; set; }<br />
+///&lt;summary&gt;扩展业务台账数据，一般为静态数据&lt;/summary&gt;<br />
+public object busiAccount { get; set; }<br />
+///&lt;summary&gt;扩展业务运行数据，一般为动态数据&lt;/summary&gt;<br />
+public object busiRunData { get; set; }<br />
+///&lt;summary&gt;扩展业务对象拓扑数据&lt;/summary&gt;<br />
+public object busiTopo { get; set; }</p>
+<p>
+　　其中，所有的配网对象类的busiDesc描述属性和busiTopo拓扑属性两个属性都有相同的数据结构，而busiAccount台账属性和busiRunData运行属性则各不相同，但它们又都有各自相同的基类AcntDataBase和RunDataBase。</p>
+<p>
+　　上述四个属性在配网对象中可以分别用thisDesc、thisAccount、thisRunData、thisTopoData指代，方法获得他们各自的属性。</p>
+<p>二、DistNetLibrary配网类库还提供了一个配网类DistNet，它封装了Earth类，并提供了一些基础属性和方法，如获取对象方法。</p>
+<p class="auto-style2">
+此外，DistNet还封装了一些配网功能性的方法，如显示潮流、显示负载、显示电压等值图、电源追溯、显示供电范围、拓扑搜索等，今后根据需要还将增加。</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

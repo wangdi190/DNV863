@@ -1,0 +1,51 @@
+﻿重要说明：图形对象中只有最经常使用的属性改变后会立即生效，包括color类,value,thickness,symbolid等，其余更改后应调用earth.updatemodel才能生效，增删图形对象也应调用earth.updatemodel
+2015.6.29：
+1.earth.global.camera类增加initCamera方法，用于初始化相机位置
+2.earth.earthManager.earthpara增加如下字段
+        public ETileReadMode tileReadMode; //瓦片读取模式，web方式(缺省)，文件读取方式
+        public int tileFileOffsetLI; //瓦片偏移-层序
+        public int tileFileOffsetXI; //瓦片偏移-X经度方向序号
+        public int tileFileOffsetYI; //瓦片偏移-Y纬度方向序号
+3.增加earth.CoordinateManager坐标转换管理类，目的是配合使用自切分瓦片的使用，即自切分的瓦片非标准地球切分，需使用坐标转换类，将自切分瓦片内部坐标系转换到
+原来的球面坐标系(原球面坐标系成为虚拟坐标系，不再表示真正的经纬坐标)，注意：此模式下，转换后精确性下降。
+4.增加WpfEarthLibrary.Tools.CalCoordinateTransformPara工具，辅助计算2和3的参数。
+5.earth.global类增加MapPath和MapPath2字段，存放用于路径取瓦片模式下的主瓦片路径和文字瓦片路径。
+6.配合坐标转换，pData类构造函数必须带pLayer参数，若pdata为某对象的子对象，可取父对象的parent为参数
+
+2015.4.12:
+1. 更新camera.adjustCamera方法为adjustCameraAngle方法，参数为与地面垂直射线的夹角。
+2. 增加camera.adjustCameraDistance方法，用于调整相机距地面目标的距离。
+3. ppowerline增加from、to、fromID、toID属性，psymbolobject增加relationID集合属性，这些属性本身不提供逻辑，需在构建基础网架时赋值，以建立网架的拓扑关系。
+	(应用案例：在863规划中，应用于电源追溯和供电范围)
+4. 增加RangeGenerator类，用于生成范围纹理，用法：与等值图类似，但采用RangeGenerator生成范围画刷(等值图用contour类来生成画刷)，再用pContour类应用到图层中生效。
+	(应用案例：在863规划中，应用于表现供电范围)
+5. 更改powerbasicobject类的isShowData属性为isShowSubObject, 同时subObjects集合属性从<string, pData>更改为<string,powerBasicObject>, 即子对象可以是任意基类为powerbasicobject的对象。
+   上述修改是为了便于实现下方 6 的内置Label显示，同时避免原名称产生歧义
+6. 对所有基类为powerbasicobject的对象，均可方便的通过设置Label和isShowLabel显示文字标签, 以Label为前缀的属性可控制标签显示效果
+	改变isShowLabel后需调用earth对象的updatemodel方法批量提交,
+	改变label不需调用updatemodel(未完成),
+	要显示标签，除isShowLabel为真外，还需isShowSubObject为真（缺省为真）
+
+2015.4.14:
+1. 增加lightManager控制光源机制, 光源暂只对立体物体有明显作用，暂时预建立两个可用光源0号（缺省生效，普通效果）,1号（缺省disable，通透效果），它们都为右侧光源
+2. powerbasicobject增加自动计算的bound属性（仅pArea和Ppowerline有效）。camera增加adjustcamerarange方法，功能为按引bound自动定位和缩放相机，以使屏幕显示适应bound的范围大小。
+3. 修复切换地图时弹出错误。修改非卫星地图为最大只能到15层。
+
+2015.4.15
+1. Earth类增加色彩管理器colorManager，以便于在切换地图时采用不同的配色。增加isUseColorManager属性(是否使用色彩管理, 缺省为false)，增加refreshColor方法（在恢复色彩管理后调用刷新色彩）
+	色彩管理器预设了色彩集，通过地图类型mapType、对象类型objType,objtypesring（枚举或字串）、状态objStatus,objstatusstring（枚举或字串）三者共同来确定色彩。
+	上述objtype类和objstatus类均有枚举和字串两种格式，枚举是系统内部定义，方便使用，字串为便于用户自定义
+	pPowerLine、pSymbol、pArea增加三个属性：objType和objtypestring（对象类型，分别为枚举和字串，静态分类，加载网架时确定，缺省值为_通用）objStatus和objstatusstring(对象状态，动态，它的改变会引起色彩变化，缺省值为_正常) isColorManaged(色彩是否被管理，用于单个对象的是否按受管理判断)
+	objType和objStatus是依据pPowerLine、pSymbol、pArea各不相同的枚举类型
+	objStatus包含5个用户自定义状态，用户可预先使用setColor方法定义他们关联的色彩
+	重要：应尽量通过设置对象的状态属性来改变色彩（objStatus），而不要直接设置对象色彩，否则切换地图时色彩不可控
+	色彩配置以colorcfg.xml保存，以后提供工具来调整修改。
+	对于以值来渲染的对象，可以将earth.isUseColorManager设置为false来关闭色彩管理，之后通过设置为ture并调用refreshColor方法来恢复色彩管理，也可单独针对个体对象的isColorManaged属性来决定该对象是否接受色彩管理。
+2. 图元对象pSymbolObject更新，可使用color属性来渲染图元，增加isUseColor属性，ture（缺省）：图元由color属性决定图元的颜色，false：呈现图元纹理本身的颜色(如使用图标时)
+3. 线路改为四棱柱，改善斜视角时线路虚线状况。	
+
+2015.5.10
+1. 增加动态载入功能
+
+2015.6.10
+1. 更新瓦片载入为多线程载入。

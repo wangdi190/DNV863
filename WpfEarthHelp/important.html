@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>重要说明</title>	
+	<meta name="Title" content="重要说明" />
+    	<meta name="Microsoft.Help.Keywords" content="重要说明" />
+    	<meta name="Microsoft.Help.TocOrder" content="111" />
+	   	<meta name="Microsoft.Help.TocParent" content="Guide" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="important" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+	.auto-style1 {
+		text-align: center;
+		font-size: x-large;
+	}
+	.auto-style2 {
+	margin-left: 40px;
+}
+.auto-style3 {
+	color: #0000FF;
+}
+.auto-style4 {
+	color: #000000;
+}
+.auto-style5 {
+	margin-left: 80px;
+}
+	</style>
+</head>
+
+<body>
+
+<p class="auto-style1">重要说明</p>
+<hr/>
+<p><strong>1.图形模式</strong></p>
+<p class="auto-style2">控件支持地理图模式和平面图模式，以实现对地理接线图和拓扑接线图的呈现。</p>
+<p class="auto-style2"><span class="auto-style3">地理图模式</span>采用经纬坐标，对象坐标属性为location和points。</p>
+<p class="auto-style2"><span class="auto-style3">平面图模式</span>采用笛卡儿坐标，但控件内部转换为了经纬坐标，以方便实现代码重用。对象坐标属性为planeXXXX，带有plane前缀。</p>
+<p><strong>2.加载和展示模式</strong></p>
+<p class="auto-style2">控件实现了三种对象加载和展示模式。</p>
+<p class="auto-style2"><span class="auto-style3">全体加载全体显示</span>：初始化时，一次性载入全部对象，同时所有对象全体提交到场景中。适用于小于1500个对象的情形。无需开发者管理。该模式为缺省模式。</p>
+<p class="auto-style2"><span class="auto-style3">全体加载动态显示</span>：初始化时，一次性载入全部对象，但只对在相机可视范围*N以及相机离地距离一定区间内的对象才提交到场景中。适用于小于3万个对象的情形。无需开发者进行呈现管理，但开发者应进行业务数据更新的管理（无必要更新全部对象的业务数据）。通过earth.global.isDynShow属性控制，缺省false。</p>
+<p class="auto-style2"><span class="auto-style3">动态加载动态显示</span>：开发者动态管理加载对象，控件动态管理呈现。适用于大于3万个对象的情形。需开发者根据一定的策略来管理加载，开发者可直接使用和修改<span class="auto-style3"><strong>UCSample5</strong></span>提供的加载机制。通过earth.global.isDynShow属性和earth.global.isDynLoad属性控制，缺省false。开发者进行加载管理相关的属性包括:</p>
+<ul class="auto-style5">
+	<li class="auto-style4">Camera.ViewRange结构（用于保存相机可视范围信息）</li>
+	<li class="auto-style4">Camera.curCamearaViewRange属性（相机当前可视范围信息）</li>
+	<li class="auto-style4">Camera.getScreenCenterGeo方法（屏幕中心点坐标）</li>
+	<li class="auto-style4">Camera.curCameraDistanceToGround属性（相机当前离地距离）</li>
+	<li class="auto-style4">Camera.curCameraAngle属性（相机当前方向与地心线夹角）</li>
+	<li class="auto-style4">Earth.VisualRangeChanged事件（可视范围改变事件）</li>
+	<li class="auto-style4">Global.isDynShow属性</li>
+	<li class="auto-style4">Global.isDynLoad属性</li>
+</ul>
+<p class="auto-style2">
+动态加载动态显示未集成在控件中的原因是控件作为基础控制，为获得最大的灵活性和最大的应用范围，控件本身不实现图模一体化，若需实现图模一体化，可外包装实现。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

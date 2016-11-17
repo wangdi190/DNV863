@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="zh-cn" http-equiv="Content-Language" />
+<title>部署</title>	
+	<meta name="Title" content="部署" />
+    	<meta name="Microsoft.Help.Keywords" content="部署" />
+    	<meta name="Microsoft.Help.TocOrder" content="102" />
+	   	<meta name="Microsoft.Help.TocParent" content="Intro" />
+
+    	<meta name="Microsoft.Help.TopicLocale" content="zh-cn" />
+    	<meta name="Microsoft.Help.TopicVersion" content="100" />
+    	<meta name="Microsoft.Help.TopicVendor" content="WpfEarth" />
+    	<meta name="Microsoft.Help.Id" content="deployment" />
+    	
+    	<meta name="SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.SelfBranded" content="true" />
+    	<meta name="Microsoft.Help.Locale" content="zh-cn" />
+    	<meta name="Microsoft.Help.ContentType" content="Reference" />
+    	<meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    	<meta name="Description" content="部署说明" />
+    	<meta name="Microsoft.Help.TOCParentTopicVersion" content="100" />
+	<style type="text/css">
+.auto-style1 {
+	text-align: center;
+	font-size: x-large;
+}
+.auto-style2 {
+	margin-left: 40px;
+}
+.auto-style3 {
+	color: #FF0000;
+}
+.auto-style4 {
+	border-style: solid;
+	border-width: 1px;
+	padding: 1px 4px;
+	margin-left: 40px;
+}
+.auto-style5 {
+	border-style: solid;
+	border-width: 1px;
+	padding: 1px 4px;
+}
+.auto-style6 {
+	color: #0000FF;
+}
+</style>
+	</head>
+
+<body>
+
+<p class="auto-style1">部署与配置</p>
+<hr/>
+<p>一.地图瓦片的部署</p>
+<p>　　控件运行于地图模式时，需读取地图瓦片，地图瓦片的部署如下：</p>
+<p>1. 复制地图瓦片文件</p>
+<p class="auto-style2">复制并解压地图瓦片文件到服务器。地图瓦片文件目录应类似如下形式：</p>
+<p class="auto-style2"><img height="182" src="20150517163441.png" width="127" /></p>
+<p>2. 建立地图瓦片web服务</p>
+<p class="auto-style2">复制web服务的程序文件到服务器，并在IIS中配置为一个新网站，配置端口，如8080。</p>
+<p class="auto-style2"><img height="416" src="20150517163743.png" width="781" /></p>
+<p class="auto-style2">&nbsp;</p>
+<p>3. 配置瓦片文件路径</p>
+<p class="auto-style2">用记事本打开web服务程序文件中的web.config，配置瓦片文件路径。如下方红字部分</p>
+<p class="auto-style4">&lt;configuration&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;system.web&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;compilation debug="true" 
+targetFramework="4.0"/&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;/system.web&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;appSettings&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add key="mappath" value="<span class="auto-style3">E:\Map\</span>" 
+/&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;/appSettings&gt;<br />
+&lt;/configuration&gt;</p>
+<p>二.控件配置</p>
+<p>1.配置控件的地图瓦片服务路径参数</p>
+<p class="auto-style2">在主项目代码中进行配置</p>
+<p class="auto-style2">a.在主项目属性-&gt;设置中，增加一个配置参数，如：mapurl（参数名）&nbsp;&nbsp; 
+<a href="http://localhost:8080/img.aspx（参数值，即上述一.2建立的web路径">
+http://xxx.xxx.xxx.xxx:8080/img.aspx（参数值，即上述一.2建立的web路径</a>）</p>
+<p class="auto-style2">b.在主项目的app.xmal的Application_Startup事件中配置控件参数，如：</p>
+<p class="auto-style5">&nbsp;&nbsp;&nbsp;&nbsp; private void 
+Application_Startup(object sender, StartupEventArgs e)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WpfEarthLibrary.Global.MapIP = 
+DNV863.Properties.Settings.Default.mapurl; //将地图瓦片服务路径赋给控件静态变量MapIP<br />
+&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;</p>
+<p>三.生成部署程序要注意的问题</p>
+<p>1.包含devexpress中用到的theme程序集。</p>
+<p>2.包含并更新各类配置的xml文件，设置为内容，更新则复制。要把这些xml文件<span class="auto-style6"><strong>copy更新</strong></span>到项目根下。在项目发布-&gt;应用程序文件中，要把它们设置为&lt;<span class="auto-style6"><strong>包括</strong></span>&gt;。</p>
+<p>3.d3dearth.dll也如同2处理。</p>
+<p>4.设置项目为完全信任。</p>
+<p>5.若发布程序可能更改配置，则需要在项目发布-&gt;应用程序文件中，把config的哈希改为排除。同时，项目签名中，取消为程序清单签名。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

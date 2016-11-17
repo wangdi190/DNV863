@@ -1,0 +1,16 @@
+Microsoft HTML Help Compiler 4.74.8702
+
+Compiling f:\当前项目文件夹\程序\配网可视化863\DNV863\DNV863\bin\Debug\dnv863.chm
+
+default.html
+planning.html
+
+Compile time: 0 minutes, 0 seconds
+2	Topics
+5	Local links
+0	Internet links
+0	Graphics
+
+
+Created f:\当前项目文件夹\程序\配网可视化863\DNV863\DNV863\bin\Debug\dnv863.chm, 12,627 bytes
+Compression increased file by 7,831 bytes.
